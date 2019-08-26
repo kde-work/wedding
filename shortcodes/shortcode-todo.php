@@ -279,7 +279,7 @@ function wb_todo_content_template($items) {
         </tbody>
     </table>
     <div class="td-add-new-btn">
-        <div class="wb-add-new-btn__btn wb-button">Add a new task</div>
+        <div class="wb-add-new-btn__btn _wb-button wb-add-new__button">Add a new task</div>
     </div>
     <div class="td-add-new wb-todo-table__new">
         <h4>Add a new task</h4>
