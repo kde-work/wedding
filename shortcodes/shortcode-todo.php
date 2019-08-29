@@ -1,4 +1,5 @@
 <?php
+add_shortcode('wedding_todo', 'wb_todo_shortcode');
 function wb_todo_shortcode ($atts) {
 	wb_scripts__todo ();
 	$empty_settings = 0;
@@ -124,7 +125,6 @@ function wb_todo_shortcode ($atts) {
 	$output = ob_get_clean();
 	return $output;
 }
-add_shortcode('wedding_todo', 'wb_todo_shortcode');
 
 function wb_todo_content_template($items) {
 	ob_start();
