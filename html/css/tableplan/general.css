@@ -1,0 +1,13 @@
+﻿
+/* login styles*/
+.login {
+    position:absolute;
+    right: 10px;
+    top: 10px;
+	color: #27b006;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+img.ruble-img { height: 1.5ex; }
+span.dot { position:absolute; text-indent: -1000em; }
