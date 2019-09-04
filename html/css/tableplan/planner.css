@@ -213,13 +213,14 @@
 
 /* button icons and images */
 .tp .close_button {
-	display:block;
-	width:18px;
-	height:18px;
-	background:url( ../../img/planner/close11.png);
+	position:absolute;
+	right:4px;
+	top:4px;
 }
-.tp .close_button:hover {
-    background:url( ../../img/planner/close12.png);
+.tp .close_button i {
+	color: #f52629;
+	cursor: pointer;
+	font-size: 18px;
 }
 
 .tp .tables_icon {

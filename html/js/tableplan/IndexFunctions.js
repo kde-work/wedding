@@ -43,9 +43,9 @@ function ShowSubMenu(id) {
 
     if (id == 'm8') { // settings menu
         // populate menu values
-        for (var i = 1; i <= 9; ++i) {
-            $("#meal" + i)[0].value = tablePlan.MenuList[i];
-        }
+        // for (var i = 1; i <= 9; ++i) {
+        //     $("#meal" + i)[0].value = tablePlan.MenuList[i];
+        // }
 
         // show grid control
         $("#show_gridlines")[0].checked = !tablePlan.HideGrid;
@@ -80,16 +80,6 @@ function ShowSubMenu(id) {
         $("#statGuests")[0].innerHTML = lGuestCount;
         $("#statUnseatGuests")[0].innerHTML = lUnseatedGuests;
         $("#statFreeSeats")[0].innerHTML = lFreeSeatCount;
-    }
-
-    if (id == 'm8') { // settings menu
-        // populate menu values
-        for (var i = 1; i <= 9; ++i) {
-            $("#meal" + i)[0].value = tablePlan.MenuList[i];
-        }
-
-        // show grid control
-        $("#show_gridlines")[0].checked = !tablePlan.HideGrid;
     }
 
     if (id == 'm10') { // Save menu
@@ -362,7 +352,7 @@ function CheckTableAndObjectLimitation(objectName) {
 
 function AddNewTable() {
     // check number of tables.
-    if (!CheckTableAndObjectLimitation('стол'))
+    if (!CheckTableAndObjectLimitation('table'))
         return;
 
     var lNumSeats = parseInt(document.getElementById('num_table_seats').value);
@@ -384,7 +374,7 @@ function SetPlanWidth(width) {
     var $plannerField = $(".plannerCanvas"),
         horizontalResize = document.getElementById("resize_horizontal");
 
-    horizontalResize.style.left = width + $plannerField.offset().left - 3 + 'px';
+    horizontalResize.style.left = Math.floor(width + $plannerField.offset().left - 1) + 'px';
     HorizontalResizePositionChanged();
 }
 
@@ -421,7 +411,7 @@ function VerticalResizePositionChanged() {
 
     // move horizontal size box
     var horizontalStyle = document.getElementById("resize_horizontal").style;
-    horizontalStyle.top = planner_height / 2 - 2 + offset_top + 'px';
+    horizontalStyle.top = Math.floor(planner_height / 2 - 2 + offset_top) + 'px';
 
     // resize stage
     kineticStage.setHeight(planner_height);
@@ -436,7 +426,7 @@ function HorizontalResizePositionChanged() {
         $html = $('html'),
         html_width = $html.width();
     
-    var planner_width = parseInt(horizontalResize.style.left) + 3 - offset_left;
+    var planner_width = Math.floor(parseInt(horizontalResize.style.left) + 2 - offset_left);
 
     if (html_width < (offset_left + planner_width)) {
         $body.width(offset_left + planner_width + 10);
@@ -459,7 +449,7 @@ function HorizontalResizePositionChanged() {
 
     // move vertical size box
     var verticalStyle = document.getElementById("resize_vertical").style;
-    verticalStyle.left = planner_width / 2 + parseInt($plannerField.css('left')) - 3 + offset_left + 'px';
+    verticalStyle.left = Math.floor(planner_width / 2 + parseInt($plannerField.css('left')) - 2 + offset_left) + 'px';
 
     // resize stage
     kineticStage.setWidth(planner_width);

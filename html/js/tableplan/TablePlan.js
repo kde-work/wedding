@@ -223,11 +223,11 @@ function TablePlan(dst, val) {
      * @return {undefined}
      */
     this["onMoveAnimation"] = function(PL$63) {
-        var _plannerCanvas = document["getElementById"]("plannerCanvas");
+        var $plannerCanvas =$(".plannerCanvas");
         if (this["DraggedGuestAvatar"] != null) {
             var _0xc94ax22 = tablePlan.GetSeatUnderClientXY(
-                PL$63["pageX"] - parseInt(_plannerCanvas["style"]["left"]),
-                PL$63["pageY"] - parseInt(_plannerCanvas["style"]["top"])
+                PL$63["pageX"] - $plannerCanvas.offset().left,
+                PL$63["pageY"] - $plannerCanvas.offset().top
             );
             if (_0xc94ax22 != null) {
                 if (dragAndDropSeatOver != null) {
@@ -241,11 +241,13 @@ function TablePlan(dst, val) {
                 _0xc94ax22.SelectSeat(true);
                 kineticLayer["draw"]();
             } else {
-                if (dragAndDropSeatOver != null) {
-                    dragAndDropSeatOver.SelectSeat(false);
-                    /** @type {null} */
-                    dragAndDropSeatOver = null;
-                    kineticLayer["draw"]();
+                if (typeof dragAndDropSeatOver !== "undefined") {
+                    if (dragAndDropSeatOver != null) {
+                        dragAndDropSeatOver.SelectSeat(false);
+                        /** @type {null} */
+                        dragAndDropSeatOver = null;
+                        kineticLayer["draw"]();
+                    }
                 }
             }
         }

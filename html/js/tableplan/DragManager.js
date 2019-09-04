@@ -36,7 +36,6 @@
                 // guest is dragged from seat to seat. Canvas drag
                 e = fixEvent(e);
                 tablePlan.onMoveAnimation(e);
-
                 return;
             }
         }
@@ -104,14 +103,14 @@
         if (!dropElem) {
             self.onDragCancel(dragObject);
         } else {
+            var $planner = $(dropElem);
             // put on droppable object
-            if (dropElem.className == "plannerCanvas") {
+            if ($planner.hasClass("plannerCanvas")) {
                 // drop on table plan. Check for seats.
-                var seat = tablePlan.GetSeatUnderClientXY(e.pageX - parseInt(dropElem.style.left), e.pageY - parseInt(dropElem.style.top));
+                var seat = tablePlan.GetSeatUnderClientXY(e.pageX - $planner.offset().left, e.pageY - $planner.offset().top);
                 if (seat == null) {
                     self.onDragCancel(dragObject);
-                }
-                else {
+                } else {
                     // TODO: seat guest to the seat here
                     if (seat.SitGuest(dragObject.elem.id) == false) {
                         self.onDragCancel(dragObject);
@@ -123,8 +122,7 @@
                         self.onDragEnd(dragObject, dropElem);
                     }
                 }
-            }
-            else {
+            } else {
                 self.onDragEnd(dragObject, dropElem);
             }
         }
@@ -191,9 +189,10 @@
     document.onmousedown = onMouseDown;
 
     this.onDragEnd = function (dragObject, dropElem) {
-        
+        var $elem = $(dragObject.elem);
+
         // animation of End of drag and drop
-        if (dragObject.elem.className == "resize_vertical") {
+        if ($elem.hasClass("resize_vertical")) {
             var $plannerField = $(".plannerCanvas"),
                 $resize_vertical = $("#resize_vertical"),
                 offset_top = $plannerField.offset().top;
@@ -201,15 +200,14 @@
             dragObject.avatar.style.left = dragObject.downX - dragObject.shiftX + 'px';
             $resize_vertical.css('top', $plannerField.height() + offset_top - 2);
         }
-        if (dragObject.elem.className == "resize_horizontal") {
+        if ($elem.hasClass("resize_horizontal")) {
             dragObject.avatar.style.top = dragObject.downY - dragObject.shiftY + 'px';
         }
 
-        if (dragObject.elem.className == "pot_guest") {
+        if ($elem.hasClass("pot_guest")) {
             if (dragAndDropSeatOver != null) {
                 dragAndDropSeatOver.SelectSeat(false);
                 dragAndDropSeatOver = null;
-
             }
         }
 
@@ -229,38 +227,41 @@
         var $plannerField = $(".plannerCanvas"),
             $side_menu = $("#side_menu"),
             planner_left = parseInt($plannerField.css('left')),
-            offset_top = $plannerField.offset().top;
+            offset_left = $plannerField.offset().left,
+            offset_top = $plannerField.offset().top,
+            $elem = $(dragObject.elem);
 
-        var lClassName = dragObject.elem.className;
-
-        switch (lClassName) {
-            case "resize_horizontal":
+        switch (true) {
+            case ($elem.hasClass("resize_horizontal")):
                 if ((fixedE.pageX/* - offset_left*/) > _minimumPlanWidth + planner_left) {
-                    dragObject.avatar.style.left = fixedE.pageX - dragObject.shiftX/* - offset_left + planner_left*/ + 'px';
+                    dragObject.avatar.style.left = Math.floor(fixedE.pageX - dragObject.shiftX)/* - offset_left + planner_left*/ + 'px';
                     dragObject.avatar.style.top = dragObject.downY - dragObject.shiftY/* + offset_top*/ + 'px';
 
                     // change planner size
                     HorizontalResizePositionChanged();
                 }
                 break;
-            case "resize_vertical":
+            case ($elem.hasClass("resize_vertical")):
                 if (
                     ($side_menu.height() + offset_top) <= fixedE.pageY/* &&
                     fixedE.pageY > _minimumPlanHeight + parseInt($plannerField.css('top'))*/
                 ) {
                     dragObject.avatar.style.left = dragObject.downX - dragObject.shiftX + 'px';
-                    dragObject.avatar.style.top = fixedE.pageY - dragObject.shiftY + 'px';
+                    dragObject.avatar.style.top = Math.floor(fixedE.pageY - dragObject.shiftY) + 'px';
 
                     // change planner size
                     VerticalResizePositionChanged();
                 }
                 break;
-            case "pot_guest":
-                dragObject.avatar.style.left = fixedE.pageX - dragObject.shiftX + 'px';
-                dragObject.avatar.style.top = fixedE.pageY - dragObject.shiftY + 'px';
+            case ($elem.hasClass("pot_guest")):
+                var _left = fixedE.pageX - dragObject.shiftX,
+                    _top = fixedE.pageY - dragObject.shiftY;
+                
+                dragObject.avatar.style.left = _left + 'px';
+                dragObject.avatar.style.top = _top + 'px';
 
                 // drop on table plan. Check for seats.
-                var seat = tablePlan.GetSeatUnderClientXY(fixedE.pageX - planner_left, fixedE.pageY - parseInt($plannerField.css('top')));
+                var seat = tablePlan.GetSeatUnderClientXY(_left - offset_left, _top - offset_top);
                 if (seat != null) {
                     if (dragAndDropSeatOver != null)
                     {
@@ -273,8 +274,7 @@
                     dragAndDropSeatOver = seat;
                     seat.SelectSeat(true);
                     kineticLayer.draw();
-                }
-                else {
+                } else {
                     if (dragAndDropSeatOver != null) {
                         dragAndDropSeatOver.SelectSeat(false);
                         dragAndDropSeatOver = null;

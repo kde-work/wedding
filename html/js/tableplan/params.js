@@ -22,7 +22,7 @@ var _seatsDelta = 4;
 
 var RectObjectWidth = [7 * _seatSize, 3 * _seatSize, 1 * _seatSize, 5 * _seatSize, 2 * _seatSize, 2 * _seatSize, 3 * _seatSize];
 var RectObjectHeight = [7 * _seatSize, 2 * _seatSize, 1 * _seatSize, 1 * _seatSize, 2 * _seatSize, 2 * _seatSize, 3 * _seatSize];
-var RectObjectName = ['Танцпол', 'Пульт диджея', 'Колонна', 'Бар', 'Стол с подарками', 'Стол с тортом'];
+var RectObjectName = ['Dance floor', 'DJ console', 'Column', 'Bar', 'Table with gifts', 'Table with cake'];
 
 
 // license limitations

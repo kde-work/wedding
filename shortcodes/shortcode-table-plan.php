@@ -6,7 +6,7 @@ function wb_tableplan_shortcode ($atts) {
 		$user_id = wp_get_current_user()->ID;
 		$items = unserialize(base64_decode(get_user_meta($user_id, 'tp_save', 1)));
 		$params = shortcode_atts( array(
-			'without-table' => 'Without table',
+			'without-table' => 'Guests without a place',
 		), $atts );
 		global $wb_file;
 		ob_start();
@@ -17,52 +17,6 @@ function wb_tableplan_shortcode ($atts) {
 
             <div class="tableplan">
                 <div class="tableplan__menu">
-                    <div class="tableplan__guests">
-                        <div class="tp-guests">
-                            <?php
-                            $guests = unserialize(base64_decode(get_user_meta($user_id, 'gl_save', 1)));
-                            $i = 0;
-                            $guests_tables = array();
-                            foreach ($guests as $guest) {
-                                $i++;
-                                ob_start();
-                                ?>
-                                <div class="tp-guest tp-guest--member tp-guest--<?php echo $i; ?>">
-                                    <div class="tp-guest__status <?php echo ($guest['status'])?'tp-guest__status--checked':''; ?>"></div>
-                                    <div class="tp-guest__name"><?php echo $guest['name']; ?></div>
-                                    <div class="tp-guest__family"><?php echo $guest['family']; ?></div>
-                                    <div class="tp-guest__role"><?php echo $guest['role']; ?></div>
-                                </div>
-                                <?php
-                                $html = ob_get_clean();
-                                if (!isset($guest['table']) OR $guest['table']) {
-                                    $guest['table'] = '__default__';
-                                }
-                                if (!isset($guests_tables[$guest['table']])) {
-                                    $guests_tables[$guest['table']] = array();
-                                }
-                                array_push($guests_tables[$guest['table']], array('html' => $html));
-                            }
-                            usort($guests_tables, function ($a, $b){
-                                if ($a == '__default__') return 1;
-                                if ($b == '__default__') return -1;
-                                if ($a == $b) {
-                                    return 0;
-                                }
-                                return ($a > $b) ? +1 : -1;
-                            });
-                            foreach ($guests_tables as $table_name => $guests_of_table) {
-                                if ($table_name == '__default__') {
-                                    $table_name = $params['without-table'];
-                                }
-                                echo "<div class=\"tp-guests__table\">{$table_name}</div>";
-                                foreach ($guests_of_table as $guest_of_table) {
-                                    echo $guest_of_table['html'];
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
                     <div id="side_menu" style="width: 180px; margin-left: 2px; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(215, 227, 234); border-left-width: 1px; border-left-style: solid; border-left-color: rgb(215, 227, 234); background-color: rgb(255, 255, 255);z-index:1000;">
                         <div class="tp-menu">
                             <i class="fa fa-floppy-o tp-menu-icon tp-menu-icon--save" aria-hidden="true" onclick="ShowSubMenu('m10');return false;" title="Save"></i>
@@ -75,11 +29,68 @@ function wb_tableplan_shortcode ($atts) {
                         <div id="objectsMenu" class="menu_button" style="top: 84px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(255, 255, 255); /*background-color: rgb(111, 191, 255);*/ height: 36px; padding: 2px 10px;" onclick="ShowSubMenu('m12');"><div class="tp-icon tp-icon--object"></div> Objects »</div>
                         <!--                    <div id="guestsMenu" class="menu_button" style="top: 125px; /*background-color: rgb(111, 191, 255);*/ height: 36px; padding-top: 4px; background-position: initial initial; background-repeat: initial initial;" onclick="ShowSubMenu('m6');">&nbsp;<img class="guests_icon" src="--><?php //echo plugins_url('/html/img/planner/blank.png', $wb_file); ?><!--">Guests »</div>-->
 
-                        <div class="menu" style="height:17px;padding-top:1px;top:165px;background-color:#ffffff;border-top:1px solid #D7E3EA">
-                            <span style="">&nbsp;Guests without a place:</span>
+                        <div class="tableplan__guests">
+                            <div class="tp-guests">
+			                    <?php
+			                    $guests = unserialize(base64_decode(get_user_meta($user_id, 'gl_save', 1)));
+			                    $i = 0;
+			                    $guests_tables = array();
+			                    foreach ($guests as $guest) {
+				                    $i++;
+				                    ob_start();
+				                    ?>
+                                    <div id="tp-guest--<?php echo $i; ?>" class="tp-guest tp-guest--member pot_guest tp-guest--<?php echo $i; ?>" draggable>
+                                        <div class="tp-guest__status <?php echo ($guest['status'])?'tp-guest__status--checked':''; ?>"></div>
+                                        <div class="tp-guest__name"><?php echo $guest['name']; ?></div>
+                                        <div class="tp-guest__family"><?php echo $guest['family']; ?></div>
+                                        <div class="tp-guest__role"><?php echo $guest['role']; ?></div>
+                                    </div>
+				                    <?php
+				                    $html = ob_get_clean();
+				                    if (!isset($guest['table']) OR $guest['table'] OR !$guest['table-id']) {
+					                    $guest['table'] = '__default__';
+					                    $guest['table-id'] = '__default__';
+				                    }
+				                    if (!isset($guests_tables[$guest['table']])) {
+					                    $guests_tables[$guest['table']] = array(
+						                    'table-id' => $guest['table-id'],
+                                            'guests' => array()
+                                        );
+				                    }
+				                    array_push(
+				                        $guests_tables[$guest['table']]['guests'],
+                                        array(
+				                            'html' => $html
+                                        )
+                                    );
+			                    }
+			                    usort($guests_tables, function ($a, $b){
+				                    if ($a == '__default__') return 1;
+				                    if ($b == '__default__') return -1;
+				                    if ($a == $b) {
+					                    return 0;
+				                    }
+				                    return ($a > $b) ? +1 : -1;
+			                    });
+			                    foreach ($guests_tables as $table_name => $guests_of_table) {
+				                    if ($table_name == '__default__') {
+					                    $table_name = $params['without-table'];
+				                    }
+				                    echo "<div class=\"tp-guests__table-box tp-guests__table-box--{$guests_of_table['table-id']}\">";
+				                    echo "<div class=\"tp-guests__table\">{$table_name}</div>";
+				                    foreach ($guests_of_table['guests'] as $guest_of_table) {
+//					                    echo $guest_of_table['html'];
+				                    }
+				                    echo "</div>";
+			                    }
+			                    ?>
+                            </div>
                         </div>
-                        <div id="unseatedGuestList" class="menu" style="height:200px;top:185px;left:0;overflow:auto;border-bottom:1px solid #D7E3EA" title="Drag the guest with the mouse to the plan.">
-                        </div>
+<!--                        <div class="menu" style="height:17px;padding-top:1px;top:165px;background-color:#ffffff;border-top:1px solid #D7E3EA">-->
+<!--                            <span style="">&nbsp;Guests without a place:</span>-->
+<!--                        </div>-->
+<!--                        <div id="unseatedGuestList" class="menu" style="height:200px;top:185px;left:0;overflow:auto;border-bottom:1px solid #D7E3EA" title="Drag the guest with the mouse to the plan.">-->
+<!--                        </div>-->
 
                         <div class="menu" style="border-bottom:1px solid #D7E3EA;padding-top:5px;">&nbsp;Size: &nbsp;
                             <input id="planSizeX" onblur="Change_Plan_X()" onkeydown="if (event.keyCode == 13) { Change_Plan_X(); }" type="text" style="width:45px;font-size:10px" value="133.8">&nbsp;x&nbsp;
@@ -128,8 +139,8 @@ function wb_tableplan_shortcode ($atts) {
                                 </tr>
                                 </tbody></table>
                             <br>
-                            &nbsp;&nbsp;&nbsp;Мест: &nbsp;<input type="text" value="4" id="num_table_seats" style="width: 20px">&nbsp;&nbsp; <div id="add_table_name_block" style="display:inline;">Имя: &nbsp;<input type="text" id="add_table_name" value="Стол 1" style="width: 82px"></div><br>
-                            <input type="button" onclick="AddNewTable();" value="Добавить стол" style="margin-top: 10px">
+                            &nbsp;&nbsp;&nbsp;Мест: &nbsp;<input type="text" value="4" id="num_table_seats" style="width: 20px">&nbsp;&nbsp; <div id="add_table_name_block" style="display:inline;">Имя: &nbsp;<input type="text" id="add_table_name" value="Table 1" style="width: 82px"></div><br>
+                            <input type="button" onclick="AddNewTable();" value="Add table" style="margin-top: 10px">
                             <div style="position: absolute; top: 4px; right: 4px;">
                                 <a href="#" class="close_button" onclick="HideSubMenu('m0');return false;"></a>
                             </div>
@@ -351,18 +362,18 @@ function wb_tableplan_shortcode ($atts) {
                         </div>
                     </div>
 
-                    <div id="m8" class="menu_content" style="width: 416px; left: 183px; top: 110px; /*position: fixed;*/ display: none;">
+                    <div id="m8" class="menu_content" style="width: 217px; left: 183px; top: 20px; /*position: fixed;*/ display: none;">
                         <span class="menu_title">Settings</span><br><br>
-                        <input id="show_gridlines" onclick="ShowGridClick();" checked="checked" type="checkbox">Show grid
+                        <input id="show_gridlines" onclick="ShowGridClick();" checked="checked" type="checkbox"> Show grid
+                        <?php /*
                         <br><br>
                         <span class="menu_title">Menu options</span><br><br>
                         <input id="meal1" value="Стандартное" size="13" maxlength="14" tabindex="1" type="text">&nbsp;&nbsp;<input id="meal2" value="Детское" size="13" maxlength="14" tabindex="2" type="text">&nbsp;&nbsp;<input id="meal3" value="Вегатарианское" size="13" maxlength="14" tabindex="3" type="text"><br><br>
                         <input id="meal4" value="Вариант 1" size="13" maxlength="14" tabindex="4" type="text">&nbsp;&nbsp;<input id="meal5" value="Вариант 2" size="13" maxlength="14" tabindex="5" type="text">&nbsp;&nbsp;<input id="meal6" value="Вариант 3" size="13" maxlength="14" tabindex="6" type="text"><br><br>
                         <input id="meal7" value="Вариант 4" size="13" maxlength="14" tabindex="7" type="text">&nbsp;&nbsp;<input id="meal8" value="Вариант 5" size="13" maxlength="14" tabindex="8" type="text">&nbsp;&nbsp;<input id="meal9" value="Вариант 6" size="13" maxlength="14" tabindex="9" type="text"><br><br>
-
                         <input type="button" value=" Сохранить меню " onclick="SaveSettings();HideSubMenu('m8');return false;">
-
-                        <div style="position:absolute;top:4px;right:4px;"><a href="#" class="close_button" onclick="HideSubMenu('m8');return false;"></a></div>
+                        */ ?>
+                        <div class="close_button"><i class="fa fa-window-close-o" aria-hidden="true" onclick="HideSubMenu('m8');return false;"></i></div>
                     </div>
 
                     <div id="alertDlgBox" class="box" style="display: none;">
@@ -379,7 +390,7 @@ function wb_tableplan_shortcode ($atts) {
                         </div>
                     </div>
 
-                    <div id="m9" class="menu_content" style="width: 180px; left: 183px; top: 110px; /*position: fixed;*/ display: none;">
+                    <div id="m9" class="menu_content" style="width: 180px; left: 183px; top: 20px; /*position: fixed;*/ display: none;">
                         <span class="menu_title">Statistics</span><br>
                         <table style="border-spacing:10px;">
                             <tbody><tr>
@@ -405,7 +416,7 @@ function wb_tableplan_shortcode ($atts) {
                             </tbody></table>
                         <div style="padding-left:10px;">
                         </div>
-                        <div style="position:absolute;top:4px;right:4px;"><a href="#" class="close_button" onclick="HideSubMenu('m9');return false;"></a></div>
+                        <div class="close_button"><i class="fa fa-window-close-o" aria-hidden="true" onclick="HideSubMenu('m9');return false;"></i></div>
                     </div>
 
                     <div id="m10" class="box" style="position:fixed; display:none;">
