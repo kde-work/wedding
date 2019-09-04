@@ -456,9 +456,13 @@ function HorizontalResizePositionChanged() {
 }
 
 function SetTopLeftOfPopupMenu(e, subMenu) {
+    var $plannerField = $(".plannerCanvas"),
+        offset_left = $plannerField.offset().left,
+        offset_top = $plannerField.offset().top;
+
     e = fixEvent(e);
-    subMenu.style.left = e.pageX + 'px';
-    subMenu.style.top = e.pageY + 'px';
+    subMenu.style.left = e.pageX - offset_left + 'px';
+    subMenu.style.top = e.pageY - offset_top + 'px';
 
     subMenu.style.display = 'block'
 }

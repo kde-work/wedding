@@ -1,1 +1,707 @@
-﻿var _0xd509 = ["\x53\x68\x6F\x77\x43\x6F\x6E\x74\x72\x6F\x6C\x73", "\x54\x61\x62\x6C\x65\x54\x79\x70\x65", "\x68\x69\x64\x65", "\x41\x72\x72\x6F\x77\x4C\x65\x66\x74\x54\x6F\x70", "\x41\x72\x72\x6F\x77\x4C\x65\x66\x74\x42\x6F\x74\x74\x6F\x6D", "\x41\x72\x72\x6F\x77\x52\x69\x67\x68\x74\x54\x6F\x70", "\x41\x72\x72\x6F\x77\x52\x69\x67\x68\x74\x42\x6F\x74\x74\x6F\x6D", "\x54\x61\x62\x6C\x65\x44\x65\x73\x6B", "\x53\x65\x61\x74\x73", "\x73\x68\x6F\x77", "\x53\x68\x6F\x77\x54\x61\x62\x6C\x65\x4D\x65\x6E\x75", "\x74\x61\x62\x6C\x65\x50\x72\x6F\x70\x65\x72\x74\x69\x65\x73\x4D\x65\x6E\x75", "\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64", "\x65\x76\x74", "\x77\x68\x69\x63\x68", "\x63\x61\x6E\x63\x65\x6C\x42\x75\x62\x62\x6C\x65", "\x54\x61\x62\x6C\x65\x49\x44", "\x70\x61\x72\x65\x6E\x74", "\x54\x61\x62\x6C\x65\x73", "\x64\x69\x73\x70\x6C\x61\x79", "\x73\x74\x79\x6C\x65", "\x23\x74\x61\x62\x6C\x65\x50\x72\x6F\x70\x52\x65\x6E\x61\x6D\x65", "\x6E\x6F\x6E\x65", "\x62\x6C\x6F\x63\x6B", "\x47\x65\x74\x53\x65\x61\x74\x58", "\x67\x65\x74\x52\x61\x64\x69\x75\x73", "\x50\x49", "\x53\x65\x61\x74\x73\x4E\x75\x6D\x62\x65\x72", "\x73\x69\x6E", "\x67\x65\x74\x57\x69\x64\x74\x68", "\x69\x6E\x63\x6F\x72\x72\x65\x63\x74\x20\x74\x61\x62\x6C\x65\x20\x74\x79\x70\x65\x20\x69\x6E\x20\x47\x65\x74\x53\x65\x61\x74\x58\x3A\x20", "\x47\x65\x74\x53\x65\x61\x74\x59", "\x63\x6F\x73", "\x67\x65\x74\x48\x65\x69\x67\x68\x74", "\x69\x6E\x63\x6F\x72\x72\x65\x63\x74\x20\x74\x61\x62\x6C\x65\x20\x74\x79\x70\x65\x20\x69\x6E\x20\x47\x65\x74\x53\x65\x61\x74\x59\x3A\x20", "\x41\x64\x64\x53\x65\x61\x74", "\u0414\u043E\u0441\u0442\u0438\u0433\u043D\u0443\u0442\x20\u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C\x20\u0447\u0438\u0441\u043B\u0430\x20\u0441\u0442\u0443\u043B\u044C\u0435\u0432\x20\u0437\u0430\x20\u043E\u0434\u043D\u0438\u043C\x20\u0441\u0442\u043E\u043B\u043E\u0432\x3A\x20\x31\x30\x30\x2E\x20\u0411\u043E\u043B\u044C\u0448\u0435\x20\u0441\u0442\u0443\u043B\u044C\u0435\u0432\x20\u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C\x20\u043D\u0435\u043B\u044C\u0437\u044F\x2C\x20\u0434\u043E\u0431\u0430\u0432\u044C\u0442\u0435\x20\u0435\u0449\u0435\x20\u043E\u0434\u0438\u043D\x20\u0441\u0442\u043E\u043B\x2E", "\x53\x65\x61\x74\x49\x44", "\x61\x64\x64", "\x64\x72\x61\x77", "\x44\x65\x6C\x65\x74\x65\x53\x65\x61\x74", "\x64\x65\x73\x74\x72\x6F\x79", "\x53\x65\x74\x54\x61\x62\x6C\x65\x53\x69\x7A\x65", "\x73\x65\x74\x52\x61\x64\x69\x75\x73", "\x73\x65\x74\x57\x69\x64\x74\x68", "\x73\x65\x74\x48\x65\x69\x67\x68\x74", "\x69\x6E\x63\x6F\x72\x72\x65\x63\x74\x20\x74\x61\x62\x6C\x65\x20\x74\x79\x70\x65\x20\x69\x6E\x20\x53\x65\x74\x54\x61\x62\x6C\x65\x53\x69\x7A\x65\x3A\x20", "\x73\x65\x74\x58", "\x73\x65\x74\x59", "\x47\x65\x74\x54\x61\x62\x6C\x65\x53\x65\x61\x74\x55\x6E\x64\x65\x72\x43\x6C\x69\x65\x6E\x74\x58\x59", "\x67\x65\x74\x58", "\x67\x65\x74\x59", "\x67\x65\x74\x52\x6F\x74\x61\x74\x69\x6F\x6E", "\x53\x65\x74\x4E\x61\x6D\x65", "\x73\x65\x74\x54\x65\x78\x74", "\x54\x61\x62\x6C\x65\x4E\x61\x6D\x65\x4F\x62\x6A\x65\x63\x74", "\x73\x65\x74\x4F\x66\x66\x73\x65\x74", "\x41\x72\x72\x6F\x66\x4C\x65\x66\x74\x42\x6F\x74\x74\x70\x6D", "\x41\x72\x72\x6F\x66\x52\x69\x67\x68\x74\x42\x6F\x74\x74\x6F\x6D", "\x6D\x6F\x75\x73\x65\x43\x6C\x69\x63\x6B\x4C\x65\x66\x74", "\x6D\x6F\x75\x73\x65\x43\x6C\x69\x63\x6B\x52\x69\x67\x68\x74", "\x52\x6F\x74\x61\x74\x65\x54\x61\x62\x6C\x65", "\x67\x65\x74\x52\x6F\x74\x61\x74\x69\x6F\x6E\x44\x65\x67", "\x73\x65\x74\x52\x6F\x74\x61\x74\x69\x6F\x6E\x44\x65\x67", "\x77\x68\x69\x74\x65", "\x67\x72\x61\x79", "\x63\x6C\x69\x63\x6B", "\x6F\x6E", "\x6C\x69\x67\x68\x74\x67\x72\x61\x79", "\x61\x6E\x74\x69\x5F\x63\x6C\x6F\x63\x6B\x5F\x72\x6F\x74\x61\x74\x69\x6F\x6E", "\x6D\x6F\x75\x73\x65\x64\x6F\x77\x6E", "\x63\x6C\x6F\x63\x6B\x5F\x72\x6F\x74\x61\x74\x69\x6F\x6E", "", "\x43\x61\x6C\x69\x62\x72\x69", "\x62\x6C\x61\x63\x6B", "\x6D\x6F\x75\x73\x65\x6F\x76\x65\x72", "\x63\x75\x72\x73\x6F\x72", "\x62\x6F\x64\x79", "\x70\x6F\x69\x6E\x74\x65\x72", "\x6D\x6F\x75\x73\x65\x6F\x75\x74", "\x64\x65\x66\x61\x75\x6C\x74"]; function Table(_0x2ae8x2, _0x2ae8x3, _0x2ae8x4, _0x2ae8x5, _0x2ae8x6, _0x2ae8x7, _0x2ae8x8, _0x2ae8x9, _0x2ae8xa) { if (MinimumTableSeats(_0x2ae8x3) > _0x2ae8x4) { _0x2ae8x4 = MinimumTableSeats(_0x2ae8x3) }; var _0x2ae8xb = new Kinetic.Group({ draggable: true, x: _0x2ae8x6, y: _0x2ae8x7 }); _0x2ae8xb[_0xd509[0]] = function (_0x2ae8xc) { if (_0x2ae8xc == false) { if (this[_0xd509[1]] != 0) { this[_0xd509[3]][_0xd509[2]](); this[_0xd509[4]][_0xd509[2]](); this[_0xd509[5]][_0xd509[2]](); this[_0xd509[6]][_0xd509[2]]() }; if (this[_0xd509[1]] == 7) { this[_0xd509[7]][_0xd509[2]]() }; for (var _0x2ae8xd in this[_0xd509[8]]) { this[_0xd509[8]][_0x2ae8xd].ShowSeatColor(false) } } else { if (this[_0xd509[1]] != 0) { this[_0xd509[3]][_0xd509[9]](); this[_0xd509[4]][_0xd509[9]](); this[_0xd509[5]][_0xd509[9]](); this[_0xd509[6]][_0xd509[9]]() }; if (this[_0xd509[1]] == 7) { this[_0xd509[7]][_0xd509[9]]() }; for (var _0x2ae8xd in this[_0xd509[8]]) { this[_0xd509[8]][_0x2ae8xd].ShowSeatColor(true) } } }; _0x2ae8xb[_0xd509[10]] = function (_0x2ae8xe) { var _0x2ae8xf = document[_0xd509[12]](_0xd509[11]); if (_0x2ae8xf == null) { return }; var _0x2ae8x10 = _0x2ae8xe[_0xd509[13]]; if (_0x2ae8x10[_0xd509[14]] === 3) { _0x2ae8x10[_0xd509[15]] = true; SetTopLeftOfPopupMenu(_0x2ae8x10, _0x2ae8xf); _0x2ae8xf[_0xd509[16]] = this[_0xd509[17]][_0xd509[16]]; if (tablePlan[_0xd509[18]][this[_0xd509[17]][_0xd509[16]]][_0xd509[1]] == 7) { $(_0xd509[21])[0][_0xd509[20]][_0xd509[19]] = _0xd509[22] } else { $(_0xd509[21])[0][_0xd509[20]][_0xd509[19]] = _0xd509[23] } } }; _0x2ae8xb[_0xd509[24]] = function (_0x2ae8x11) { switch (this[_0xd509[1]]) { case 0: return (this[_0xd509[7]][_0xd509[25]]() + _seatSize / 2) * Math[_0xd509[28]](_0x2ae8x11 * 2 * Math[_0xd509[26]] / this[_0xd509[27]]); break; case 1: var _0x2ae8x12 = _0x2ae8x11 % 4; var _0x2ae8x11 = parseInt(_0x2ae8x11 / 4); if (_0x2ae8x12 == 0) { return (-this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2 + _seatSize * _0x2ae8x11 + _seatsDelta * _0x2ae8x11) } else { if (_0x2ae8x12 == 1) { return (this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2) } else { if (_0x2ae8x12 == 2) { return (this[_0xd509[7]][_0xd509[29]]() / 2 - _seatSize / 2 - _seatSize * _0x2ae8x11 - _seatsDelta * _0x2ae8x11) } else { return (-this[_0xd509[7]][_0xd509[29]]() / 2 - _seatSize / 2) } } }; break; case 2: return (-this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2 + _seatSize * _0x2ae8x11 + _seatsDelta * _0x2ae8x11); break; case 3: return (-this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2 + _seatSize * parseInt(_0x2ae8x11 / 2) + _seatsDelta * parseInt(_0x2ae8x11 / 2)); break; case 4: if (_0x2ae8x11 == 0) { return (-this[_0xd509[7]][_0xd509[29]]() / 2 - _seatSize / 2) } else { if (_0x2ae8x11 == 1) { return (this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2) } else { return (-this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2 + _seatSize * (_0x2ae8x11 - 2) + _seatsDelta * (_0x2ae8x11 - 2)) } }; break; case 5: if (_0x2ae8x11 == 0) { return (-this[_0xd509[7]][_0xd509[29]]() / 2 - _seatSize / 2) } else { _0x2ae8x11 = _0x2ae8x11 - 1; return (-this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2 + _seatSize * parseInt(_0x2ae8x11 / 2) + _seatsDelta * parseInt(_0x2ae8x11 / 2)) }; break; case 6: if (_0x2ae8x11 == 0) { return (-this[_0xd509[7]][_0xd509[29]]() / 2 - _seatSize / 2) } else { if (_0x2ae8x11 == 1) { return (this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2) } else { _0x2ae8x11 = _0x2ae8x11 - 2; return (-this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize / 2 + _seatSize * parseInt(_0x2ae8x11 / 2) + _seatsDelta * parseInt(_0x2ae8x11 / 2)) } }; break; case 7: return (-this[_0xd509[7]][_0xd509[29]]() / 2 + _seatSize + _seatSize * _0x2ae8x11 + _seatsDelta * _0x2ae8x11); break; default: alert(_0xd509[30] + this[_0xd509[1]]); return 0 }; return 0 }; _0x2ae8xb[_0xd509[31]] = function (_0x2ae8x11) { switch (this[_0xd509[1]]) { case 0: return (this[_0xd509[7]][_0xd509[25]]() + _seatSize / 2) * Math[_0xd509[32]](_0x2ae8x11 * 2 * Math[_0xd509[26]] / this[_0xd509[27]]); break; case 1: var _0x2ae8x12 = _0x2ae8x11 % 4; var _0x2ae8x11 = parseInt(_0x2ae8x11 / 4); if (_0x2ae8x12 == 0) { return (-this[_0xd509[7]][_0xd509[33]]() / 2 - _seatSize / 2) } else { if (_0x2ae8x12 == 1) { return (-this[_0xd509[7]][_0xd509[33]]() / 2 + _seatSize / 2 + _seatSize * _0x2ae8x11 + _seatsDelta * _0x2ae8x11) } else { if (_0x2ae8x12 == 2) { return (this[_0xd509[7]][_0xd509[33]]() / 2 + _seatSize / 2) } else { return (this[_0xd509[7]][_0xd509[33]]() / 2 - _seatSize / 2 - _seatSize * _0x2ae8x11 - _seatsDelta * _0x2ae8x11) } } }; break; case 2: return (-this[_0xd509[7]][_0xd509[33]]() / 2 - _seatSize / 2); case 3: if (_0x2ae8x11 % 2 == 0) { return (-this[_0xd509[7]][_0xd509[33]]() / 2 - _seatSize / 2) } else { return (this[_0xd509[7]][_0xd509[33]]() / 2 + _seatSize / 2) }; break; case 4: if (_0x2ae8x11 == 0) { return 0 } else { if (_0x2ae8x11 == 1) { return 0 } else { return (-this[_0xd509[7]][_0xd509[33]]() / 2 - _seatSize / 2) } }; case 5: if (_0x2ae8x11 == 0) { return 0 } else { _0x2ae8x11 = _0x2ae8x11 - 1; if (_0x2ae8x11 % 2 == 0) { return (-this[_0xd509[7]][_0xd509[33]]() / 2 - _seatSize / 2) } else { return (this[_0xd509[7]][_0xd509[33]]() / 2 + _seatSize / 2) } }; break; case 6: if (_0x2ae8x11 == 0) { return 0 } else { if (_0x2ae8x11 == 1) { return 0 } else { _0x2ae8x11 = _0x2ae8x11 - 2; if (_0x2ae8x11 % 2 == 0) { return (-this[_0xd509[7]][_0xd509[33]]() / 2 - _seatSize / 2) } else { return (this[_0xd509[7]][_0xd509[33]]() / 2 + _seatSize / 2) } } }; break; case 7: return 0; break; default: alert(_0xd509[34] + this[_0xd509[1]]); return 0 }; return 0 }; _0x2ae8xb[_0xd509[35]] = function (_0x2ae8xd) { if (this[_0xd509[27]] >= 100) { DlgErrorFromServer(_0xd509[36]); return false }; this[_0xd509[27]] += 1; var _0x2ae8x13 = null; this.SetTableSize(); _0x2ae8x13 = new Seat(_0x2ae8xd, null, this.GetSeatX(this[_0xd509[27]] - 1), this.GetSeatY(this[_0xd509[27]] - 1), this.TableID); this[_0xd509[8]][_0x2ae8x13[_0xd509[37]]] = _0x2ae8x13; this[_0xd509[38]](_0x2ae8x13); kineticLayer[_0xd509[39]](); return true }; _0x2ae8xb[_0xd509[40]] = function (_0x2ae8xd) { if (this[_0xd509[27]] <= MinimumTableSeats(this.TableType)) { return }; this[_0xd509[8]][_0x2ae8xd][_0xd509[41]](); delete this[_0xd509[8]][_0x2ae8xd]; this[_0xd509[27]] = this[_0xd509[27]] - 1; this.SetTableSize(); kineticLayer[_0xd509[39]]() }; _0x2ae8xb[_0xd509[42]] = function () { switch (this[_0xd509[1]]) { case 0: this[_0xd509[7]][_0xd509[43]](1.0 * (1 + parseInt((this[_0xd509[27]] - 1) / 4)) * _seatSize / 2); break; case 1: var _0x2ae8x14 = parseInt((this[_0xd509[27]] - 1) / 4) + 1; this[_0xd509[7]][_0xd509[44]](_0x2ae8x14 * _seatSize + (_0x2ae8x14 - 1) * _seatsDelta); this[_0xd509[7]][_0xd509[45]](_0x2ae8x14 * _seatSize + (_0x2ae8x14 - 1) * _seatsDelta); break; case 2: if (this[_0xd509[27]] <= 1) { this[_0xd509[7]][_0xd509[44]](_seatSize) } else { this[_0xd509[7]][_0xd509[44]](this[_0xd509[27]] * _seatSize + (this[_0xd509[27]] - 1) * _seatsDelta) }; break; case 3: if (this[_0xd509[27]] <= 2) { this[_0xd509[7]][_0xd509[44]](_seatSize) } else { this[_0xd509[7]][_0xd509[44]](parseInt((this[_0xd509[27]] + 1) / 2) * _seatSize + parseInt((this[_0xd509[27]] - 1) / 2) * _seatsDelta) }; break; case 4: if (this[_0xd509[27]] <= 3) { this[_0xd509[7]][_0xd509[44]](_seatSize) } else { this[_0xd509[7]][_0xd509[44]]((this[_0xd509[27]] - 2) * _seatSize + (this[_0xd509[27]] - 3) * _seatsDelta) }; break; case 5: if (this[_0xd509[27]] <= 3) { this[_0xd509[7]][_0xd509[44]](_seatSize) } else { this[_0xd509[7]][_0xd509[44]](parseInt((this[_0xd509[27]]) / 2) * _seatSize + parseInt((this[_0xd509[27]] - 2) / 2) * _seatsDelta) }; break; case 6: if (this[_0xd509[27]] <= 4) { this[_0xd509[7]][_0xd509[44]](_seatSize) } else { this[_0xd509[7]][_0xd509[44]](parseInt((this[_0xd509[27]] - 1) / 2) * _seatSize + parseInt((this[_0xd509[27]] - 3) / 2) * _seatsDelta) }; break; case 7: this[_0xd509[7]][_0xd509[44]]((this[_0xd509[27]] + 1) * _seatSize + (this[_0xd509[27]] - 1) * _seatsDelta); break; default: alert(_0xd509[46] + this[_0xd509[1]]); return }; switch (this[_0xd509[1]]) { case 0: break; case 1:; case 2:; case 3:; case 4:; case 5:; case 6:; case 7: this[_0xd509[7]][_0xd509[47]](-this[_0xd509[7]][_0xd509[29]]() / 2); this[_0xd509[7]][_0xd509[48]](-this[_0xd509[7]][_0xd509[33]]() / 2); this[_0xd509[3]][_0xd509[47]](-this[_0xd509[7]][_0xd509[29]]() / 2 + 1); this[_0xd509[4]][_0xd509[47]](-this[_0xd509[7]][_0xd509[29]]() / 2 + 13); this[_0xd509[5]][_0xd509[47]](this[_0xd509[7]][_0xd509[29]]() / 2 - 13); this[_0xd509[6]][_0xd509[47]](this[_0xd509[7]][_0xd509[29]]() / 2 - 1); this[_0xd509[3]][_0xd509[48]](-this[_0xd509[7]][_0xd509[33]]() / 2 + 1); this[_0xd509[4]][_0xd509[48]](this[_0xd509[7]][_0xd509[33]]() / 2 - 1); this[_0xd509[5]][_0xd509[48]](-this[_0xd509[7]][_0xd509[33]]() / 2 + 1); this[_0xd509[6]][_0xd509[48]](this[_0xd509[7]][_0xd509[33]]() / 2 - 1); break; default: alert(_0xd509[46] + this[_0xd509[1]]); return }; var _0x2ae8x11 = 0; for (var _0x2ae8xd in this[_0xd509[8]]) { this[_0xd509[8]][_0x2ae8xd][_0xd509[47]](this.GetSeatX(_0x2ae8x11)); this[_0xd509[8]][_0x2ae8xd][_0xd509[48]](this.GetSeatY(_0x2ae8x11)); ++_0x2ae8x11 } }; _0x2ae8xb[_0xd509[49]] = function (_0x2ae8x15, _0x2ae8x16) { var _0x2ae8x17 = null; for (var _0x2ae8xd in this[_0xd509[8]]) { if (!this[_0xd509[8]][_0x2ae8xd].IsFree()) { continue }; var _0x2ae8x18 = this[_0xd509[8]][_0x2ae8xd][_0xd509[50]](); var _0x2ae8x19 = this[_0xd509[8]][_0x2ae8xd][_0xd509[51]](); var _0x2ae8x1a = _seatSize / 2; var _0x2ae8x1b = this[_0xd509[50]]() + _0x2ae8x18 * Math[_0xd509[32]](this[_0xd509[52]]()) - _0x2ae8x19 * Math[_0xd509[28]](this[_0xd509[52]]()); var _0x2ae8x1c = this[_0xd509[51]]() + _0x2ae8x18 * Math[_0xd509[28]](this[_0xd509[52]]()) + _0x2ae8x19 * Math[_0xd509[32]](this[_0xd509[52]]()); if (((_0x2ae8x1b - _0x2ae8x15) * (_0x2ae8x1b - _0x2ae8x15) + (_0x2ae8x1c - _0x2ae8x16) * (_0x2ae8x1c - _0x2ae8x16)) <= _0x2ae8x1a * _0x2ae8x1a) { _0x2ae8x17 = this[_0xd509[8]][_0x2ae8xd]; break } }; return _0x2ae8x17 }; _0x2ae8xb[_0xd509[53]] = function (_0x2ae8x1d) { if (this[_0xd509[1]] == 7) { return }; this[_0xd509[55]][_0xd509[54]](_0x2ae8x1d); this[_0xd509[55]][_0xd509[56]]({ x: _0x2ae8xb[_0xd509[55]][_0xd509[29]]() / 2, y: _0x2ae8xb[_0xd509[55]][_0xd509[33]]() / 2 }) }; if (_0x2ae8x2 == null) { _0x2ae8xb[_0xd509[16]] = generateGuid() } else { _0x2ae8xb[_0xd509[16]] = _0x2ae8x2 }; _0x2ae8xb[_0xd509[1]] = _0x2ae8x3; _0x2ae8xb[_0xd509[27]] = 0; _0x2ae8xb[_0xd509[8]] = {}; _0x2ae8xb[_0xd509[55]] = null; _0x2ae8xb[_0xd509[7]] = null; _0x2ae8xb[_0xd509[3]] = null; _0x2ae8xb[_0xd509[57]] = null; _0x2ae8xb[_0xd509[5]] = null; _0x2ae8xb[_0xd509[58]] = null; _0x2ae8xb[_0xd509[59]] = function (_0x2ae8xe) { this[_0xd509[17]].RotateTable(-45) }; _0x2ae8xb[_0xd509[60]] = function (_0x2ae8xe) { this[_0xd509[17]].RotateTable(45) }; _0x2ae8xb[_0xd509[61]] = function (_0x2ae8x1e) { var _0x2ae8x1f = this[_0xd509[62]](); this[_0xd509[63]](_0x2ae8x1f + _0x2ae8x1e); this[_0xd509[55]][_0xd509[63]](-_0x2ae8x1f - _0x2ae8x1e); for (var _0x2ae8xd in this[_0xd509[8]]) { this[_0xd509[8]][_0x2ae8xd].TableWasRotated(_0x2ae8x1f + _0x2ae8x1e) }; kineticLayer[_0xd509[39]]() }; switch (_0x2ae8x3) { case 0: _0x2ae8xb[_0xd509[7]] = new Kinetic.Circle({ x: 0, y: 0, radius: 1.2 * _seatSize / 2, fill: _0xd509[64], stroke: _0xd509[65], strokeWidth: 2 }); _0x2ae8xb[_0xd509[7]][_0xd509[67]](_0xd509[66], _0x2ae8xb.ShowTableMenu); _0x2ae8xb[_0xd509[38]](_0x2ae8xb.TableDesk); break; case 1:; case 2:; case 3:; case 4:; case 5:; case 6: _0x2ae8xb[_0xd509[7]] = new Kinetic.Rect({ x: -_seatSize / 2, y: -_longTableHeight / 2, width: _seatSize, height: _longTableHeight, fill: _0xd509[64], stroke: _0xd509[65], strokeWidth: 2 }); _0x2ae8xb[_0xd509[7]][_0xd509[67]](_0xd509[66], _0x2ae8xb.ShowTableMenu); _0x2ae8xb[_0xd509[38]](_0x2ae8xb.TableDesk); break; case 7: _0x2ae8xb[_0xd509[7]] = new Kinetic.Rect({ x: -_seatSize, y: -_seatSize, width: 2 * _seatSize, height: 2 * _seatSize, stroke: _0xd509[68], strokeWidth: 1 }); _0x2ae8xb[_0xd509[7]][_0xd509[67]](_0xd509[66], _0x2ae8xb.ShowTableMenu); _0x2ae8xb[_0xd509[38]](_0x2ae8xb.TableDesk); break }; if ((1 <= _0x2ae8x3) && (_0x2ae8x3 <= 7)) { _0x2ae8xb[_0xd509[3]] = new Kinetic.Image({ x: -_0x2ae8xb[_0xd509[7]][_0xd509[29]]() / 2 + 1, y: -_0x2ae8xb[_0xd509[7]][_0xd509[33]]() / 2 + 1, image: _0x2ae8xa[_0xd509[69]], width: 12, height: 12 }); _0x2ae8xb[_0xd509[3]][_0xd509[67]](_0xd509[70], _0x2ae8xb[_0xd509[59]]); _0x2ae8xb[_0xd509[38]](_0x2ae8xb.ArrowLeftTop); _0x2ae8xb[_0xd509[6]] = new Kinetic.Image({ x: _0x2ae8xb[_0xd509[7]][_0xd509[29]]() / 2 - 1, y: _0x2ae8xb[_0xd509[7]][_0xd509[33]]() / 2 - 1, image: _0x2ae8xa[_0xd509[69]], rotationDeg: 180, width: 12, height: 12 }); _0x2ae8xb[_0xd509[6]][_0xd509[67]](_0xd509[70], _0x2ae8xb[_0xd509[59]]); _0x2ae8xb[_0xd509[38]](_0x2ae8xb.ArrowRightBottom); _0x2ae8xb[_0xd509[5]] = new Kinetic.Image({ x: _0x2ae8xb[_0xd509[7]][_0xd509[29]]() / 2 - 13, y: -_0x2ae8xb[_0xd509[7]][_0xd509[33]]() / 2 + 1, image: _0x2ae8xa[_0xd509[71]], width: 12, height: 12 }); _0x2ae8xb[_0xd509[5]][_0xd509[67]](_0xd509[70], _0x2ae8xb[_0xd509[60]]); _0x2ae8xb[_0xd509[38]](_0x2ae8xb.ArrowRightTop); _0x2ae8xb[_0xd509[4]] = new Kinetic.Image({ x: -_0x2ae8xb[_0xd509[7]][_0xd509[29]]() / 2 + 13, y: _0x2ae8xb[_0xd509[7]][_0xd509[33]]() / 2 - 1, image: _0x2ae8xa[_0xd509[71]], rotationDeg: 180, width: 12, height: 12 }); _0x2ae8xb[_0xd509[4]][_0xd509[67]](_0xd509[70], _0x2ae8xb[_0xd509[60]]); _0x2ae8xb[_0xd509[38]](_0x2ae8xb.ArrowLeftBottom) }; _0x2ae8xb[_0xd509[55]] = new Kinetic.Text({ x: 0, y: 0, text: _0xd509[72], fontSize: 15, fontFamily: _0xd509[73], fill: _0xd509[74] }); _0x2ae8xb.SetName(_0x2ae8x5); _0x2ae8xb[_0xd509[55]][_0xd509[67]](_0xd509[66], _0x2ae8xb.ShowTableMenu); _0x2ae8xb[_0xd509[38]](_0x2ae8xb.TableNameObject); _0x2ae8xb[_0xd509[7]][_0xd509[67]](_0xd509[75], function () { document[_0xd509[77]][_0xd509[20]][_0xd509[76]] = _0xd509[78] }); _0x2ae8xb[_0xd509[7]][_0xd509[67]](_0xd509[79], function () { document[_0xd509[77]][_0xd509[20]][_0xd509[76]] = _0xd509[80] }); for (var _0x2ae8x20 = 0; _0x2ae8x20 < _0x2ae8x4; ++_0x2ae8x20) { var _0x2ae8x21 = false; if (_0x2ae8x9 != null) { _0x2ae8x21 = _0x2ae8xb.AddSeat(_0x2ae8x9[_0x2ae8x20]) } else { _0x2ae8x21 = _0x2ae8xb.AddSeat(null) }; if (_0x2ae8x21 == false) { break } }; _0x2ae8xb.RotateTable(_0x2ae8x8); return _0x2ae8xb } function MinimumTableSeats(_0x2ae8x3) { switch (_0x2ae8x3) { case 0:; case 1:; case 2:; case 3: return 1; case 4:; case 5: return 3; case 6: return 4; case 7: return 1; default: return 1 } }
+﻿"use strict";
+/**
+ * @param {!Object} name
+ * @param {number} v
+ * @param {number} max
+ * @param {?} format
+ * @param {number} val
+ * @param {number} offset
+ * @param {?} table
+ * @param {!Array} options
+ * @param {!Object} model
+ * @return {?}
+ */
+function Table(name, v, max, format, val, offset, table, options, model) {
+    if (MinimumTableSeats(v) > max) {
+        max = MinimumTableSeats(v);
+    }
+    var _this = new Kinetic.Group({
+        draggable: true,
+        x: val,
+        y: offset
+    });
+    /**
+     * @param {!Object} canCreateDiscussions
+     * @return {undefined}
+     */
+    _this["ShowControls"] = function(canCreateDiscussions) {
+        if (canCreateDiscussions == false) {
+            if (this["TableType"] != 0) {
+                this["ArrowLeftTop"]["hide"]();
+                this["ArrowLeftBottom"]["hide"]();
+                this["ArrowRightTop"]["hide"]();
+                this["ArrowRightBottom"]["hide"]();
+            }
+            if (this["TableType"] == 7) {
+                this["TableDesk"]["hide"]();
+            }
+            var indexLookupKey;
+            for (indexLookupKey in this["Seats"]) {
+                this["Seats"][indexLookupKey].ShowSeatColor(false);
+            }
+        } else {
+            if (this["TableType"] != 0) {
+                this["ArrowLeftTop"]["show"]();
+                this["ArrowLeftBottom"]["show"]();
+                this["ArrowRightTop"]["show"]();
+                this["ArrowRightBottom"]["show"]();
+            }
+            if (this["TableType"] == 7) {
+                this["TableDesk"]["show"]();
+            }
+            for (indexLookupKey in this["Seats"]) {
+                this["Seats"][indexLookupKey].ShowSeatColor(true);
+            }
+        }
+    };
+    /**
+     * @param {!Object} events
+     * @return {undefined}
+     */
+    _this["ShowTableMenu"] = function(events) {
+        var artistTrack = document["getElementById"]("tablePropertiesMenu");
+        if (artistTrack == null) {
+            return;
+        }
+        var event = events["evt"];
+        if (event["which"] === 3) {
+            /** @type {boolean} */
+            event["cancelBubble"] = true;
+            SetTopLeftOfPopupMenu(event, artistTrack);
+            artistTrack["TableID"] = this["parent"]["TableID"];
+            if (tablePlan["Tables"][this["parent"]["TableID"]]["TableType"] == 7) {
+                /** @type {string} */
+                $("#tablePropRename")[0]["style"]["display"] = "none";
+            } else {
+                /** @type {string} */
+                $("#tablePropRename")[0]["style"]["display"] = "block";
+            }
+        }
+    };
+    /**
+     * @param {number} length
+     * @return {?}
+     */
+    _this["GetSeatX"] = function(length) {
+        switch (this["TableType"]) {
+            case 0:
+                return (
+                    (this["TableDesk"]["getRadius"]() + _seatSize / 2) *
+                    Math["sin"]((length * 2 * Math["PI"]) / this["SeatsNumber"])
+                );
+                break;
+            case 1:
+                /** @type {number} */
+                var leftoverLength = length % 4;
+                /** @type {number} */
+                length = parseInt(length / 4);
+                if (leftoverLength == 0) {
+                    return (
+                        -this["TableDesk"]["getWidth"]() / 2 +
+                        _seatSize / 2 +
+                        _seatSize * length +
+                        _seatsDelta * length
+                    );
+                } else {
+                    if (leftoverLength == 1) {
+                        return this["TableDesk"]["getWidth"]() / 2 + _seatSize / 2;
+                    } else {
+                        if (leftoverLength == 2) {
+                            return (
+                                this["TableDesk"]["getWidth"]() / 2 -
+                                _seatSize / 2 -
+                                _seatSize * length -
+                                _seatsDelta * length
+                            );
+                        } else {
+                            return -this["TableDesk"]["getWidth"]() / 2 - _seatSize / 2;
+                        }
+                    }
+                }
+                break;
+            case 2:
+                return (
+                    -this["TableDesk"]["getWidth"]() / 2 +
+                    _seatSize / 2 +
+                    _seatSize * length +
+                    _seatsDelta * length
+                );
+                break;
+            case 3:
+                return (
+                    -this["TableDesk"]["getWidth"]() / 2 +
+                    _seatSize / 2 +
+                    _seatSize * parseInt(length / 2) +
+                    _seatsDelta * parseInt(length / 2)
+                );
+                break;
+            case 4:
+                if (length == 0) {
+                    return -this["TableDesk"]["getWidth"]() / 2 - _seatSize / 2;
+                } else {
+                    if (length == 1) {
+                        return this["TableDesk"]["getWidth"]() / 2 + _seatSize / 2;
+                    } else {
+                        return (
+                            -this["TableDesk"]["getWidth"]() / 2 +
+                            _seatSize / 2 +
+                            _seatSize * (length - 2) +
+                            _seatsDelta * (length - 2)
+                        );
+                    }
+                }
+                break;
+            case 5:
+                if (length == 0) {
+                    return -this["TableDesk"]["getWidth"]() / 2 - _seatSize / 2;
+                } else {
+                    /** @type {number} */
+                    length = length - 1;
+                    return (
+                        -this["TableDesk"]["getWidth"]() / 2 +
+                        _seatSize / 2 +
+                        _seatSize * parseInt(length / 2) +
+                        _seatsDelta * parseInt(length / 2)
+                    );
+                }
+                break;
+            case 6:
+                if (length == 0) {
+                    return -this["TableDesk"]["getWidth"]() / 2 - _seatSize / 2;
+                } else {
+                    if (length == 1) {
+                        return this["TableDesk"]["getWidth"]() / 2 + _seatSize / 2;
+                    } else {
+                        /** @type {number} */
+                        length = length - 2;
+                        return (
+                            -this["TableDesk"]["getWidth"]() / 2 +
+                            _seatSize / 2 +
+                            _seatSize * parseInt(length / 2) +
+                            _seatsDelta * parseInt(length / 2)
+                        );
+                    }
+                }
+                break;
+            case 7:
+                return (
+                    -this["TableDesk"]["getWidth"]() / 2 +
+                    _seatSize +
+                    _seatSize * length +
+                    _seatsDelta * length
+                );
+                break;
+            default:
+                alert("incorrect table type in GetSeatX: " + this["TableType"]);
+                return 0;
+        }
+        return 0;
+    };
+    /**
+     * @param {number} length
+     * @return {?}
+     */
+    _this["GetSeatY"] = function(length) {
+        switch (this["TableType"]) {
+            case 0:
+                return (
+                    (this["TableDesk"]["getRadius"]() + _seatSize / 2) *
+                    Math["cos"]((length * 2 * Math["PI"]) / this["SeatsNumber"])
+                );
+                break;
+            case 1:
+                /** @type {number} */
+                var leftoverLength = length % 4;
+                /** @type {number} */
+                length = parseInt(length / 4);
+                if (leftoverLength == 0) {
+                    return -this["TableDesk"]["getHeight"]() / 2 - _seatSize / 2;
+                } else {
+                    if (leftoverLength == 1) {
+                        return (
+                            -this["TableDesk"]["getHeight"]() / 2 +
+                            _seatSize / 2 +
+                            _seatSize * length +
+                            _seatsDelta * length
+                        );
+                    } else {
+                        if (leftoverLength == 2) {
+                            return this["TableDesk"]["getHeight"]() / 2 + _seatSize / 2;
+                        } else {
+                            return (
+                                this["TableDesk"]["getHeight"]() / 2 -
+                                _seatSize / 2 -
+                                _seatSize * length -
+                                _seatsDelta * length
+                            );
+                        }
+                    }
+                }
+                break;
+            case 2:
+                return -this["TableDesk"]["getHeight"]() / 2 - _seatSize / 2;
+            case 3:
+                if (length % 2 == 0) {
+                    return -this["TableDesk"]["getHeight"]() / 2 - _seatSize / 2;
+                } else {
+                    return this["TableDesk"]["getHeight"]() / 2 + _seatSize / 2;
+                }
+                break;
+            case 4:
+                if (length == 0) {
+                    return 0;
+                } else {
+                    if (length == 1) {
+                        return 0;
+                    } else {
+                        return -this["TableDesk"]["getHeight"]() / 2 - _seatSize / 2;
+                    }
+                }
+            case 5:
+                if (length == 0) {
+                    return 0;
+                } else {
+                    /** @type {number} */
+                    length = length - 1;
+                    if (length % 2 == 0) {
+                        return -this["TableDesk"]["getHeight"]() / 2 - _seatSize / 2;
+                    } else {
+                        return this["TableDesk"]["getHeight"]() / 2 + _seatSize / 2;
+                    }
+                }
+                break;
+            case 6:
+                if (length == 0) {
+                    return 0;
+                } else {
+                    if (length == 1) {
+                        return 0;
+                    } else {
+                        /** @type {number} */
+                        length = length - 2;
+                        if (length % 2 == 0) {
+                            return -this["TableDesk"]["getHeight"]() / 2 - _seatSize / 2;
+                        } else {
+                            return this["TableDesk"]["getHeight"]() / 2 + _seatSize / 2;
+                        }
+                    }
+                }
+                break;
+            case 7:
+                return 0;
+                break;
+            default:
+                alert("incorrect table type in GetSeatY: " + this["TableType"]);
+                return 0;
+        }
+        return 0;
+    };
+    /**
+     * @param {?} binds
+     * @return {?}
+     */
+    _this["AddSeat"] = function(binds) {
+        if (this["SeatsNumber"] >= 100) {
+            DlgErrorFromServer(
+                "\u0414\u043e\u0441\u0442\u0438\u0433\u043d\u0443\u0442 \u043c\u0430\u043a\u0441\u0438\u043c\u0443\u043c \u0447\u0438\u0441\u043b\u0430 \u0441\u0442\u0443\u043b\u044c\u0435\u0432 \u0437\u0430 \u043e\u0434\u043d\u0438\u043c \u0441\u0442\u043e\u043b\u043e\u0432: 100. \u0411\u043e\u043b\u044c\u0448\u0435 \u0441\u0442\u0443\u043b\u044c\u0435\u0432 \u0434\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043d\u0435\u043b\u044c\u0437\u044f, \u0434\u043e\u0431\u0430\u0432\u044c\u0442\u0435 \u0435\u0449\u0435 \u043e\u0434\u0438\u043d \u0441\u0442\u043e\u043b."
+            );
+            return false;
+        }
+        this["SeatsNumber"] += 1;
+        /** @type {null} */
+        var type = null;
+        this.SetTableSize();
+        type = new Seat(
+            binds,
+            null,
+            this.GetSeatX(this["SeatsNumber"] - 1),
+            this.GetSeatY(this["SeatsNumber"] - 1),
+            this.TableID
+        );
+        this["Seats"][type["SeatID"]] = type;
+        this["add"](type);
+        kineticLayer["draw"]();
+        return true;
+    };
+    /**
+     * @param {?} k
+     * @return {undefined}
+     */
+    _this["DeleteSeat"] = function(k) {
+        if (this["SeatsNumber"] <= MinimumTableSeats(this.TableType)) {
+            return;
+        }
+        this["Seats"][k]["destroy"]();
+        delete this["Seats"][k];
+        /** @type {number} */
+        this["SeatsNumber"] = this["SeatsNumber"] - 1;
+        this.SetTableSize();
+        kineticLayer["draw"]();
+    };
+    /**
+     * @return {undefined}
+     */
+    _this["SetTableSize"] = function() {
+        switch (this["TableType"]) {
+            case 0:
+                this["TableDesk"]["setRadius"](
+                    (1 * (1 + parseInt((this["SeatsNumber"] - 1) / 4)) * _seatSize) / 2
+                );
+                break;
+            case 1:
+                /** @type {number} */
+                var _0x2ae8x14 = parseInt((this["SeatsNumber"] - 1) / 4) + 1;
+                this["TableDesk"]["setWidth"](
+                    _0x2ae8x14 * _seatSize + (_0x2ae8x14 - 1) * _seatsDelta
+                );
+                this["TableDesk"]["setHeight"](
+                    _0x2ae8x14 * _seatSize + (_0x2ae8x14 - 1) * _seatsDelta
+                );
+                break;
+            case 2:
+                if (this["SeatsNumber"] <= 1) {
+                    this["TableDesk"]["setWidth"](_seatSize);
+                } else {
+                    this["TableDesk"]["setWidth"](
+                        this["SeatsNumber"] * _seatSize +
+                        (this["SeatsNumber"] - 1) * _seatsDelta
+                    );
+                }
+                break;
+            case 3:
+                if (this["SeatsNumber"] <= 2) {
+                    this["TableDesk"]["setWidth"](_seatSize);
+                } else {
+                    this["TableDesk"]["setWidth"](
+                        parseInt((this["SeatsNumber"] + 1) / 2) * _seatSize +
+                        parseInt((this["SeatsNumber"] - 1) / 2) * _seatsDelta
+                    );
+                }
+                break;
+            case 4:
+                if (this["SeatsNumber"] <= 3) {
+                    this["TableDesk"]["setWidth"](_seatSize);
+                } else {
+                    this["TableDesk"]["setWidth"](
+                        (this["SeatsNumber"] - 2) * _seatSize +
+                        (this["SeatsNumber"] - 3) * _seatsDelta
+                    );
+                }
+                break;
+            case 5:
+                if (this["SeatsNumber"] <= 3) {
+                    this["TableDesk"]["setWidth"](_seatSize);
+                } else {
+                    this["TableDesk"]["setWidth"](
+                        parseInt(this["SeatsNumber"] / 2) * _seatSize +
+                        parseInt((this["SeatsNumber"] - 2) / 2) * _seatsDelta
+                    );
+                }
+                break;
+            case 6:
+                if (this["SeatsNumber"] <= 4) {
+                    this["TableDesk"]["setWidth"](_seatSize);
+                } else {
+                    this["TableDesk"]["setWidth"](
+                        parseInt((this["SeatsNumber"] - 1) / 2) * _seatSize +
+                        parseInt((this["SeatsNumber"] - 3) / 2) * _seatsDelta
+                    );
+                }
+                break;
+            case 7:
+                this["TableDesk"]["setWidth"](
+                    (this["SeatsNumber"] + 1) * _seatSize +
+                    (this["SeatsNumber"] - 1) * _seatsDelta
+                );
+                break;
+            default:
+                alert("incorrect table type in SetTableSize: " + this["TableType"]);
+                return;
+        }
+        switch (this["TableType"]) {
+            case 0:
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                this["TableDesk"]["setX"](-this["TableDesk"]["getWidth"]() / 2);
+                this["TableDesk"]["setY"](-this["TableDesk"]["getHeight"]() / 2);
+                this["ArrowLeftTop"]["setX"](-this["TableDesk"]["getWidth"]() / 2 + 1);
+                this["ArrowLeftBottom"]["setX"](
+                    -this["TableDesk"]["getWidth"]() / 2 + 13
+                );
+                this["ArrowRightTop"]["setX"](this["TableDesk"]["getWidth"]() / 2 - 13);
+                this["ArrowRightBottom"]["setX"](
+                    this["TableDesk"]["getWidth"]() / 2 - 1
+                );
+                this["ArrowLeftTop"]["setY"](-this["TableDesk"]["getHeight"]() / 2 + 1);
+                this["ArrowLeftBottom"]["setY"](
+                    this["TableDesk"]["getHeight"]() / 2 - 1
+                );
+                this["ArrowRightTop"]["setY"](
+                    -this["TableDesk"]["getHeight"]() / 2 + 1
+                );
+                this["ArrowRightBottom"]["setY"](
+                    this["TableDesk"]["getHeight"]() / 2 - 1
+                );
+                break;
+            default:
+                alert("incorrect table type in SetTableSize: " + this["TableType"]);
+                return;
+        }
+        /** @type {number} */
+        var artistTrack = 0;
+        var indexLookupKey;
+        for (indexLookupKey in this["Seats"]) {
+            this["Seats"][indexLookupKey]["setX"](this.GetSeatX(artistTrack));
+            this["Seats"][indexLookupKey]["setY"](this.GetSeatY(artistTrack));
+            ++artistTrack;
+        }
+    };
+    /**
+     * @param {number} _aY
+     * @param {?} _aX
+     * @return {?}
+     */
+    _this["GetTableSeatUnderClientXY"] = function(_aY, _aX) {
+        /** @type {null} */
+        var subwiki = null;
+        var i;
+        for (i in this["Seats"]) {
+            if (!this["Seats"][i].IsFree()) {
+                continue;
+            }
+            var _0x2ae8x18 = this["Seats"][i]["getX"]();
+            var _0x2ae8x19 = this["Seats"][i]["getY"]();
+            /** @type {number} */
+            var _0x2ae8x1a = _seatSize / 2;
+            /** @type {number} */
+            var _bY =
+                this["getX"]() +
+                _0x2ae8x18 * Math["cos"](this["getRotation"]()) -
+                _0x2ae8x19 * Math["sin"](this["getRotation"]());
+            var _bX =
+                this["getY"]() +
+                _0x2ae8x18 * Math["sin"](this["getRotation"]()) +
+                _0x2ae8x19 * Math["cos"](this["getRotation"]());
+            if (
+                (_bY - _aY) * (_bY - _aY) + (_bX - _aX) * (_bX - _aX) <=
+                _0x2ae8x1a * _0x2ae8x1a
+            ) {
+                subwiki = this["Seats"][i];
+                break;
+            }
+        }
+        return subwiki;
+    };
+    /**
+     * @param {?} newText
+     * @return {undefined}
+     */
+    _this["SetName"] = function(newText) {
+        if (this["TableType"] == 7) {
+            return;
+        }
+        this["TableNameObject"]["setText"](newText);
+        this["TableNameObject"]["setOffset"]({
+            x: _this["TableNameObject"]["getWidth"]() / 2,
+            y: _this["TableNameObject"]["getHeight"]() / 2
+        });
+    };
+    if (name == null) {
+        _this["TableID"] = generateGuid();
+    } else {
+        /** @type {!Object} */
+        _this["TableID"] = name;
+    }
+    /** @type {number} */
+    _this["TableType"] = v;
+    /** @type {number} */
+    _this["SeatsNumber"] = 0;
+    _this["Seats"] = {};
+    /** @type {null} */
+    _this["TableNameObject"] = null;
+    /** @type {null} */
+    _this["TableDesk"] = null;
+    /** @type {null} */
+    _this["ArrowLeftTop"] = null;
+    /** @type {null} */
+    _this["ArrofLeftBottpm"] = null;
+    /** @type {null} */
+    _this["ArrowRightTop"] = null;
+    /** @type {null} */
+    _this["ArrofRightBottom"] = null;
+    /**
+     * @param {?} canCreateDiscussions
+     * @return {undefined}
+     */
+    _this["mouseClickLeft"] = function(canCreateDiscussions) {
+        this["parent"].RotateTable(-45);
+    };
+    /**
+     * @param {?} canCreateDiscussions
+     * @return {undefined}
+     */
+    _this["mouseClickRight"] = function(canCreateDiscussions) {
+        this["parent"].RotateTable(45);
+    };
+    /**
+     * @param {number} stageWidth
+     * @return {undefined}
+     */
+    _this["RotateTable"] = function(stageWidth) {
+        var stageX = this["getRotationDeg"]();
+        this["setRotationDeg"](stageX + stageWidth);
+        this["TableNameObject"]["setRotationDeg"](-stageX - stageWidth);
+        var indexLookupKey;
+        for (indexLookupKey in this["Seats"]) {
+            this["Seats"][indexLookupKey].TableWasRotated(stageX + stageWidth);
+        }
+        kineticLayer["draw"]();
+    };
+    switch (v) {
+        case 0:
+            _this["TableDesk"] = new Kinetic.Circle({
+                x: 0,
+                y: 0,
+                radius: (1.2 * _seatSize) / 2,
+                fill: "white",
+                stroke: "gray",
+                strokeWidth: 2
+            });
+            _this["TableDesk"]["on"]("click", _this.ShowTableMenu);
+            _this["add"](_this.TableDesk);
+            break;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+            _this["TableDesk"] = new Kinetic.Rect({
+                x: -_seatSize / 2,
+                y: -_longTableHeight / 2,
+                width: _seatSize,
+                height: _longTableHeight,
+                fill: "white",
+                stroke: "gray",
+                strokeWidth: 2
+            });
+            _this["TableDesk"]["on"]("click", _this.ShowTableMenu);
+            _this["add"](_this.TableDesk);
+            break;
+        case 7:
+            _this["TableDesk"] = new Kinetic.Rect({
+                x: -_seatSize,
+                y: -_seatSize,
+                width: 2 * _seatSize,
+                height: 2 * _seatSize,
+                stroke: "lightgray",
+                strokeWidth: 1
+            });
+            _this["TableDesk"]["on"]("click", _this.ShowTableMenu);
+            _this["add"](_this.TableDesk);
+            break;
+    }
+    if (1 <= v && v <= 7) {
+        _this["ArrowLeftTop"] = new Kinetic.Image({
+            x: -_this["TableDesk"]["getWidth"]() / 2 + 1,
+            y: -_this["TableDesk"]["getHeight"]() / 2 + 1,
+            image: model["anti_clock_rotation"],
+            width: 12,
+            height: 12
+        });
+        _this["ArrowLeftTop"]["on"]("mousedown", _this["mouseClickLeft"]);
+        _this["add"](_this.ArrowLeftTop);
+        _this["ArrowRightBottom"] = new Kinetic.Image({
+            x: _this["TableDesk"]["getWidth"]() / 2 - 1,
+            y: _this["TableDesk"]["getHeight"]() / 2 - 1,
+            image: model["anti_clock_rotation"],
+            rotationDeg: 180,
+            width: 12,
+            height: 12
+        });
+        _this["ArrowRightBottom"]["on"]("mousedown", _this["mouseClickLeft"]);
+        _this["add"](_this.ArrowRightBottom);
+        _this["ArrowRightTop"] = new Kinetic.Image({
+            x: _this["TableDesk"]["getWidth"]() / 2 - 13,
+            y: -_this["TableDesk"]["getHeight"]() / 2 + 1,
+            image: model["clock_rotation"],
+            width: 12,
+            height: 12
+        });
+        _this["ArrowRightTop"]["on"]("mousedown", _this["mouseClickRight"]);
+        _this["add"](_this.ArrowRightTop);
+        _this["ArrowLeftBottom"] = new Kinetic.Image({
+            x: -_this["TableDesk"]["getWidth"]() / 2 + 13,
+            y: _this["TableDesk"]["getHeight"]() / 2 - 1,
+            image: model["clock_rotation"],
+            rotationDeg: 180,
+            width: 12,
+            height: 12
+        });
+        _this["ArrowLeftBottom"]["on"]("mousedown", _this["mouseClickRight"]);
+        _this["add"](_this.ArrowLeftBottom);
+    }
+    _this["TableNameObject"] = new Kinetic.Text({
+        x: 0,
+        y: 0,
+        text: "",
+        fontSize: 15,
+        fontFamily: "Calibri",
+        fill: "black"
+    });
+    _this.SetName(format);
+    _this["TableNameObject"]["on"]("click", _this.ShowTableMenu);
+    _this["add"](_this.TableNameObject);
+    _this["TableDesk"]["on"]("mouseover", function() {
+        /** @type {string} */
+        document["body"]["style"]["cursor"] = "pointer";
+    });
+    _this["TableDesk"]["on"]("mouseout", function() {
+        /** @type {string} */
+        document["body"]["style"]["cursor"] = "default";
+    });
+    /** @type {number} */
+    var i = 0;
+    for (; i < max; ++i) {
+        /** @type {boolean} */
+        var _0x2ae8x21 = false;
+        if (options != null) {
+            _0x2ae8x21 = _this.AddSeat(options[i]);
+        } else {
+            _0x2ae8x21 = _this.AddSeat(null);
+        }
+        if (_0x2ae8x21 == false) {
+            break;
+        }
+    }
+    _this.RotateTable(table);
+    return _this;
+}
+/**
+ * @param {number} leafletId
+ * @return {?}
+ */
+function MinimumTableSeats(leafletId) {
+    switch (leafletId) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+            return 1;
+        case 4:
+        case 5:
+            return 3;
+        case 6:
+            return 4;
+        case 7:
+            return 1;
+        default:
+            return 1;
+    }
+}

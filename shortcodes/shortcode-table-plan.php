@@ -312,22 +312,22 @@ function wb_tableplan_shortcode ($atts) {
                         </div>
                     </div>
 
-                    <div id="tablePropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);">
-                        <div class="menu_title" style="top: 0;height:20px;padding-top:5px;padding-left:5px; color:#FFFFFF; background-color: rgb(56, 168, 255); text-align: left;font-size:12px;"><strong>Table</strong></div><!--Стол-->
-                        <div id="tablePropAddSeat" class="table_menu_button" style="top: 32px;height:22px;padding-top:5px;text-align:center;" onclick="TableMenuAddSeat(this.parentNode.TableID);">Add chair</div>
-                        <div id="tablePropRemoveSeat" class="table_menu_button" style="top: 64px;height:22px;padding-top:5px;text-align:center;" onclick="TableMenuRemoveSeat(this.parentNode.TableID);">Remove chair</div>
-                        <div id="tablePropRemove" class="table_menu_button" style="top: 96px;height:22px;padding-top:5px;text-align:center;" onclick="TableMenuDeleteTable(this.parentNode.TableID);">Remove</div>
-                        <div id="tablePropRename" class="table_menu_button" style="top: 132px;height:22px;padding-top:5px;text-align:center;" onclick="TableMenuRenameTable(this.parentNode.TableID);">Rename</div>
+                    <div id="tablePropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);" class="tp-context-menu">
+                        <div class="menu_title" style=""><strong>Table</strong></div><!--Стол-->
+                        <div id="tablePropAddSeat" class="table_menu_button" style="" onclick="TableMenuAddSeat(this.parentNode.TableID);">Add chair</div>
+                        <div id="tablePropRemoveSeat" class="table_menu_button" style="" onclick="TableMenuRemoveSeat(this.parentNode.TableID);">Remove chair</div>
+                        <div id="tablePropRemove" class="table_menu_button" style="" onclick="TableMenuDeleteTable(this.parentNode.TableID);">Remove</div>
+                        <div id="tablePropRename" class="table_menu_button" style="" onclick="TableMenuRenameTable(this.parentNode.TableID);">Rename</div>
 
                         <div style="position: absolute; top: 4px; right: 4px;">
                             <a href="#" class="close_button" onclick="HideSubMenu('tablePropertiesMenu');return false;"></a>
                         </div>
                     </div>
 
-                    <div id="objectPropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);">
-                        <div class="menu_title" style="top: 0;height:20px;padding-top:5px;padding-left:5px; color:#FFFFFF; background-color: rgb(56, 168, 255); text-align: left;font-size:12px;"><strong>Объект</strong></div>
-                        <div id="objectPropRename" class="table_menu_button" style="top: 32px;height:22px;padding-top:5px;text-align:center;" onclick="ObjectMenuRename(this.parentNode.ObjectID);">Rename</div>
-                        <div id="objectPropRemove" class="table_menu_button" style="top: 64px;height:22px;padding-top:5px;text-align:center;" onclick="ObjectMenuDelete(this.parentNode.ObjectID);">Remove</div>
+                    <div id="objectPropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);" class="tp-context-menu">
+                        <div class="menu_title" style=""><strong>Object</strong></div>
+                        <div id="objectPropRename" class="table_menu_button" style="" onclick="ObjectMenuRename(this.parentNode.ObjectID);">Rename</div>
+                        <div id="objectPropRemove" class="table_menu_button" style="" onclick="ObjectMenuDelete(this.parentNode.ObjectID);">Remove</div>
 
                         <div style="position: absolute; top: 4px; right: 4px;">
                             <a href="#" class="close_button" onclick="HideSubMenu('objectPropertiesMenu');return false;"></a>
@@ -343,11 +343,11 @@ function wb_tableplan_shortcode ($atts) {
                         </div>
                     </div>
 
-                    <div id="seatPropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);">
-                        <div class="menu_title" style="top: 0;height:20px;padding-top:5px;padding-left:5px;color:#FFFFFF; background-color: rgb(56, 168, 255); text-align: left;font-size:12px;"><strong>Table seat</strong></div>
+                    <div id="seatPropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);" class="tp-context-menu">
+                        <div class="menu_title"><strong>Table seat</strong></div>
 
-                        <div id="seatGuestUnseat" class="table_menu_button" style="top: 0;height:22px;padding-top:6px;text-align:center;" onclick="UnseatGuestFromTable(this.parentNode.GuestID);">Empty the chair</div>
-                        <div id="seatGuestDelet" class="table_menu_button" style="top: 32px;height:22px;padding-top:6px;text-align:center;" onclick="DeleteGuestFromTable(this.parentNode.GuestID);">Remove guest</div>
+                        <div id="seatGuestUnseat" class="table_menu_button" onclick="UnseatGuestFromTable(this.parentNode.GuestID);">Empty the chair</div>
+<!--                        <div id="seatGuestDelet" class="table_menu_button" onclick="DeleteGuestFromTable(this.parentNode.GuestID);">Remove guest</div>-->
                         <div style="position: absolute; top: 4px; right: 4px; cursor:pointer;">
                             <a href="#" class="close_button" onclick="HideSubMenu('seatPropertiesMenu');return false;"></a>
                         </div>

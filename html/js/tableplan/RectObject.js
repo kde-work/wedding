@@ -1,1 +1,206 @@
-﻿var _0xbf02 = ["\x53\x68\x6F\x77\x43\x6F\x6E\x74\x72\x6F\x6C\x73", "\x68\x69\x64\x65", "\x52\x65\x73\x69\x7A\x65\x48\x6F\x72\x69\x7A\x6F\x6E\x74\x61\x6C", "\x52\x65\x73\x69\x7A\x65\x56\x65\x72\x74\x69\x63\x61\x6C", "\x77\x68\x69\x74\x65", "\x73\x65\x74\x46\x69\x6C\x6C", "\x4F\x62\x6A\x65\x63\x74\x52\x65\x63\x74", "\x73\x68\x6F\x77", "\x6C\x69\x67\x68\x74\x67\x72\x61\x79", "\x53\x68\x6F\x77\x4F\x62\x6A\x65\x63\x74\x4D\x65\x6E\x75", "\x6F\x62\x6A\x65\x63\x74\x50\x72\x6F\x70\x65\x72\x74\x69\x65\x73\x4D\x65\x6E\x75", "\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64", "\x65\x76\x74", "\x77\x68\x69\x63\x68", "\x63\x61\x6E\x63\x65\x6C\x42\x75\x62\x62\x6C\x65", "\x4F\x62\x6A\x65\x63\x74\x49\x44", "\x70\x61\x72\x65\x6E\x74", "\x53\x65\x74\x4E\x61\x6D\x65", "\x73\x65\x74\x54\x65\x78\x74", "\x4F\x62\x6A\x65\x63\x74\x4E\x61\x6D\x65\x4F\x62\x6A\x65\x63\x74", "\x67\x65\x74\x57\x69\x64\x74\x68", "\x67\x65\x74\x48\x65\x69\x67\x68\x74", "\x73\x65\x74\x4F\x66\x66\x73\x65\x74", "\x53\x65\x74\x52\x65\x73\x69\x7A\x65\x42\x6F\x78\x50\x6F\x73\x73\x69\x74\x69\x6F\x6E\x73", "\x73\x65\x74\x58", "\x73\x65\x74\x59", "\x67\x72\x61\x79", "\x63\x6C\x69\x63\x6B", "\x6F\x6E", "\x61\x64\x64", "", "\x43\x61\x6C\x69\x62\x72\x69", "\x62\x6C\x61\x63\x6B", "\x6D\x6F\x75\x73\x65\x6F\x76\x65\x72", "\x63\x75\x72\x73\x6F\x72", "\x73\x74\x79\x6C\x65", "\x62\x6F\x64\x79", "\x70\x6F\x69\x6E\x74\x65\x72", "\x6D\x6F\x75\x73\x65\x6F\x75\x74", "\x64\x65\x66\x61\x75\x6C\x74", "\x50\x61\x72\x65\x6E\x74", "\x6E\x2D\x72\x65\x73\x69\x7A\x65", "\x65\x2D\x72\x65\x73\x69\x7A\x65", "\x64\x72\x61\x67\x6D\x6F\x76\x65", "\x67\x65\x74\x58", "\x67\x65\x74\x59", "\x73\x65\x74\x48\x65\x69\x67\x68\x74", "\x73\x65\x74\x57\x69\x64\x74\x68"]; function RectObject(_0xb15ax2, _0xb15ax3, _0xb15ax4, _0xb15ax5, _0xb15ax6, _0xb15ax7) { var _0xb15ax8 = new Kinetic.Group({ draggable: true, x: _0xb15ax4, y: _0xb15ax5 }); _0xb15ax8[_0xbf02[0]] = function (_0xb15ax9) { if (_0xb15ax9 == false) { this[_0xbf02[2]][_0xbf02[1]](); this[_0xbf02[3]][_0xbf02[1]](); this[_0xbf02[6]][_0xbf02[5]](_0xbf02[4]) } else { this[_0xbf02[2]][_0xbf02[7]](); this[_0xbf02[3]][_0xbf02[7]](); this[_0xbf02[6]][_0xbf02[5]](_0xbf02[8]) } }; _0xb15ax8[_0xbf02[9]] = function (_0xb15axa) { var _0xb15axb = document[_0xbf02[11]](_0xbf02[10]); if (_0xb15axb == null) { return }; var _0xb15axc = _0xb15axa[_0xbf02[12]]; if (_0xb15axc[_0xbf02[13]] === 3) { _0xb15axc[_0xbf02[14]] = true; SetTopLeftOfPopupMenu(_0xb15axc, _0xb15axb); _0xb15axb[_0xbf02[15]] = this[_0xbf02[16]][_0xbf02[15]] } }; _0xb15ax8[_0xbf02[17]] = function (_0xb15axd) { this[_0xbf02[19]][_0xbf02[18]](_0xb15axd); this[_0xbf02[19]][_0xbf02[22]]({ x: _0xb15ax8[_0xbf02[19]][_0xbf02[20]]() / 2, y: _0xb15ax8[_0xbf02[19]][_0xbf02[21]]() / 2 }) }; _0xb15ax8[_0xbf02[23]] = function () { this[_0xbf02[2]][_0xbf02[24]](this[_0xbf02[6]][_0xbf02[20]]() / 2 - 3); this[_0xbf02[2]][_0xbf02[25]](0); _0xb15ax8[_0xbf02[3]][_0xbf02[24]](0); _0xb15ax8[_0xbf02[3]][_0xbf02[25]](this[_0xbf02[6]][_0xbf02[21]]() / 2 - 3) }; if (_0xb15ax2 == null) { _0xb15ax8[_0xbf02[15]] = generateGuid() } else { _0xb15ax8[_0xbf02[15]] = _0xb15ax2 }; _0xb15ax8[_0xbf02[19]] = null; _0xb15ax8[_0xbf02[6]] = null; _0xb15ax8[_0xbf02[6]] = new Kinetic.Rect({ x: -_0xb15ax6 / 2, y: -_0xb15ax7 / 2, width: _0xb15ax6, height: _0xb15ax7, fill: _0xbf02[8], stroke: _0xbf02[26], strokeWidth: 2 }); _0xb15ax8[_0xbf02[6]][_0xbf02[28]](_0xbf02[27], _0xb15ax8.ShowObjectMenu); _0xb15ax8[_0xbf02[29]](_0xb15ax8.ObjectRect); _0xb15ax8[_0xbf02[19]] = new Kinetic.Text({ x: 0, y: 0, text: _0xbf02[30], fontSize: 15, fontFamily: _0xbf02[31], fill: _0xbf02[32] }); _0xb15ax8.SetName(_0xb15ax3); _0xb15ax8[_0xbf02[19]][_0xbf02[28]](_0xbf02[27], _0xb15ax8.ShowObjectMenu); _0xb15ax8[_0xbf02[29]](_0xb15ax8.ObjectNameObject); _0xb15ax8[_0xbf02[6]][_0xbf02[28]](_0xbf02[33], function () { document[_0xbf02[36]][_0xbf02[35]][_0xbf02[34]] = _0xbf02[37] }); _0xb15ax8[_0xbf02[6]][_0xbf02[28]](_0xbf02[38], function () { document[_0xbf02[36]][_0xbf02[35]][_0xbf02[34]] = _0xbf02[39] }); _0xb15ax8[_0xbf02[2]] = new Kinetic.Rect({ draggable: true, width: 7, height: 7, fill: _0xbf02[4], stroke: _0xbf02[32], strokeWidth: 1 }); _0xb15ax8[_0xbf02[2]][_0xbf02[40]] = _0xb15ax8; _0xb15ax8[_0xbf02[3]] = new Kinetic.Rect({ draggable: true, width: 7, height: 7, fill: _0xbf02[4], stroke: _0xbf02[32], strokeWidth: 1 }); _0xb15ax8[_0xbf02[3]][_0xbf02[40]] = _0xb15ax8; _0xb15ax8.SetResizeBoxPossitions(); _0xb15ax8[_0xbf02[3]][_0xbf02[28]](_0xbf02[33], function () { document[_0xbf02[36]][_0xbf02[35]][_0xbf02[34]] = _0xbf02[41] }); _0xb15ax8[_0xbf02[3]][_0xbf02[28]](_0xbf02[38], function () { document[_0xbf02[36]][_0xbf02[35]][_0xbf02[34]] = _0xbf02[39] }); _0xb15ax8[_0xbf02[2]][_0xbf02[28]](_0xbf02[33], function () { document[_0xbf02[36]][_0xbf02[35]][_0xbf02[34]] = _0xbf02[42] }); _0xb15ax8[_0xbf02[2]][_0xbf02[28]](_0xbf02[38], function () { document[_0xbf02[36]][_0xbf02[35]][_0xbf02[34]] = _0xbf02[39] }); _0xb15ax8[_0xbf02[3]][_0xbf02[28]](_0xbf02[43], function () { var _0xb15axe = this[_0xbf02[44]](); var _0xb15axf = this[_0xbf02[45]](); if (_0xb15axe != 0) { this[_0xbf02[24]](0) }; if ((_0xb15axf + this[_0xbf02[40]][_0xbf02[6]][_0xbf02[21]]() / 2) < (_seatSize / 2)) { _0xb15axf = -this[_0xbf02[40]][_0xbf02[6]][_0xbf02[21]]() / 2 + _seatSize / 2; this[_0xbf02[25]](_0xb15axf) }; var _0xb15ax10 = this[_0xbf02[40]][_0xbf02[6]][_0xbf02[45]](); var _0xb15ax11 = this[_0xbf02[40]][_0xbf02[6]][_0xbf02[21]](); var _0xb15ax12 = _0xb15axf + this[_0xbf02[40]][_0xbf02[6]][_0xbf02[21]]() / 2; var _0xb15ax13 = _0xb15ax11 - _0xb15ax12; this[_0xbf02[40]][_0xbf02[25]](this[_0xbf02[40]][_0xbf02[45]]() - _0xb15ax13 / 2); this[_0xbf02[40]][_0xbf02[6]][_0xbf02[25]](_0xb15ax10 + _0xb15ax13 / 2); this[_0xbf02[40]][_0xbf02[6]][_0xbf02[46]](_0xb15ax11 - _0xb15ax13); this[_0xbf02[40]].SetResizeBoxPossitions() }); _0xb15ax8[_0xbf02[2]][_0xbf02[28]](_0xbf02[43], function () { var _0xb15axe = this[_0xbf02[44]](); var _0xb15axf = this[_0xbf02[45]](); if (_0xb15axf != 0) { this[_0xbf02[25]](0) }; if ((_0xb15axe + this[_0xbf02[40]][_0xbf02[6]][_0xbf02[20]]() / 2) < (_seatSize / 2)) { _0xb15axe = -this[_0xbf02[40]][_0xbf02[6]][_0xbf02[20]]() / 2 + _seatSize / 2; this[_0xbf02[24]](_0xb15axe) }; var _0xb15ax14 = this[_0xbf02[40]][_0xbf02[6]][_0xbf02[44]](); var _0xb15ax15 = this[_0xbf02[40]][_0xbf02[6]][_0xbf02[20]](); var _0xb15ax16 = _0xb15axe + this[_0xbf02[40]][_0xbf02[6]][_0xbf02[20]]() / 2; var _0xb15ax17 = _0xb15ax15 - _0xb15ax16; this[_0xbf02[40]][_0xbf02[24]](this[_0xbf02[40]][_0xbf02[44]]() - _0xb15ax17 / 2); this[_0xbf02[40]][_0xbf02[6]][_0xbf02[24]](_0xb15ax14 + _0xb15ax17 / 2); this[_0xbf02[40]][_0xbf02[6]][_0xbf02[47]](_0xb15ax15 - _0xb15ax17); this[_0xbf02[40]].SetResizeBoxPossitions() }); _0xb15ax8[_0xbf02[29]](_0xb15ax8.ResizeHorizontal); _0xb15ax8[_0xbf02[29]](_0xb15ax8.ResizeVertical); return _0xb15ax8 }
+﻿"use strict";
+/**
+ * @param {!Object} uuid
+ * @param {?} query
+ * @param {number} method
+ * @param {number} matchAny
+ * @param {number} origin_width
+ * @param {number} origin_height
+ * @return {?}
+ */
+function RectObject(
+    uuid,
+    query,
+    method,
+    matchAny,
+    origin_width,
+    origin_height
+) {
+    var doc = new Kinetic.Group({
+        draggable: true,
+        x: method,
+        y: matchAny
+    });
+    /**
+     * @param {!Object} canCreateDiscussions
+     * @return {undefined}
+     */
+    doc["ShowControls"] = function(canCreateDiscussions) {
+        if (canCreateDiscussions == false) {
+            this["ResizeHorizontal"]["hide"]();
+            this["ResizeVertical"]["hide"]();
+            this["ObjectRect"]["setFill"]("white");
+        } else {
+            this["ResizeHorizontal"]["show"]();
+            this["ResizeVertical"]["show"]();
+            this["ObjectRect"]["setFill"]("lightgray");
+        }
+    };
+    /**
+     * @param {!Object} events
+     * @return {undefined}
+     */
+    doc["ShowObjectMenu"] = function(events) {
+        var artistTrack = document["getElementById"]("objectPropertiesMenu");
+        if (artistTrack == null) {
+            return;
+        }
+        var event = events["evt"];
+        if (event["which"] === 3) {
+            /** @type {boolean} */
+            event["cancelBubble"] = true;
+            SetTopLeftOfPopupMenu(event, artistTrack);
+            artistTrack["ObjectID"] = this["parent"]["ObjectID"];
+        }
+    };
+    /**
+     * @param {?} newText
+     * @return {undefined}
+     */
+    doc["SetName"] = function(newText) {
+        this["ObjectNameObject"]["setText"](newText);
+        this["ObjectNameObject"]["setOffset"]({
+            x: doc["ObjectNameObject"]["getWidth"]() / 2,
+            y: doc["ObjectNameObject"]["getHeight"]() / 2
+        });
+    };
+    /**
+     * @return {undefined}
+     */
+    doc["SetResizeBoxPossitions"] = function() {
+        this["ResizeHorizontal"]["setX"](this["ObjectRect"]["getWidth"]() / 2 - 3);
+        this["ResizeHorizontal"]["setY"](0);
+        doc["ResizeVertical"]["setX"](0);
+        doc["ResizeVertical"]["setY"](this["ObjectRect"]["getHeight"]() / 2 - 3);
+    };
+    if (uuid == null) {
+        doc["ObjectID"] = generateGuid();
+    } else {
+        /** @type {!Object} */
+        doc["ObjectID"] = uuid;
+    }
+    /** @type {null} */
+    doc["ObjectNameObject"] = null;
+    /** @type {null} */
+    doc["ObjectRect"] = null;
+    doc["ObjectRect"] = new Kinetic.Rect({
+        x: -origin_width / 2,
+        y: -origin_height / 2,
+        width: origin_width,
+        height: origin_height,
+        fill: "lightgray",
+        stroke: "gray",
+        strokeWidth: 2
+    });
+    doc["ObjectRect"]["on"]("click", doc.ShowObjectMenu);
+    doc["add"](doc.ObjectRect);
+    doc["ObjectNameObject"] = new Kinetic.Text({
+        x: 0,
+        y: 0,
+        text: "",
+        fontSize: 15,
+        fontFamily: "Calibri",
+        fill: "black"
+    });
+    doc.SetName(query);
+    doc["ObjectNameObject"]["on"]("click", doc.ShowObjectMenu);
+    doc["add"](doc.ObjectNameObject);
+    doc["ObjectRect"]["on"]("mouseover", function() {
+        /** @type {string} */
+        document["body"]["style"]["cursor"] = "pointer";
+    });
+    doc["ObjectRect"]["on"]("mouseout", function() {
+        /** @type {string} */
+        document["body"]["style"]["cursor"] = "default";
+    });
+    doc["ResizeHorizontal"] = new Kinetic.Rect({
+        draggable: true,
+        width: 7,
+        height: 7,
+        fill: "white",
+        stroke: "black",
+        strokeWidth: 1
+    });
+    doc["ResizeHorizontal"]["Parent"] = doc;
+    doc["ResizeVertical"] = new Kinetic.Rect({
+        draggable: true,
+        width: 7,
+        height: 7,
+        fill: "white",
+        stroke: "black",
+        strokeWidth: 1
+    });
+    doc["ResizeVertical"]["Parent"] = doc;
+    doc.SetResizeBoxPossitions();
+    doc["ResizeVertical"]["on"]("mouseover", function() {
+        /** @type {string} */
+        document["body"]["style"]["cursor"] = "n-resize";
+    });
+    doc["ResizeVertical"]["on"]("mouseout", function() {
+        /** @type {string} */
+        document["body"]["style"]["cursor"] = "default";
+    });
+    doc["ResizeHorizontal"]["on"]("mouseover", function() {
+        /** @type {string} */
+        document["body"]["style"]["cursor"] = "e-resize";
+    });
+    doc["ResizeHorizontal"]["on"]("mouseout", function() {
+        /** @type {string} */
+        document["body"]["style"]["cursor"] = "default";
+    });
+    doc["ResizeVertical"]["on"]("dragmove", function() {
+        var _0xb15axe = this["getX"]();
+        var next_planting = this["getY"]();
+        if (_0xb15axe != 0) {
+            this["setX"](0);
+        }
+        if (
+            next_planting + this["Parent"]["ObjectRect"]["getHeight"]() / 2 <
+            _seatSize / 2
+        ) {
+            /** @type {number} */
+            next_planting =
+                -this["Parent"]["ObjectRect"]["getHeight"]() / 2 + _seatSize / 2;
+            this["setY"](next_planting);
+        }
+        var Ytitle = this["Parent"]["ObjectRect"]["getY"]();
+        var groupsize = this["Parent"]["ObjectRect"]["getHeight"]();
+        var next_grow =
+            next_planting + this["Parent"]["ObjectRect"]["getHeight"]() / 2;
+        /** @type {number} */
+        var dragstocreate = groupsize - next_grow;
+        this["Parent"]["setY"](this["Parent"]["getY"]() - dragstocreate / 2);
+        this["Parent"]["ObjectRect"]["setY"](Ytitle + dragstocreate / 2);
+        this["Parent"]["ObjectRect"]["setHeight"](groupsize - dragstocreate);
+        this["Parent"].SetResizeBoxPossitions();
+    });
+    doc["ResizeHorizontal"]["on"]("dragmove", function() {
+        var next_planting = this["getX"]();
+        var _0xb15axf = this["getY"]();
+        if (_0xb15axf != 0) {
+            this["setY"](0);
+        }
+        if (
+            next_planting + this["Parent"]["ObjectRect"]["getWidth"]() / 2 <
+            _seatSize / 2
+        ) {
+            /** @type {number} */
+            next_planting =
+                -this["Parent"]["ObjectRect"]["getWidth"]() / 2 + _seatSize / 2;
+            this["setX"](next_planting);
+        }
+        var Ytitle = this["Parent"]["ObjectRect"]["getX"]();
+        var groupsize = this["Parent"]["ObjectRect"]["getWidth"]();
+        var next_grow =
+            next_planting + this["Parent"]["ObjectRect"]["getWidth"]() / 2;
+        /** @type {number} */
+        var dragstocreate = groupsize - next_grow;
+        this["Parent"]["setX"](this["Parent"]["getX"]() - dragstocreate / 2);
+        this["Parent"]["ObjectRect"]["setX"](Ytitle + dragstocreate / 2);
+        this["Parent"]["ObjectRect"]["setWidth"](groupsize - dragstocreate);
+        this["Parent"].SetResizeBoxPossitions();
+    });
+    doc["add"](doc.ResizeHorizontal);
+    doc["add"](doc.ResizeVertical);
+    return doc;
+}

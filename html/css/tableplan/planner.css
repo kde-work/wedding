@@ -116,11 +116,10 @@
 /* pop up table/seat menu */
 .tp .table_menu_button {
 	left: 0;
-	cursor:pointer;
-	width:150px;
+	cursor: pointer;
+	width: 150px;
 	margin-top:1px;
-	padding:3px 3px 3px 5px;
-	font-family: 'Open Sans',verdana, arial, sans-serif;
+	padding: 3px 3px 3px 5px;
 	font-size: 13px;
 	color: #606060;
     background-color:#ffffff;
