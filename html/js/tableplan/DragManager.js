@@ -191,9 +191,15 @@
     document.onmousedown = onMouseDown;
 
     this.onDragEnd = function (dragObject, dropElem) {
+        
         // animation of End of drag and drop
         if (dragObject.elem.className == "resize_vertical") {
-            dragObject.avatar.style.left = dragObject.downX - dragObject.shiftX + 'px'
+            var $plannerField = $(".plannerCanvas"),
+                $resize_vertical = $("#resize_vertical"),
+                offset_top = $plannerField.offset().top;
+
+            dragObject.avatar.style.left = dragObject.downX - dragObject.shiftX + 'px';
+            $resize_vertical.css('top', $plannerField.height() + offset_top - 2);
         }
         if (dragObject.elem.className == "resize_horizontal") {
             dragObject.avatar.style.top = dragObject.downY - dragObject.shiftY + 'px';
@@ -220,25 +226,31 @@
     
     this.onMoveAnimation = function (dragObject, fixedE) {
         // animation of moving of drag and drop
-
-        var plannerField = document.getElementById("plannerCanvas");
+        var $plannerField = $(".plannerCanvas"),
+            $side_menu = $("#side_menu"),
+            planner_left = parseInt($plannerField.css('left')),
+            offset_top = $plannerField.offset().top;
 
         var lClassName = dragObject.elem.className;
 
         switch (lClassName) {
             case "resize_horizontal":
-                if (fixedE.pageX > _minimumPlanWidth + parseInt(plannerField.style.left)) {
-                    dragObject.avatar.style.left = fixedE.pageX - dragObject.shiftX + 'px';
-                    dragObject.avatar.style.top = dragObject.downY - dragObject.shiftY + 'px';
+                if ((fixedE.pageX/* - offset_left*/) > _minimumPlanWidth + planner_left) {
+                    dragObject.avatar.style.left = fixedE.pageX - dragObject.shiftX/* - offset_left + planner_left*/ + 'px';
+                    dragObject.avatar.style.top = dragObject.downY - dragObject.shiftY/* + offset_top*/ + 'px';
 
                     // change planner size
                     HorizontalResizePositionChanged();
                 }
                 break;
             case "resize_vertical":
-                if (fixedE.pageY > _minimumPlanHeight + parseInt(plannerField.style.top)) {
+                if (
+                    ($side_menu.height() + offset_top) <= fixedE.pageY/* &&
+                    fixedE.pageY > _minimumPlanHeight + parseInt($plannerField.css('top'))*/
+                ) {
                     dragObject.avatar.style.left = dragObject.downX - dragObject.shiftX + 'px';
                     dragObject.avatar.style.top = fixedE.pageY - dragObject.shiftY + 'px';
+
                     // change planner size
                     VerticalResizePositionChanged();
                 }
@@ -247,10 +259,8 @@
                 dragObject.avatar.style.left = fixedE.pageX - dragObject.shiftX + 'px';
                 dragObject.avatar.style.top = fixedE.pageY - dragObject.shiftY + 'px';
 
-                var plannerField = document.getElementById("plannerCanvas");
-
                 // drop on table plan. Check for seats.
-                var seat = tablePlan.GetSeatUnderClientXY(fixedE.pageX - parseInt(plannerField.style.left), fixedE.pageY - parseInt(plannerField.style.top));
+                var seat = tablePlan.GetSeatUnderClientXY(fixedE.pageX - planner_left, fixedE.pageY - parseInt($plannerField.css('top')));
                 if (seat != null) {
                     if (dragAndDropSeatOver != null)
                     {

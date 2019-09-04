@@ -223,11 +223,11 @@ function TablePlan(dst, val) {
      * @return {undefined}
      */
     this["onMoveAnimation"] = function(PL$63) {
-        var PL$67 = document["getElementById"]("plannerCanvas");
+        var _plannerCanvas = document["getElementById"]("plannerCanvas");
         if (this["DraggedGuestAvatar"] != null) {
             var _0xc94ax22 = tablePlan.GetSeatUnderClientXY(
-                PL$63["pageX"] - parseInt(PL$67["style"]["left"]),
-                PL$63["pageY"] - parseInt(PL$67["style"]["top"])
+                PL$63["pageX"] - parseInt(_plannerCanvas["style"]["left"]),
+                PL$63["pageY"] - parseInt(_plannerCanvas["style"]["top"])
             );
             if (_0xc94ax22 != null) {
                 if (dragAndDropSeatOver != null) {

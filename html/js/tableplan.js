@@ -20,32 +20,36 @@ $(function () {
     kineticStage.add(kineticLayer);
 
     // set position of resize boxes. Maximum for current screen resolutions
-    var leftSideMenu = document.getElementById("side_menu");
+    var $tableplan = $(".tableplan"),
+        $side_menu = $("#side_menu"),
+        $horizontalResize = $(".resize_horizontal"),
+        $resize_vertical = $(".resize_vertical"),
+        offset_top = $tableplan.offset().top,
+        offset_left = $tableplan.offset().left;
 
-    var horizontalResize = document.getElementById("resize_horizontal");
-    horizontalResize.style.left =
-        browserWidth -
-        _browserBorderShift -
-        7 /*parseInt(horizontalResize.style.width)*/ +
-        "px";
-    horizontalResize.style.top =
-        parseInt(leftSideMenu.style.top) +
-        (browserHeight - _browserBorderShift - parseInt(leftSideMenu.style.top)) /
-        2 +
-        "px";
+    $horizontalResize.css({
+        // 'left' : browserWidth - _browserBorderShift - 7 + "px",
+        'left' : offset_left + $tableplan.width() + "px",
+        // 'top' : parseInt(leftSideMenu.style.top) + (browserHeight - _browserBorderShift - parseInt(leftSideMenu.style.top)) / 2 + "px"
+        'top' : offset_top + $tableplan.height() / 2 + "px"
+    });
+
+    $resize_vertical.css({
+        'left' : offset_left + $tableplan.width() / 2 + "px",
+        'top' : offset_top + $tableplan.height() + "px"
+    });
+    // verticalResize.style.left =
+    //     parseInt(leftSideMenu.style.width) +
+    //     (browserWidth - parseInt(leftSideMenu.style.width) - _browserBorderShift) /
+    //     2 +
+    //     "px";
+    // verticalResize.style.top =
+    //     browserHeight -
+    //     _browserBorderShift -
+    //     7 /*parseInt(verticalResize.style.height)*/ +
+    //     "px";
+
     HorizontalResizePositionChanged();
-
-    var verticalResize = document.getElementById("resize_vertical");
-    verticalResize.style.left =
-        parseInt(leftSideMenu.style.width) +
-        (browserWidth - parseInt(leftSideMenu.style.width) - _browserBorderShift) /
-        2 +
-        "px";
-    verticalResize.style.top =
-        browserHeight -
-        _browserBorderShift -
-        7 /*parseInt(verticalResize.style.height)*/ +
-        "px";
     VerticalResizePositionChanged();
 
     unseatedGuestListControl = new UnseatedGuestListControl();
