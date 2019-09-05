@@ -369,7 +369,7 @@ function wb_tableplan_shortcode ($atts) {
                     </div>
 
                     <div id="m13" class="box" style="display: none;">
-                        <div id="objectRenameMenu" class="menu_content_guest" style="width: 300px; height: 45px; top: 50%; left: 50%; margin: -60px 0 0 -150px; position: absolute;  z-index: 2000; display: block;">
+                        <div id="objectRenameMenu" class="menu_content_guest" style="width: 300px; top: 50%; left: 50%; margin: -60px 0 0 -150px; position: absolute;  z-index: 2000; display: block;">
                             <div style="margin-top:5px;">
                                 New name:<br><input id="object_edit_name" style="width:240px" type="text" onkeydown="if (event.keyCode == 13) { Rename_Object(); }"> <input onclick="Rename_Object()" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
                             </div>
@@ -388,7 +388,7 @@ function wb_tableplan_shortcode ($atts) {
                     </div>
 
                     <div id="m7" class="box" style="display: none;">
-                        <div id="tableRenameMenu" class="menu_content_guest" style="width: 300px; height: 45px; top: 50%; left: 50%; margin: -60px 0 0 -150px; position: absolute;  z-index: 2000; display: block;">
+                        <div id="tableRenameMenu" class="menu_content_guest" style="width: 300px; top: 50%; left: 50%; margin: -60px 0 0 -150px; position: absolute;  z-index: 2000; display: block;">
                             <div style="margin-top:5px;">
                                 New table name:<br><input id="edit_name" style="width:240px" type="text" onkeydown="if (event.keyCode == 13) { Rename_Table(); }"> <input onclick="Rename_Table()" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
                             </div>
@@ -530,6 +530,7 @@ function wb_tableplan_shortcode ($atts) {
 }
 
 function wb_tableplan_script($data, $id){
+	$user_id = wp_get_current_user()->ID;
     $data = (isset($data[$id])) ? $data[$id]['data'] : [];
 	ob_start();
 	?>
@@ -584,11 +585,22 @@ function wb_tableplan_script($data, $id){
             // tablePlan.AddNewRectObject('1E6A28EE-109B-0864-FD00-91D0D5D71E5A', 'Table с тортом', 474, 400, 120, 120);
 
 	        <?php
-	        if(!empty($data['Guests'])){
-		        foreach ($data['Guests'] as $Guest) {
-			        echo "tablePlan.AddNewGuest('{$Guest['Id']}', '{$Guest['Name']}', {$Guest['Type']}, {$Guest['Meal']}, {$Guest['RSVP']}, '{$Guest['TableID']}', '{$Guest['SeatID']}');\n";
+	        $Guests = unserialize(base64_decode(get_user_meta($user_id, 'gl_save', 1)));
+//	        echo '/*';
+//	        print_r($Guests);
+//	        echo '*/';
+	        if(!empty($Guests)){
+		        foreach ($Guests as $id => $Guest) {
+		            $table_data = (!empty($Guest['table_data'])) ? $Guest['table_data'] : [];
+			        $table_data = wb_tableplan_clear_guest($table_data);
+			        echo "tablePlan.AddNewGuest('{$id}', '{$Guest['name']} {$Guest['family']}', {$table_data['Type']}, {$table_data['Meal']}, {$table_data['RSVP']}, '{$table_data['TableID']}', '{$table_data['SeatID']}');\n";
 		        }
 	        }
+//	        if(!empty($data['Guests'])){
+//		        foreach ($data['Guests'] as $Guest) {
+//			        echo "tablePlan.AddNewGuest('{$Guest['Id']}', '{$Guest['Name']}', {$Guest['Type']}, {$Guest['Meal']}, {$Guest['RSVP']}, '{$Guest['TableID']}', '{$Guest['SeatID']}');\n";
+//		        }
+//	        }
 	        ?>
             // tablePlan.AddNewGuest('454FF075-7DFC-472B-BACD-6126A84CAF43', 'qwe1 2', 1, 0, 0, '9BD4DE97-6930-133C-5B43-43271D534FF1', 'F506D348-DD18-C679-2721-6F1D5170F0FE');
             // tablePlan.AddNewGuest('4DCB5537-DE2C-BBC9-A521-6CBD81235546', '34234wr', 3, 1, 0, '', '');
@@ -611,6 +623,15 @@ function wb_tableplan_script($data, $id){
     </script>
     <?php
 	return ob_get_clean();
+}
+function wb_tableplan_clear_guest($Guest){
+	$Guest['Type'] = (isset($Guest['Type'])) ? $Guest['Type'] : '0';
+	$Guest['Meal'] = (isset($Guest['Meal'])) ? $Guest['Meal'] : '0';
+	$Guest['RSVP'] = (isset($Guest['RSVP'])) ? $Guest['RSVP'] : '0';
+	$Guest['TableID'] = (isset($Guest['TableID'])) ? $Guest['TableID'] : '0';
+	$Guest['SeatID'] = (isset($Guest['SeatID'])) ? $Guest['SeatID'] : '0';
+
+	return $Guest;
 }
 
 add_action( 'wp_body_open', 'wb_tableplan_resize_html' );

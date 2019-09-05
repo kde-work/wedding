@@ -10,6 +10,7 @@ function wb_tableplan_save() {
 		$data['Id'] = time();
 	}
 
+	// Save Table information
 	$server_data = unserialize(base64_decode(get_user_meta($user_id, 'wb_tableplan', 1)));
 	if (is_array($server_data)) {
 		$server_data = array();
@@ -17,8 +18,19 @@ function wb_tableplan_save() {
 	$server_data[$data['Id']] = array(
 		'data' => $data
 	);
-
 	update_user_meta($user_id, 'wb_tableplan', base64_encode(serialize($server_data)));
+
+	// Save Guests information
+	if (!empty($data['Guests'])) {
+		$server_guests = unserialize(base64_decode(get_user_meta($user_id, 'gl_save', 1)));
+		foreach ($data['Guests'] as $Guest) {
+			if (isset($server_guests[$Guest['Id']])) {
+				$server_guests[$Guest['Id']]['table_data'] = $Guest;
+			}
+//			echo "tablePlan.AddNewGuest('{$id}', '{$Guest['name']} {$Guest['family']}', {$table_data['Type']}, {$table_data['Meal']}, {$table_data['RSVP']}, '{$table_data['TableID']}', '{$table_data['SeatID']}');\n";
+		}
+		update_user_meta($user_id, 'gl_save', base64_encode(serialize($server_guests)));
+	}
 
 	ob_start();
 	print_r($data);

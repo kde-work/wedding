@@ -151,6 +151,8 @@ function SaveCurrentPlan() {
             } else {
                 tablePlan.PlanID = data.PlanID;
                 document.title = tablePlan.Name;
+                if (window.location.href.indexOf('=') === -1)
+                    history.pushState(null, null, window.location.href + '=' + data.PlanID);
                 DlgPlanSaved();
             }
         },
@@ -183,12 +185,12 @@ function UnseatedGuestListControl() {
         var $table_box = $('.tp-guests__table-box--' + table_id);
 
         $table_box.append(
-            '<div id="' +
+            '<div><div id="' +
             guest.GuestID +
             '"  class="tp-guest tp-guest--member pot_guest tp-guest--'+ guest.GuestID +'" draggable>' +
             guest.GuestName +
-            "</div>");
-        var $guest = $('.tp-guest--'+ guest.GuestID);
-        $guest.width($guest.width());
+            "</div></div>");
+        // var $guest = $('.tp-guest--'+ guest.GuestID);
+        // $guest.width($guest.width());
     };
 }
