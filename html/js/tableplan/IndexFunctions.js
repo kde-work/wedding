@@ -370,12 +370,14 @@ function AddNewTable() {
     SetDefaultTableName();
 }
 
-function SetPlanWidth(width) {
-    var $plannerField = $(".plannerCanvas"),
-        horizontalResize = document.getElementById("resize_horizontal");
+function Change_Plan_X() {
+    var editPlanWidth = document.getElementById("planSizeX");
+    SetPlanWidth(parseFloat(editPlanWidth.value) * 10);
+}
 
-    horizontalResize.style.left = Math.floor(width + $plannerField.offset().left - 1) + 'px';
-    HorizontalResizePositionChanged();
+function Change_Plan_Y() {
+    var editPlanHeight = document.getElementById("planSizeY");
+    SetPlanHeight(parseFloat(editPlanHeight.value) * 10);
 }
 
 function SetPlanHeight(height) {
@@ -386,14 +388,43 @@ function SetPlanHeight(height) {
     VerticalResizePositionChanged();
 }
 
-function Change_Plan_X() {
-    var editPlanWidth = document.getElementById("planSizeX");
-    SetPlanWidth(parseFloat(editPlanWidth.value) * 10);
+function SetPlanWidth(width) {
+    var $plannerField = $(".plannerCanvas"),
+        horizontalResize = document.getElementById("resize_horizontal");
+
+    $plannerField.width(width);
+    SetHtmlBodyWidth(width, $plannerField);
+
+    horizontalResize.style.left = Math.floor(width + $plannerField.offset().left - 2) + 'px';
+    HorizontalResizePositionChanged(width);
 }
 
-function Change_Plan_Y() {
-    var editPlanHeight = document.getElementById("planSizeY");
-    SetPlanHeight(parseFloat(editPlanHeight.value) * 10);
+function HorizontalResizePositionChanged(is_width) {
+    var $plannerField = $(".plannerCanvas");
+    var horizontalResize = document.getElementById("resize_horizontal"),
+        offset_left = $plannerField.offset().left,
+        $tableplan__field = $('.tableplan__field'),
+        planner_width;
+
+    if (is_width) {
+        planner_width = is_width;
+    } else {
+        planner_width = Math.floor(parseInt(horizontalResize.style.left) + 2 - offset_left);
+    }
+
+    // SetHtmlBodyWidth(planner_width, $plannerField);
+    $tableplan__field.width(planner_width);
+    $plannerField.width(planner_width);
+
+    var editPlanWidth = document.getElementById("planSizeX");
+    editPlanWidth.value = planner_width / 10;
+
+    // move vertical size box
+    var verticalStyle = document.getElementById("resize_vertical").style;
+    verticalStyle.left = Math.floor(planner_width / 2 + parseInt($plannerField.css('left')) - 2 + offset_left) + 'px';
+
+    // resize stage
+    kineticStage.setWidth(planner_width);
 }
 
 function VerticalResizePositionChanged() {
@@ -417,23 +448,26 @@ function VerticalResizePositionChanged() {
     kineticStage.setHeight(planner_height);
 }
 
-function HorizontalResizePositionChanged() {
-    var $plannerField = $(".plannerCanvas");
-    var horizontalResize = document.getElementById("resize_horizontal"),
-        offset_left = $plannerField.offset().left,
-        $tableplan__field = $('.tableplan__field'),
-        $body = $('body'),
+function SetHtmlBodyWidth(width, $plannerField) {
+    var $body = $('body'),
         $html = $('html'),
-        html_width = $html.width();
-    
-    var planner_width = Math.floor(parseInt(horizontalResize.style.left) + 2 - offset_left);
+        offset_left = $plannerField.offset().left,
+        $container = $('.container');
 
-    if (html_width < (offset_left + planner_width)) {
-        $body.width(offset_left + planner_width + 10);
+    // if Planner > window width
+    if ((window.innerWidth) < (width + offset_left)) {
+        $container.css({
+            'max-width' : 'initial'
+        });
+        $body.width(width + offset_left);
         $html.css({
             'overflow' : 'auto'
         });
+        $body.width(width + $plannerField.offset().left);
     } else {
+        $container.css({
+            'max-width' : ''
+        });
         $html.css({
             'overflow' : ''
         });
@@ -441,18 +475,6 @@ function HorizontalResizePositionChanged() {
             'width' : 'auto'
         });
     }
-    $tableplan__field.width(planner_width);
-    $plannerField.width(planner_width);
-
-    var editPlanWidth = document.getElementById("planSizeX");
-    editPlanWidth.value = planner_width / 10;
-
-    // move vertical size box
-    var verticalStyle = document.getElementById("resize_vertical").style;
-    verticalStyle.left = Math.floor(planner_width / 2 + parseInt($plannerField.css('left')) - 2 + offset_left) + 'px';
-
-    // resize stage
-    kineticStage.setWidth(planner_width);
 }
 
 function SetTopLeftOfPopupMenu(e, subMenu) {

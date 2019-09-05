@@ -189,12 +189,12 @@
     document.onmousedown = onMouseDown;
 
     this.onDragEnd = function (dragObject, dropElem) {
-        var $elem = $(dragObject.elem);
+        var $plannerField = $(".plannerCanvas"),
+            $elem = $(dragObject.elem);
 
         // animation of End of drag and drop
         if ($elem.hasClass("resize_vertical")) {
-            var $plannerField = $(".plannerCanvas"),
-                $resize_vertical = $("#resize_vertical"),
+            var $resize_vertical = $("#resize_vertical"),
                 offset_top = $plannerField.offset().top;
 
             dragObject.avatar.style.left = dragObject.downX - dragObject.shiftX + 'px';
@@ -202,6 +202,8 @@
         }
         if ($elem.hasClass("resize_horizontal")) {
             dragObject.avatar.style.top = dragObject.downY - dragObject.shiftY + 'px';
+
+            SetPlanWidth($plannerField.width());
         }
 
         if ($elem.hasClass("pot_guest")) {

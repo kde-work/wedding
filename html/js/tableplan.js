@@ -148,6 +148,9 @@ $(function () {
     function InitTablePlan() {
         var modelPlanID = -1;
 
+        SetPlanWidth(2113);
+        SetPlanHeight(610);
+
         tablePlan = new TablePlan(modelPlanID, "New Plan");//Новый План
 
         // init editor

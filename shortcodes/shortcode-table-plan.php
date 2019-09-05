@@ -25,7 +25,7 @@ function wb_tableplan_shortcode ($atts) {
                             <i class="fa fa-cogs tp-menu-icon tp-menu-icon--settings" aria-hidden="true" onclick="ShowSubMenu('m8');return false;" title="Settings"></i>
                         </div>
 
-                        <div id="tablesMenu" class="menu_button" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(255, 255, 255); /*background-color: rgb(111, 191, 255);*/ height: 36px; padding: 2px 10px;" onclick="ShowSubMenu('m0');"><div class="tp-icon tp-icon--table"></div> Tables »</div>
+                        <div id="tablesMenu" class="menu_button" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(255, 255, 255); /*background-color: rgb(111, 191, 255);*/ height: 36px; padding: 2px 10px;" onclick="ShowSubMenu('m0');"><div class="tp-icon tp-icon--table"></div> Add table »</div>
                         <div id="objectsMenu" class="menu_button" style="top: 84px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(255, 255, 255); /*background-color: rgb(111, 191, 255);*/ height: 36px; padding: 2px 10px;" onclick="ShowSubMenu('m12');"><div class="tp-icon tp-icon--object"></div> Objects »</div>
                         <!--                    <div id="guestsMenu" class="menu_button" style="top: 125px; /*background-color: rgb(111, 191, 255);*/ height: 36px; padding-top: 4px; background-position: initial initial; background-repeat: initial initial;" onclick="ShowSubMenu('m6');">&nbsp;<img class="guests_icon" src="--><?php //echo plugins_url('/html/img/planner/blank.png', $wb_file); ?><!--">Guests »</div>-->
 
@@ -139,7 +139,7 @@ function wb_tableplan_shortcode ($atts) {
                                 </tr>
                                 </tbody></table>
                             <br>
-                            &nbsp;&nbsp;&nbsp;Мест: &nbsp;<input type="text" value="4" id="num_table_seats" style="width: 20px">&nbsp;&nbsp; <div id="add_table_name_block" style="display:inline;">Имя: &nbsp;<input type="text" id="add_table_name" value="Table 1" style="width: 82px"></div><br>
+                            &nbsp;&nbsp;&nbsp;Seats: &nbsp;<input type="text" value="4" id="num_table_seats" style="width: 28px">&nbsp;&nbsp; <div id="add_table_name_block" style="display:inline;">Name: &nbsp;<input type="text" id="add_table_name" value="Table 1" style="width: 82px"></div><br>
                             <input type="button" onclick="AddNewTable();" value="Add table" style="margin-top: 10px">
                             <div style="position: absolute; top: 4px; right: 4px;">
                                 <a href="#" class="close_button" onclick="HideSubMenu('m0');return false;"></a>
@@ -161,7 +161,7 @@ function wb_tableplan_shortcode ($atts) {
                                 <tr>
                                     <td style="text-align:center">Dance floor</td>
                                     <td>&nbsp;</td>
-                                    <td style="text-align:center">Пульт диджея</td>
+                                    <td style="text-align:center">DJ console</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" height="5"></td>
@@ -210,7 +210,7 @@ function wb_tableplan_shortcode ($atts) {
                                 </tbody></table>
                             <br>
                             <div id="add_object_name_block" style="display:none;">&nbsp;&nbsp;&nbsp;Title: &nbsp;<input type="text" id="add_object_name" style="width: 127px"><br></div>
-                            <input type="button" onclick="AddNewObject();" value="Добавить" style="margin-top: 10px">
+                            <input type="button" onclick="AddNewObject();" value="Add" style="margin-top: 10px">
                             <div style="position: absolute; top: 4px; right: 4px;">
                                 <a href="#" class="close_button" onclick="HideSubMenu('m12');return false;"></a>
                             </div>
@@ -244,7 +244,7 @@ function wb_tableplan_shortcode ($atts) {
                                                 <select id="new_guest_meal" style="width:135px"></select>
                                             </td>
                                             <td style="width:65px">
-                                                <input type="button" value=" Добавить " onclick="AddNewGuest();">
+                                                <input type="button" value=" Add " onclick="AddNewGuest();">
                                             </td>
                                         </tr>
                                         </tbody>
