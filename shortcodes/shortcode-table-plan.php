@@ -4,7 +4,6 @@ function wb_tableplan_shortcode ($atts) {
 	if ( is_user_logged_in() ) {
 		wb_scripts__tableplan();
 		$user_id = wp_get_current_user()->ID;
-		$items = unserialize(base64_decode(get_user_meta($user_id, 'tp_save', 1)));
 		$params = shortcode_atts( array(
 			'without-table' => 'Guests without a place',
 		), $atts );
@@ -15,7 +14,42 @@ function wb_tableplan_shortcode ($atts) {
 			<div class="wb__loading"></div>
 			<div class="gl__guest-titel">Table plan</div>
 
-            <div class="tableplan">
+            <?php
+//            delete_user_meta($user_id, 'wb_tableplan');
+            $server_data = unserialize(base64_decode(get_user_meta($user_id, 'wb_tableplan', 1)));
+            $id = (isset($_GET['id'])) ? $_GET['id'] : -1;
+            echo wb_tableplan_script($server_data, $id);
+            if ($id == -1) :
+                ?>
+                <div class="tableplans">
+                    <div class="tableplans__create">
+                        <a href="./?id" class="wb-button-regular">Create Table Plan</a>
+                    </div>
+                    <?php
+                    if (!empty($server_data)) :
+                        ?>
+                        <h3 class="tableplans__title">Your Plans</h3>
+                        <table class="tableplans__lines">
+	                    <?php
+	                    foreach($server_data as $data) {
+		                    ?>
+                            <tr class="tableplan-line tableplan-line--<?php echo $data['data']['Id']; ?>">
+                                <td class="tableplan-line__title"><a href="./?id=<?php echo $data['data']['Id']; ?>"><div class="tp-icon tp-icon--table"></div> <?php echo $data['data']['Name']; ?></a></td>
+                                <td class="tableplan-line__edit"><a href="./?id=<?php echo $data['data']['Id']; ?>">Edit</a></td>
+                                <td class="tableplan-line__remove"><div class="tableplan-line__remove-plan" data-id="<?php echo $data['data']['Id']; ?>">Delete</div></td>
+                            </tr>
+		                    <?php
+	                    }
+	                    ?>
+                        </table>
+                        <?php
+                    endif;
+                    ?>
+                </div>
+                <?php
+            else :
+                ?>
+                <div class="tableplan">
                 <div class="tableplan__menu">
                     <div id="side_menu" style="width: 180px; margin-left: 2px; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(215, 227, 234); border-left-width: 1px; border-left-style: solid; border-left-color: rgb(215, 227, 234); background-color: rgb(255, 255, 255);z-index:1000;">
                         <div class="tp-menu">
@@ -419,8 +453,8 @@ function wb_tableplan_shortcode ($atts) {
                         <div class="close_button"><i class="fa fa-window-close-o" aria-hidden="true" onclick="HideSubMenu('m9');return false;"></i></div>
                     </div>
 
-                    <div id="m10" class="box" style="position:fixed; display:none;">
-                        <div id="planSaveMenu" class="menu_content_guest" style="width: 300px; height: 45px; top: 150px; left: 40px; position: absolute;  z-index: 2000; display: block;">
+                    <div id="m10" class="box planSaveMenu-box" style="">
+                        <div id="planSaveMenu" class="menu_content_guest" style="">
                             <div style="margin-top:5px;">
                                 Plan Name:<br><input id="edit_plan_name" style="width:240px" type="text"> <input onclick="if ($('#edit_plan_name')[0].value.length > 0) {tablePlan.Name = $('#edit_plan_name')[0].value; TryToSavePlan();}" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
                             </div>
@@ -486,13 +520,104 @@ function wb_tableplan_shortcode ($atts) {
                     <div id="plannerCanvas" class="plannerCanvas" style="position: absolute; left: 0; top: 0; border: 1px solid rgb(215, 227, 234); z-index: 100; width: 1338px; height: 626px; background-image: url('<? echo plugins_url('/html/img/planner/grid.gif', $wb_file); ?>');" oncontextmenu="return false;" onmousedown="PlannerCanvasMouseDown(); return false;" droppable=""><div style="position: relative; display: inline-block; width: 1338px; height: 626px;" class="kineticjs-content" role="presentation"><canvas style="padding: 0; 0.margin: 0; border: 0 none; background: transparent none repeat scroll 0% 0%; position: absolute; top: 0; left: 0; width: 1338px; height: 626px;" width="1338" height="626"></canvas></div></div>
                 </div>
             </div>
+                <?php
+            endif;
+            ?>
 		</div>
 		<?php
 	}
 	return ob_get_clean();
 }
+
+function wb_tableplan_script($data, $id){
+    $data = (isset($data[$id])) ? $data[$id]['data'] : [];
+	ob_start();
+	?>
+    <script>
+        // editor init
+        function InitTablePlan() {
+            var modelPlanID = <?php echo (isset($data['Id']) AND $data['Id']) ? $data['Id'] : '-1'; ?>;
+
+	        <?php echo (isset($data['Width']) AND $data['Width']) ? "SetPlanWidth({$data['Width']});\n" : ''; ?>
+	        <?php echo (isset($data['Height']) AND $data['Height']) ? "SetPlanHeight({$data['Height']});\n" : ''; ?>
+
+            tablePlan = new TablePlan(modelPlanID, <?php echo (isset($data['Name']) AND $data['Name']) ? "'{$data['Name']}'" : '"New Plan"'; ?>);//Новый План
+
+            // init editor
+
+	        <?php
+            if(!empty($data['Tables'])){
+	            foreach ($data['Tables'] as $table) {
+		            if(!empty($table['Seats'])){
+                        echo "var seatsId = [];\n";
+			            foreach ($table['Seats'] as $seat) {
+                            echo "seatsId.push('{$seat['Id']}');\n";
+		                }
+		                $count = count($table['Seats']);
+                        echo "tablePlan.AddNewTable('{$table['Id']}', {$table['Type']}, $count, '{$table['Name']}', {$table['CenterX']}, {$table['CenterY']}, 0, seatsId);\n";
+		            }
+                }
+            }
+            ?>
+            // var seatsId = [];
+            // seatsId.push('35163EAD-EF85-CEFF-75D2-99DB95E79A55');
+            // seatsId.push('5EE4BAA9-7E11-0B58-C981-F8122F297C27');
+            // seatsId.push('DC0D2B03-865A-B41E-0EE0-B429F1D1A107');
+            // seatsId.push('F506D348-DD18-C679-2721-6F1D5170F0FE');
+            // seatsId.push('11B3F84B-4B93-862F-580F-FDD5F3DF3BA3');
+            // tablePlan.AddNewTable('9BD4DE97-6930-133C-5B43-43271D534FF1', 0, 5, 'Table 2', 220, 186, 0, seatsId);
+            // var seatsId = [];
+            // seatsId.push('F11B4B8B-7441-99FC-5505-DAF35B004B7C');
+            // seatsId.push('8C5EB468-9AB5-8C53-384F-334C491340E9');
+            // seatsId.push('78688A48-CBEC-8DAA-8911-C36C2538C5F7');
+            // seatsId.push('DB67D0E8-CD8D-A763-6435-A8F780BF0BF6');
+            // seatsId.push('C06D902C-46A1-93FF-10EE-6964D58F4841');
+            // tablePlan.AddNewTable('B7CC5E7F-ED55-8CCD-0CB6-161ECDC902F8', 5, 5, 'Table 2', 1767, 336, 0, seatsId);
+
+	        <?php
+	        if(!empty($data['RectObjects'])){
+		        foreach ($data['RectObjects'] as $RectObject) {
+                    echo "tablePlan.AddNewRectObject('{$RectObject['Id']}', '{$RectObject['Name']}', {$RectObject['CenterX']}, {$RectObject['CenterY']}, {$RectObject['Width']}, {$RectObject['Height']});\n";
+		        }
+	        }
+	        ?>
+            // tablePlan.AddNewRectObject('1E6A28EE-109B-0864-FD00-91D0D5D71E5A', 'Table с тортом', 474, 400, 120, 120);
+
+	        <?php
+	        if(!empty($data['Guests'])){
+		        foreach ($data['Guests'] as $Guest) {
+			        echo "tablePlan.AddNewGuest('{$Guest['Id']}', '{$Guest['Name']}', {$Guest['Type']}, {$Guest['Meal']}, {$Guest['RSVP']}, '{$Guest['TableID']}', '{$Guest['SeatID']}');\n";
+		        }
+	        }
+	        ?>
+            // tablePlan.AddNewGuest('454FF075-7DFC-472B-BACD-6126A84CAF43', 'qwe1 2', 1, 0, 0, '9BD4DE97-6930-133C-5B43-43271D534FF1', 'F506D348-DD18-C679-2721-6F1D5170F0FE');
+            // tablePlan.AddNewGuest('4DCB5537-DE2C-BBC9-A521-6CBD81235546', '34234wr', 3, 1, 0, '', '');
+            // tablePlan.AddNewGuest('D22C3FD9-ABD3-0C31-86D0-C7A9C3398885', 'qwsdsd sdg', 6, 1, 2, '', '');
+
+            tablePlan.MenuList = {};
+
+            tablePlan.HideGrid = Boolean(0);
+            tablePlan.UserType = "";
+
+            ShowGrid();
+            kineticLayer.draw();
+
+            var mess = "";
+
+            if (!IsNullOrEmpty(mess)) {
+                DlgErrorFromServer(mess);
+            }
+        }
+    </script>
+    <?php
+	return ob_get_clean();
+}
+
 add_action( 'wp_body_open', 'wb_tableplan_resize_html' );
 function wb_tableplan_resize_html(){
-	echo "<div id=\"resize_horizontal\" class=\"resize_horizontal\" draggable=\"\" style=\"\"></div>
+	$id = (isset($_GET['id'])) ? $_GET['id'] : -1;
+	if ($id != -1) {
+		echo "<div id=\"resize_horizontal\" class=\"resize_horizontal\" draggable=\"\" style=\"\"></div>
           <div id=\"resize_vertical\" class=\"resize_vertical\" draggable=\"\" style=\"\"></div>";
+    }
 }

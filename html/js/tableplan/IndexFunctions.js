@@ -106,8 +106,13 @@ function ShowSubMenu(id) {
     }
     
 
-    if (subMenu != null)
-        subMenu.style.display = 'block'
+    if (subMenu != null) {
+        if (id == 'm10') { // Save menu
+            subMenu.style.display = 'flex'
+        } else {
+            subMenu.style.display = 'block'
+        }
+    }
 }
 
 function SetDefaultTableName() {
@@ -747,7 +752,7 @@ function ShowDialog(message, buttons, h, w) {
 }
 
 function DlgPlanSaved(){
-    ShowDialog("Seating plan saved. <br /><br /><br />", "<input  type=\"button\" value=\" OK \" onclick=\"HideSubMenu('alertDlgBox');return false;\">", 80, 220);
+    ShowDialog("Seating plan saved. <br />", "<input  type=\"button\" value=\" OK \" onclick=\"HideSubMenu('alertDlgBox');return false;\">", 80, 220);
 }
 
 function DlgErrorDuringSave() {
