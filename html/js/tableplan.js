@@ -104,6 +104,78 @@ $(function () {
             }
         });
     });
+
+    $body.on('click', '.tableplan-line__duplicate-plan', function () {
+        var $this = $(this),
+            this_id = $this.data('id');
+
+        if ($body.hasClass('in-process')) return;
+
+        $.ajax({
+            type: 'POST',
+            url: wedding_budget.url,
+            async: true,
+            dataType: 'json', // ответ ждем в json-формате
+            data: {
+                'id' : this_id,
+                'action' : 'wb-tableplan-duplicate'
+            }, // данные для отправки
+            beforeSend: function (xhr, ajaxOptions, thrownError) {
+                $body.addClass('in-process');
+            },
+            success: function (data) { // событие после удачного обращения к серверу и получения ответа
+                console.log(data);
+                if (data.ErrorMessage != "") {
+                    DlgErrorFromServer(data.ErrorMessage);
+                } else {
+                    var $line = $this.closest('.tableplan-line');
+                    $line.after(data.HTML);
+                }
+            },
+            complete: function (xhr, ajaxOptions, thrownError) {
+                $body.removeClass('in-process');
+                serverCall = false;
+            },
+            error: function (xhr, ajaxOptions, thrownError) { // в случае неудачного завершения запроса к серверу
+                console.log('wb-tableplan-delete@11: '+xhr.status); // покажем ответ сервера
+                console.log('wb-tableplan-delete@12: '+thrownError); // и текст ошибки
+            }
+        });
+    });
+});
+
+// Print
+$(function () {
+    var $form = $('.dataToSubmit');
+    $form.on('submit', function (e) {
+        e = e || window.event;
+        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+        var $this = $(this),
+            $body = $('body');
+
+        form_data = $this.serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: wedding_budget.url,
+            async: true,
+            dataType: 'text',
+            data: form_data,
+            beforeSend: function (xhr, ajaxOptions, thrownError) {
+                $body.addClass('in-process');
+            },
+            success: function (data) {
+                console.log(data);
+            },
+            complete: function (xhr, ajaxOptions, thrownError) {
+                $body.removeClass('in-process');
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('wb_get_save-@21: '+xhr.status);
+                console.log('wb_get_save-@22: '+thrownError);
+            }
+        });
+    });
 });
 
 function RegistrationRequiredForSave() {

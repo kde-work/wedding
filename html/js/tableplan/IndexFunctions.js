@@ -788,6 +788,19 @@ function DlgErrorUploadGuest() {
     ShowDialog("An error occurred while loading. <br /><br /><br />", "<input  type=\"button\" value=\" OK \" onclick=\"HideSubMenu('alertDlgBox');return false;\">", 80, 260);
 }
 
+function PrintPage() {
+    var $body = $('body'),
+        $tableplan__field = $('.plannerCanvas');
+
+    $body.addClass('tp-print');
+    $body.width($tableplan__field.width());
+    $body.height($tableplan__field.height());
+    window.print();
+    $body.removeClass('tp-print');
+    $body.width('initial');
+    $body.height('initial');
+}
+
 function PrintTypeChanged() {
 
     if ($('#printType')[0].value == 1024) {

@@ -12,7 +12,7 @@ function wb_tableplan_save() {
 
 	// Save Table information
 	$server_data = unserialize(base64_decode(get_user_meta($user_id, 'wb_tableplan', 1)));
-	if (is_array($server_data)) {
+	if (!is_array($server_data)) {
 		$server_data = array();
 	}
 	$server_data[$data['Id']] = array(
@@ -61,5 +61,38 @@ function wb_tableplan_delete() {
 		'ErrorMessage' => '',
 		'Message' => 'Success Removing',
 	));
+	die;
+}
+
+// Duplicate Table Plan
+add_action('wp_ajax_wb-tableplan-duplicate', 'wb_tableplan_duplicate');
+//add_action('wp_ajax_nopriv_gl_save', 'gl_save_callback');
+function wb_tableplan_duplicate() {
+	$user_id = wp_get_current_user()->ID;
+	$id = intval($_POST['id']);
+
+	$server_data = unserialize(base64_decode(get_user_meta($user_id, 'wb_tableplan', 1)));
+
+	$html = '';
+	if (isset($server_data[$id])) {
+		$new_id = time();
+		$html = wb_tableplan_table_line($server_data[$id]['data']['Name'] . ' New', $new_id);
+		$server_data[$new_id] = $server_data[$id];
+		update_user_meta($user_id, 'wb_tableplan', base64_encode(serialize($server_data)));
+	}
+
+	echo json_encode(array(
+		'ErrorMessage' => '',
+		'Message' => 'Success Duplicate',
+		'HTML' => $html,
+	));
+	die;
+}
+
+// Print Table Plan
+add_action('wp_ajax_wb-tableplan-print', 'wb_tableplan_print');
+//add_action('wp_ajax_nopriv_gl_save', 'gl_save_callback');
+function wb_tableplan_print() {
+	print_r($_POST);
 	die;
 }

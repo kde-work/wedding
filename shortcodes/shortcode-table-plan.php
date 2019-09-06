@@ -32,13 +32,7 @@ function wb_tableplan_shortcode ($atts) {
                         <table class="tableplans__lines">
 	                    <?php
 	                    foreach($server_data as $data) {
-		                    ?>
-                            <tr class="tableplan-line tableplan-line--<?php echo $data['data']['Id']; ?>">
-                                <td class="tableplan-line__title"><a href="./?id=<?php echo $data['data']['Id']; ?>"><div class="tp-icon tp-icon--table"></div> <?php echo $data['data']['Name']; ?></a></td>
-                                <td class="tableplan-line__edit"><a href="./?id=<?php echo $data['data']['Id']; ?>">Edit</a></td>
-                                <td class="tableplan-line__remove"><div class="tableplan-line__remove-plan" data-id="<?php echo $data['data']['Id']; ?>">Delete</div></td>
-                            </tr>
-		                    <?php
+	                        echo wb_tableplan_table_line($data['data']['Name'], $data['data']['Id']);
 	                    }
 	                    ?>
                         </table>
@@ -54,7 +48,7 @@ function wb_tableplan_shortcode ($atts) {
                     <div id="side_menu" style="width: 180px; margin-left: 2px; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(215, 227, 234); border-left-width: 1px; border-left-style: solid; border-left-color: rgb(215, 227, 234); background-color: rgb(255, 255, 255);z-index:1000;">
                         <div class="tp-menu">
                             <i class="fa fa-floppy-o tp-menu-icon tp-menu-icon--save" aria-hidden="true" onclick="ShowSubMenu('m10');return false;" title="Save"></i>
-                            <i class="fa fa-print tp-menu-icon tp-menu-icon--print" aria-hidden="true" onclick="/*ShowSubMenu('m11');return false;*/" title="Print"></i>
+                            <i class="fa fa-print tp-menu-icon tp-menu-icon--print" aria-hidden="true" onclick="PrintPage();return false;" title="Print"></i>
                             <i class="fa fa-file-text-o tp-menu-icon tp-menu-icon--statistics" aria-hidden="true" onclick="ShowSubMenu('m9');return false;" title="Statistics"></i>
                             <i class="fa fa-cogs tp-menu-icon tp-menu-icon--settings" aria-hidden="true" onclick="ShowSubMenu('m8');return false;" title="Settings"></i>
                         </div>
@@ -512,8 +506,9 @@ function wb_tableplan_shortcode ($atts) {
 
                         <div style="position:absolute;top:4px;right:4px;"><a href="#" class="close_button" onclick="HideSubMenu('m11');return false;"></a></div>
                     </div>
-                    <form action="/planner/Print" method="POST" id="dataToSubmit">
+                    <form method="POST" id="dataToSubmit" class="dataToSubmit">
                         <input type="hidden" name="tablePlanModel" value="">
+                        <input type="hidden" name="action" value="wb-tableplan-print">
                     </form>
                 </div>
                 <div class="tableplan__field">
@@ -526,6 +521,19 @@ function wb_tableplan_shortcode ($atts) {
 		</div>
 		<?php
 	}
+	return ob_get_clean();
+}
+
+function wb_tableplan_table_line($name, $id){
+	ob_start();
+    ?>
+    <tr class="tableplan-line tableplan-line--<?php echo $id; ?>">
+        <td class="tableplan-line__title"><a href="./?id=<?php echo $id; ?>"><div class="tp-icon tp-icon--table"></div> <?php echo $name; ?></a></td>
+        <td class="tableplan-line__edit"><a href="./?id=<?php echo $id; ?>">Edit</a></td>
+        <td class="tableplan-line__duplicate"><div class="tableplan-line__duplicate-plan" data-id="<?php echo $id; ?>">Duplicate</div></td>
+        <td class="tableplan-line__remove"><div class="tableplan-line__remove-plan" data-id="<?php echo $id; ?>">Delete</div></td>
+    </tr>
+    <?php
 	return ob_get_clean();
 }
 
