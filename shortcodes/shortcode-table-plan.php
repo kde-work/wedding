@@ -563,7 +563,7 @@ function wb_tableplan_script($data, $id){
                             echo "seatsId.push('{$seat['Id']}');\n";
 		                }
 		                $count = count($table['Seats']);
-                        echo "tablePlan.AddNewTable('{$table['Id']}', {$table['Type']}, $count, '{$table['Name']}', {$table['CenterX']}, {$table['CenterY']}, 0, seatsId);\n";
+                        echo "tablePlan.AddNewTable('{$table['Id']}', {$table['Type']}, $count, '{$table['Name']}', {$table['CenterX']}, {$table['CenterY']}, {$table['Angle']}, seatsId);\n";
 		            }
                 }
             }

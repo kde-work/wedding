@@ -460,15 +460,15 @@ function SetHtmlBodyWidth(width, $plannerField) {
         $container = $('.container');
 
     // if Planner > window width
-    if ((window.innerWidth) < (width + offset_left)) {
+    if ((window.innerWidth) < (width + offset_left + 20)) {
         $container.css({
             'max-width' : 'initial'
         });
-        $body.width(width + offset_left);
+        $body.width(width + offset_left + 20);
         $html.css({
             'overflow' : 'auto'
         });
-        $body.width(width + $plannerField.offset().left);
+        $body.width(width + $plannerField.offset().left + 20);
     } else {
         $container.css({
             'max-width' : ''
