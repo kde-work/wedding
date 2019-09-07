@@ -25,20 +25,25 @@ function wb_tableplan_save() {
 		$server_guests = unserialize(base64_decode(get_user_meta($user_id, 'gl_save', 1)));
 		foreach ($data['Guests'] as $Guest) {
 			if (isset($server_guests[$Guest['Id']])) {
-				$server_guests[$Guest['Id']]['table_data'] = $Guest;
+				$server_table_data = unserialize(base64_decode($server_guests[$Guest['Id']]['table_data']));
+				if (!is_array($server_table_data)) {
+					$server_table_data = array();
+				}
+				$server_table_data[$data['Id']] = $Guest;
+				$server_guests[$Guest['Id']]['table_data'] = base64_encode(serialize($server_table_data));
 			}
 //			echo "tablePlan.AddNewGuest('{$id}', '{$Guest['name']} {$Guest['family']}', {$table_data['Type']}, {$table_data['Meal']}, {$table_data['RSVP']}, '{$table_data['TableID']}', '{$table_data['SeatID']}');\n";
 		}
 		update_user_meta($user_id, 'gl_save', base64_encode(serialize($server_guests)));
 	}
 
-	ob_start();
-	print_r($data);
-	$html = ob_get_clean();
+//	ob_start();
+//	print_r($data);
+//	$html = ob_get_clean();
 	echo json_encode(array(
 		'ErrorMessage' => '',
 		'PlanID' => $data['Id'],
-		'test' => $html
+//		'test' => $html
 	));
 	die;
 }
@@ -50,16 +55,22 @@ function wb_tableplan_delete() {
 	$user_id = wp_get_current_user()->ID;
 	$id = intval($_POST['id']);
 
+	ob_start();
 	$server_data = unserialize(base64_decode(get_user_meta($user_id, 'wb_tableplan', 1)));
+//	print_r($server_data);
+
 
 	if (isset($server_data[$id])) {
 		unset($server_data[$id]);
 		update_user_meta($user_id, 'wb_tableplan', base64_encode(serialize($server_data)));
 	}
+	print_r($server_data);
+	$html = ob_get_clean();
 
 	echo json_encode(array(
 		'ErrorMessage' => '',
 		'Message' => 'Success Removing',
+		'test' => $html,
 	));
 	die;
 }

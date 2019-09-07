@@ -31,8 +31,8 @@ function wb_tableplan_shortcode ($atts) {
                         <h3 class="tableplans__title">Your Plans</h3>
                         <table class="tableplans__lines">
 	                    <?php
-	                    foreach($server_data as $data) {
-	                        echo wb_tableplan_table_line($data['data']['Name'], $data['data']['Id']);
+	                    foreach($server_data as $table_id => $data) {
+	                        echo wb_tableplan_table_line($data['data']['Name'], $table_id);
 	                    }
 	                    ?>
                         </table>
@@ -530,7 +530,7 @@ function wb_tableplan_table_line($name, $id){
     <tr class="tableplan-line tableplan-line--<?php echo $id; ?>">
         <td class="tableplan-line__title"><a href="./?id=<?php echo $id; ?>"><div class="tp-icon tp-icon--table"></div> <?php echo $name; ?></a></td>
         <td class="tableplan-line__edit"><a href="./?id=<?php echo $id; ?>">Edit</a></td>
-        <td class="tableplan-line__duplicate"><div class="tableplan-line__duplicate-plan" data-id="<?php echo $id; ?>">Duplicate</div></td>
+<!--        <td class="tableplan-line__duplicate"><div class="tableplan-line__duplicate-plan" data-id="--><?php //echo $id; ?><!--">Duplicate</div></td>-->
         <td class="tableplan-line__remove"><div class="tableplan-line__remove-plan" data-id="<?php echo $id; ?>">Delete</div></td>
     </tr>
     <?php
@@ -545,7 +545,7 @@ function wb_tableplan_script($data, $id){
     <script>
         // editor init
         function InitTablePlan() {
-            var modelPlanID = <?php echo (isset($data['Id']) AND $data['Id']) ? $data['Id'] : '-1'; ?>;
+            var modelPlanID = <?php echo (isset($id) AND $id) ? $id : '-1'; ?>;
 
 	        <?php echo (isset($data['Width']) AND $data['Width']) ? "SetPlanWidth({$data['Width']});\n" : ''; ?>
 	        <?php echo (isset($data['Height']) AND $data['Height']) ? "SetPlanHeight({$data['Height']});\n" : ''; ?>
@@ -598,10 +598,14 @@ function wb_tableplan_script($data, $id){
 //	        print_r($Guests);
 //	        echo '*/';
 	        if(!empty($Guests)){
-		        foreach ($Guests as $id => $Guest) {
-		            $table_data = (!empty($Guest['table_data'])) ? $Guest['table_data'] : [];
+		        foreach ($Guests as $id_Guest => $Guest) {
+		            $table_data = (!empty($Guest['table_data'])) ? unserialize(base64_decode($Guest['table_data']))[$id] : [];
+			        echo '/*';
+			        echo "{$Guest['name']}\n";
+			        print_r($table_data);
+			        echo "*/\n";
 			        $table_data = wb_tableplan_clear_guest($table_data);
-			        echo "tablePlan.AddNewGuest('{$id}', '{$Guest['name']} {$Guest['family']}', {$table_data['Type']}, {$table_data['Meal']}, {$table_data['RSVP']}, '{$table_data['TableID']}', '{$table_data['SeatID']}');\n";
+			        echo "tablePlan.AddNewGuest('{$id_Guest}', '{$Guest['name']} {$Guest['family']}', {$table_data['Type']}, {$table_data['Meal']}, {$table_data['RSVP']}, '{$table_data['TableID']}', '{$table_data['SeatID']}');\n";
 		        }
 	        }
 //	        if(!empty($data['Guests'])){
