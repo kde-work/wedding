@@ -600,10 +600,10 @@ function wb_tableplan_script($data, $id){
 	        if(!empty($Guests)){
 		        foreach ($Guests as $id_Guest => $Guest) {
 		            $table_data = (!empty($Guest['table_data'])) ? unserialize(base64_decode($Guest['table_data']))[$id] : [];
-			        echo '/*';
-			        echo "{$Guest['name']}\n";
-			        print_r($table_data);
-			        echo "*/\n";
+//			        echo '/*';
+//			        echo "{$Guest['name']}\n";
+//			        print_r($table_data);
+//			        echo "*/\n";
 			        $table_data = wb_tableplan_clear_guest($table_data);
 			        echo "tablePlan.AddNewGuest('{$id_Guest}', '{$Guest['name']} {$Guest['family']}', {$table_data['Type']}, {$table_data['Meal']}, {$table_data['RSVP']}, '{$table_data['TableID']}', '{$table_data['SeatID']}');\n";
 		        }

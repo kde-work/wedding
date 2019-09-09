@@ -15,10 +15,14 @@
 
     function onMouseDown(e) {
         e = fixEvent(e);
+        // console.log('onMouseDown');
 
-        if (e.which != 1) return;
+        // console.log('!!!', e.which, e);
+        if ((e.which !== 1) && (e.which !== 0)) return;
+        // console.log('///');
 
         var elem = findDraggable(e);
+        // console.log('elem', elem);
         if (!elem) return;
 
         dragObject.elem = elem;
@@ -31,6 +35,8 @@
     }
 
     function onMouseMove(e) {
+        // console.log('onMouseMove1', e);
+        // console.log(1);
         if ((tablePlan !== undefined) && (tablePlan != null)) {
             if (tablePlan.DraggedGuestAvatar != null) {
                 // guest is dragged from seat to seat. Canvas drag
@@ -39,11 +45,13 @@
                 return;
             }
         }
+        // console.log(2);
 
         if (!dragObject.elem)
             return; // элемент не зажат
 
         e = fixEvent(e);
+        // console.log('onMouseMove2', e);
 
         if (!dragObject.avatar) { // если перенос не начат...
             var moveX = e.pageX - dragObject.downX;
@@ -80,11 +88,14 @@
     }
 
     function onMouseUp(e) {
+        // console.log('onMouseUp');
+        // console.log('mu1');
         if (dragObject.avatar) { // если перенос идет
             e = fixEvent(e);
             finishDrag(e);
         }
 
+        // console.log('mu2');
         // перенос либо не начинался, либо завершился
         // в любом случае очистим "состояние переноса" dragObject
         dragObject = {};
@@ -104,18 +115,34 @@
             self.onDragCancel(dragObject);
         } else {
             var $planner = $(dropElem);
+            
             // put on droppable object
             if ($planner.hasClass("plannerCanvas")) {
+                
                 // drop on table plan. Check for seats.
-                var seat = tablePlan.GetSeatUnderClientXY(e.pageX - $planner.offset().left, e.pageY - $planner.offset().top);
+                var seat;
+                if ((e.changedTouches !== void 0) && (e.targetTouches[0].pageY !== void 0)) {
+                    // console.log('wow', e.changedTouches[0].screenX, e.changedTouches[0].screenY, e.changedTouches[0].pageX, e.changedTouches[0].pageY, dragObject.avatar, e);
+                    // elem = getElementUnderClientXY(dragObject.avatar, event.changedTouches[0].screenX, event.changedTouches[0].screenY);
+                    // elem = getElementUnderClientXY(dragObject.avatar, e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+                    seat = tablePlan.GetSeatUnderClientXY(e.changedTouches[0].pageX - $planner.offset().left, e.changedTouches[0].pageY - $planner.offset().top);
+                    // console.log('t1', e.changedTouches[0].pageX - $planner.offset().left, e.changedTouches[0].pageY - $planner.offset().top);
+                    // console.log('m', elem);
+                } else {
+                    // console.log('lol', dragObject.avatar, event.pageX, event.pageY);
+                    seat = tablePlan.GetSeatUnderClientXY(e.pageX - $planner.offset().left, e.pageY - $planner.offset().top);
+                    // console.log('t2', e.pageX - $planner.offset().left, e.pageY - $planner.offset().top);
+                    // console.log('d', elem);
+                }
+
+                // console.log(e, seat);
                 if (seat == null) {
                     self.onDragCancel(dragObject);
                 } else {
                     // TODO: seat guest to the seat here
                     if (seat.SitGuest(dragObject.elem.id) == false) {
                         self.onDragCancel(dragObject);
-                    }
-                    else {
+                    } else {
                         dragObject.elem.parentNode.removeChild(dragObject.elem);
 
                         // seat guest on the seat
@@ -175,7 +202,17 @@
 
     function findDroppable(event) {
 
-        var elem = getElementUnderClientXY(dragObject.avatar, event.clientX, event.clientY);
+        var elem;
+        if ((event.changedTouches !== void 0) && (event.changedTouches[0].clientX !== void 0)) {
+            // console.log('wow', event.changedTouches[0].screenX, event.changedTouches[0].screenY, event.changedTouches[0].clientX, event.changedTouches[0].clientY, dragObject.avatar, event);
+            // elem = getElementUnderClientXY(dragObject.avatar, event.changedTouches[0].screenX, event.changedTouches[0].screenY);
+            elem = getElementUnderClientXY(dragObject.avatar, event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+            // console.log('m', elem);
+        } else {
+            // console.log('lol', dragObject.avatar, event.clientX, event.clientY);
+            elem = getElementUnderClientXY(dragObject.avatar, event.clientX, event.clientY);
+            // console.log('d', elem);
+        }
 
         while (elem != document && elem.getAttribute('droppable') == null) {
             elem = elem.parentNode;
@@ -185,8 +222,11 @@
     }
 
     document.onmousemove = onMouseMove;
+    document.ontouchmove = onMouseMove;
     document.onmouseup = onMouseUp;
+    document.ontouchend = onMouseUp;
     document.onmousedown = onMouseDown;
+    document.ontouchstart = onMouseDown;
 
     this.onDragEnd = function (dragObject, dropElem) {
         var $plannerField = $(".plannerCanvas"),
@@ -232,6 +272,8 @@
             offset_left = $plannerField.offset().left,
             offset_top = $plannerField.offset().top,
             $elem = $(dragObject.elem);
+        
+        // console.log('onMoveAnimation');
 
         switch (true) {
             case ($elem.hasClass("resize_horizontal")):
@@ -259,6 +301,7 @@
                 var _left = fixedE.pageX - dragObject.shiftX,
                     _top = fixedE.pageY - dragObject.shiftY;
                 
+                // console.log('pot_guest');
                 dragObject.avatar.style.left = _left + 'px';
                 dragObject.avatar.style.top = _top + 'px';
 
