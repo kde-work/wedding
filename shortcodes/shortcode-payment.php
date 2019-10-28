@@ -1,7 +1,7 @@
 <?php
 function wb_payment_shortcode( $atts, $content = null ) {
 	if ( !is_feed() ) {
-		if ( !is_user_logged_in() ) {
+		if ( is_user_logged_in() ) {
 			$atts = shortcode_atts( array(
 			    ), $atts
 			);
@@ -36,7 +36,7 @@ function wb_payment_shortcode( $atts, $content = null ) {
 	            <?php
 	            return ob_get_clean();
             } else {
-                return do_shortcode($content);
+                return do_shortcode( $content );
             }
 		} else {
 			wb_scripts__payment();
