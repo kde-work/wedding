@@ -19,7 +19,7 @@ class WeddingPage {
 	 *
 	 * @var $template
 	 */
-	public static $template = [444214];
+	public static $template = [444464, 444524];
 
 	/*
 	 * Get list of user pages
@@ -82,11 +82,12 @@ class WeddingPage {
 	 * @return string
 	 */
 	public static function get_template_content( $id_template = 1 ) {
-		switch ( $id_template ) {
-			case 1 :
-				return get_post( self::$template[0] )->post_content;
+		$id = $id_template - 1;
+		if ( isset( self::$template[$id] ) ) {
+			return get_post( self::$template[$id] )->post_content;
+		} else {
+			return get_the_content( self::$template[0] );
 		}
-		return get_the_content( self::$template[0] );
 	}
 }
 WeddingPage::init();

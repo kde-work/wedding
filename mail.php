@@ -1,4 +1,25 @@
 <?php
+function wb_form_mail( $name, $email, $phone, $message = '' ) {
+	$from_email = "robot@{$_SERVER['HTTP_HOST']}";
+	$email_to = get_userdata(get_current_user_id())->user_email;
+
+	$title_email = "From site {$_SERVER['HTTP_HOST']}. Message from Wedding Page"; // WRITE HERE
+	$body = "<p>Form information:</p><br><p>Name: <b>$name</b></p><p>Email: <b>$email</b></p><p>Phone: <b>$phone</b></p><p>Message: <b>$message</b></p>";
+
+	echo $email_to;
+	echo $title_email;
+	echo $body;
+
+	sms_send_mime_mail(
+		$from_email,
+		$email_to,
+		"UTF-8",
+		"UTF-8",
+		$title_email,
+		$body
+	);
+}
+
 function wb_mail( $email_to = "omigos99@yandex.ru" ) {
 	$from_email = "robot@{$_SERVER['HTTP_HOST']}";
 

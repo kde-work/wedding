@@ -13,7 +13,7 @@ function wedding_webp_shortcode( $atts, $content = null) {
         <div class="wb-webp__items">
             <div class="wb__loading"></div>
             <?php
-            if ( isset( $page->posts ) AND !empty( $page->posts ) AND $atts['is_short'] ) :
+            if ( isset( $page->posts ) AND !empty( $page->posts ) ) :
                 $post = $page->posts[0];
                 ?>
                 <a class="wb-webp__item wb-webp__item--edit wb-webp__item--<?php echo $post->ID; ?>" href="/wp-admin/post.php?vc_action=vc_inline&post_id=<?php echo $post->ID; ?>&post_type=weddingpage" target="_blank">
