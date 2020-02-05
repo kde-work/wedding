@@ -1,6 +1,6 @@
 <?php
 
-// Sending email
+// Sending email. For user email form
 add_action('wp_ajax_webp_form', 'webp_form_callback');
 add_action('wp_ajax_nopriv_webp_form', 'webp_form_callback');
 function webp_form_callback() {
