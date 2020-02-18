@@ -7,27 +7,20 @@ function wedding_webp_shortcode( $atts, $content = null) {
 	$wedding_page = new WeddingPage();
 	$page = $wedding_page->get_pages();
     wb_scripts__webp();
+    $builder = new WEDB();
+
 	ob_start();
     if ( !$atts['is_short'] ) echo "<div class=\"wb-webp\">";
 	?>
         <div class="wb-webp__items <?php if ( isset( $page->posts ) AND !empty( $page->posts ) ) { echo 'wb-webp__items--page-exist'; } ?>">
             <div class="wb__loading"></div>
-            <div class="wb-site-name">
-                <h3 class="wb-site-name__title tableplans__title">Your site name</h3>
-                <div class="wb-site-name__form">
-                    <label for="wb-site-name__name" class="wb-site-name__site">bryllupshjemmeside.no/</label>
-                    <input type="text" id="wb-site-name__name" class="wb-site-name__input" autocomplete="off" placeholder="your-page" value="<?php echo WeddingPage::get_page_name(); ?>">
-                    <div class="wb-site-name__answer wb-site-name__answer--success">free</div>
-                    <div class="wb-site-name__answer wb-site-name__answer--error">is busy</div>
-                    <br>
-                    <div class="wb-site-name__save wb-button-regular" title="" data-title="">Save page name</div>
-                </div>
-            </div>
+            <?php echo $builder->get_builder(); ?>
             <?php
+            /*
             if ( isset( $page->posts ) AND !empty( $page->posts ) ) :
                 $post = $page->posts[0];
                 ?>
-                <a class="wb-webp__item wb-webp__item--edit wb-webp__item--<?php echo $post->ID; ?>" href="/wp-admin/post.php?vc_action=vc_inline&post_id=<?php echo $post->ID; /*&post_type=weddingpage*/ ?>" target="_blank">
+                <a class="wb-webp__item wb-webp__item--edit wb-webp__item--<?php echo $post->ID; ?>" href="/wp-admin/post.php?vc_action=vc_inline&post_id=<?php echo $post->ID; //&post_type=weddingpage ?>" target="_blank">
                     <span class="wb-webp__icon wb-webp__icon--dove"></span>
                     Edit you Wedding Page <div class="wb-icon wb-icon--edit"></div>
                 </a>
@@ -55,7 +48,7 @@ function wedding_webp_shortcode( $atts, $content = null) {
                         Create Wedding Page
                     </div>
                 </div>
-            <?php endif; ?>
+            <?php endif; */ ?>
         </div>
 	<?php
 	if ( !$atts['is_short'] ) echo "</div>";

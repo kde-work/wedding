@@ -1,4 +1,40 @@
 <?php
+add_action('wp_ajax_wpb-save', 'wpb_save_callback');
+function wpb_save_callback() {
+	if ( !empty( $_POST ) AND wp_verify_nonce( $_POST['wpb'], 'wpb_action' ) ) {
+		$return = array();
+		$data = $_POST;
+		unset( $data['_wp_http_referer'], $data['action'], $data['wpb'] );
+
+		$return['query'] = $data;
+		$return['answer'] = update_user_meta( wp_get_current_user()->ID, 'wpb_save', $data );
+
+		echo json_encode( $return );
+		die;
+	}
+	die;
+}
+
+add_action('wp_ajax_wb-creator', 'wb_creator_callback');
+function wb_creator_callback() {
+	if ( count( $_POST ) ) {
+		$return = array();
+		$query = $_POST['query'];
+
+		if ( $query == 'img_url_by_ID' ) {
+			$id = intval( $_POST['id'] );
+			$size = addslashes( $_POST['size'] );
+			$return['url'] = wp_get_attachment_image_src( $id, $size, true )[0];
+			$return['size'] = $size;
+			$return['id'] = $id;
+		}
+
+		echo json_encode( $return );
+		die;
+	}
+	die;
+}
+
 add_action('wp_ajax_wp-create-webp', 'wb_create_webp_callback');
 function wb_create_webp_callback() {
 	$template = ( intval( $_POST['template'] ) ) ? intval( $_POST['template'] ) : 1;
@@ -38,7 +74,9 @@ function wp_save_name_callback() {
 	$wedding_page = new WeddingPage();
 	echo json_encode(array(
 		'answer' => $wedding_page->save_page_name( $name ),
-		'html' => wedding_webp_shortcode( ['is_short' => true], null ),
+//		'html' => wedding_webp_shortcode( ['is_short' => true], null ),
+		'value' => $name,
+		'href' => "https://bryllupshjemmeside.no/{$name}",
 		'ErrorMessage' => '',
 	));
 	die;

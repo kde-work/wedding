@@ -191,6 +191,18 @@ class WeddingPage {
 	 * @return bool
 	 */
 	public static function check_page_name( $title ) {
+		$query = array(
+			'author' => get_current_user_id(),
+			'post_type' => 'page',
+			'posts_per_page' => '1',
+			'meta_key' => '_wp_page_template',
+			'meta_value' => 'weddingpage-page.php',
+		);
+		$pages = new WP_Query( $query );
+		if ( !empty( $pages->posts ) AND $pages->posts[0]->post_title == $title ) {
+			return 'self';
+		}
+
 		return ( empty( get_page_by_path( $title, ARRAY_N ) ) ) ? true : false;
 	}
 

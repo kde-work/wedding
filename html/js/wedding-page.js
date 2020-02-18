@@ -70,7 +70,11 @@
                     var $wb_site_name__form = $('.wb-site-name__form');
 
                     if (data.answer) {
-                        $wb_site_name__form.removeClass('wb-site-name__form--error').addClass('wb-site-name__form--success');
+                        if (data.answer === 'self') {
+                            $wb_site_name__form.removeClass('wb-site-name__form--error').removeClass('wb-site-name__form--success');
+                        } else {
+                            $wb_site_name__form.removeClass('wb-site-name__form--error').addClass('wb-site-name__form--success');
+                        }
                     } else {
                         $wb_site_name__form.removeClass('wb-site-name__form--success').addClass('wb-site-name__form--error');
                     }
@@ -112,8 +116,15 @@
             success: function (data) {
                 console.log(data);
                 if (data.answer !== void 0) {
-                    if (data.html !== void 0) {
-                        $('.wb-webp').html(data.html);
+                    if (data.value !== void 0) {
+                        var $wb_site_name__form = $('.wb-site-name__form'),
+                            $wb_site_name__input = $('.wb-site-name__input'),
+                            $wb_site_name__page_link = $('.wb-site-name__page_link');
+
+                        // $('.wb-webp').html(data.html);
+                        $wb_site_name__form.removeClass('wb-site-name__form--error').removeClass('wb-site-name__form--success');
+                        $wb_site_name__input.val(data.value);
+                        $wb_site_name__page_link.attr('href', data.href);
                     }
                 }
 
