@@ -9,6 +9,12 @@ function wpb_save_callback() {
 		$return['query'] = $data;
 		$return['answer'] = update_user_meta( wp_get_current_user()->ID, 'wpb_save', $data );
 
+		$template = ( intval( $data['template'] ) ) ? intval( $data['template'] ) : 1;
+		$wedding_page = new WeddingPage();
+		$return['is_change_template'] = $wedding_page->change_template( $template, $data['page-url'] );
+		$return['is-page-url'] = $wedding_page->save_page_name( sanitize_title( $data['page-url'] ) );
+		$return['url'] = get_the_permalink( WeddingBudgetClass::get_option( 'wedding-page-id' ) );
+
 		echo json_encode( $return );
 		die;
 	}

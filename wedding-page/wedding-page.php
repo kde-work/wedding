@@ -19,7 +19,7 @@ class WeddingPage {
 	 *
 	 * @var $template
 	 */
-	public static $template = [444464, 444524, 444664];
+	public static $template = [444858, 444891, 444930];// [444464, 444524, 444664];
 
 	/**
 	 * WordPress pages.
@@ -32,15 +32,15 @@ class WeddingPage {
 	 * Get list of user pages.
 	 */
 	public function get_pages() {
-		$query = array(
-			'author' => get_current_user_id(),
-//			'post_type' => 'WeddingPage',
-			'post_type' => 'page',
-			'posts_per_page' => '1',
-			'meta_key' => '_wp_page_template',
-			'meta_value' => 'weddingpage-page.php',
-		);
-		self::$pages = new WP_Query( $query );
+//		$query = array(
+//			'author' => get_current_user_id(),
+////			'post_type' => 'WeddingPage',
+//			'post_type' => 'page',
+//			'posts_per_page' => '1',
+//			'meta_key' => '_wp_page_template',
+//			'meta_value' => 'weddingpage-page.php',
+//		);
+		self::$pages = new WP_Query( WeddingBudgetClass::get_option( 'wedding-page-id' ) );
 		return self::$pages;
 	}
 
@@ -121,8 +121,8 @@ class WeddingPage {
 	 * @return string
 	 */
 	public static function get_page_name() {
-		if ( !empty( self::$pages->posts ) ) {
-			return self::$pages->posts[0]->post_name;
+		if ( WeddingBudgetClass::get_option( 'wedding-page-id' ) ) {
+			return get_post( WeddingBudgetClass::get_option( 'wedding-page-id' ) )->post_name;
 		}
 
 		$user_id = wp_get_current_user()->ID;
@@ -152,7 +152,7 @@ class WeddingPage {
 	 * @return bool
 	 */
 	public function save_page_name( $title ) {
-		$id = $this->get_page_id();
+		$id = WeddingBudgetClass::get_option( 'wedding-page-id' );
 		if ( !$id ) {
 			return false;
 		}
@@ -169,10 +169,19 @@ class WeddingPage {
 	 * Change Template of Wedding Page.
 	 *
 	 * @param  int $template
+	 * @param  string $title
 	 * @return bool
 	 */
-	public function change_template( $template = 1 ) {
-		$id = $this->get_page_id();
+	public function change_template( $template = 1, $title = '' ) {
+		if ( $template == WeddingBudgetClass::get_option( 'template' ) ) {
+			return true;
+		}
+
+		$id = WeddingBudgetClass::get_option( 'wedding-page-id' );
+		if ( !$id ) {
+			$id = self::create_page( $template, $title );
+		}
+
 		if ( !$id ) {
 			return false;
 		}
@@ -181,6 +190,7 @@ class WeddingPage {
 			'ID' => $id,
 			'post_content' => self::get_template_content( $template ),
 		) ) );
+		update_user_meta( get_current_user_id(), 'wb_template', $template );
 		return true;
 	}
 
@@ -215,9 +225,6 @@ class WeddingPage {
 	 */
 	public static function create_page( $template = 1, $title = '' ) {
 		$user_id = wp_get_current_user()->ID;
-		$wb_bride = get_user_meta( $user_id, 'wb_bride', 1 );
-		$wb_groom = get_user_meta( $user_id, 'wb_groom', 1 );
-		$wb_date = get_user_meta( $user_id, 'wb_date', 1 );
 
 		if ( !$title )
 			$title = self::get_page_name();
@@ -235,6 +242,7 @@ class WeddingPage {
 		$post_id = wp_insert_post( $post );
 		update_post_meta( $post_id, '_wp_page_template', 'weddingpage-page.php', 1 );
 		update_post_meta( $post_id, '_wedding_template', $template, 1 );
+		update_user_meta( $user_id, 'wb_page_id', $post_id );
 
 		return $post_id;
 	}

@@ -58,20 +58,21 @@ add_shortcode( 'wedding_webp', 'wedding_webp_shortcode' );
 
 function wb_templates() {
 	ob_start();
+	$template_id = WeddingBudgetClass::get_option( 'template' );
 	?>
     <div class="wb-new-page__templates">
         <div class="wb-new-page__template wb-new-page__template--1">
 			<?php //$img1 = plugins_url( '/weddingbudget/html/img/maket-1.jpg' ); ?>
             <!--                            <a href="--><?php //echo $img1; ?><!--" title="" data-title="" class="wb-new-page__prev"><img src="--><?php //echo $img1; ?><!--" alt="" class="alignnone size-medium wp-image-444200"></a>-->
-            <input type="radio" class="wb-new-page__radio wb-new-page__radio--1" name="template" id="wb-new-page__template--1" checked value="1">
+            <input type="radio" class="wb-new-page__radio wb-new-page__radio--1" name="template" id="wb-new-page__template--1" autocomplete="off" <?php echo ( $template_id == 1 ) ? 'checked' : ''; ?> value="1">
             <label class="wb-new-page__label wb-new-page__label--1" for="wb-new-page__template--1">Template #1</label>
         </div>
         <div class="wb-new-page__template wb-new-page__template--2">
-            <input type="radio" class="wb-new-page__radio wb-new-page__radio--2" name="template" id="wb-new-page__template--2" checked value="2">
+            <input type="radio" class="wb-new-page__radio wb-new-page__radio--2" name="template" id="wb-new-page__template--2" autocomplete="off" <?php echo ( $template_id == 2 ) ? 'checked' : ''; ?> value="2">
             <label class="wb-new-page__label wb-new-page__label--2" for="wb-new-page__template--2">Template #2</label>
         </div>
         <div class="wb-new-page__template wb-new-page__template--3">
-            <input type="radio" class="wb-new-page__radio wb-new-page__radio--3" name="template" id="wb-new-page__template--3" checked value="3">
+            <input type="radio" class="wb-new-page__radio wb-new-page__radio--3" name="template" id="wb-new-page__template--3" autocomplete="off" <?php echo ( $template_id == 3 ) ? 'checked' : ''; ?> value="3">
             <label class="wb-new-page__label wb-new-page__label--3" for="wb-new-page__template--3">Template #3</label>
         </div>
     </div>
