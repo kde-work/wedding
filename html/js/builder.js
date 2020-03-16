@@ -43,6 +43,7 @@
                     $par.addClass('wb-webp--saved');
                     $page_link.attr('href', data.url);
                     $form__success.removeClass('wb-site-name__form--success');
+                    $('.wb-site-password__form').removeClass('wb-site-password__form--success');
 
                     // if (data.value !== void 0) {
                     // }

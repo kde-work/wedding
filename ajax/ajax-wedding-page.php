@@ -13,6 +13,7 @@ function wpb_save_callback() {
 		$wedding_page = new WeddingPage();
 		$return['is_change_template'] = $wedding_page->change_template( $template, $data['page-url'] );
 		$return['is-page-url'] = $wedding_page->save_page_name( sanitize_title( $data['page-url'] ) );
+		$return['is-password'] = $wedding_page->save_password( $data['password'] );
 		$return['url'] = get_the_permalink( WeddingBudgetClass::get_option( 'wedding-page-id' ) );
 
 		echo json_encode( $return );
@@ -68,6 +69,17 @@ function wp_check_name_callback() {
 	$name = ( htmlspecialchars( $_POST['name'] ) ) ? htmlspecialchars( $_POST['name'] ) : '';
 	echo json_encode(array(
 		'answer' => WeddingPage::check_page_name( $name ),
+		'ErrorMessage' => '',
+	));
+	die;
+}
+
+// Save Password
+add_action('wp_ajax_wp-save-password', 'wp_save_password_callback');
+function wp_save_password_callback() {
+	$wedding_page = new WeddingPage();
+	echo json_encode(array(
+		'answer' => $wedding_page->save_password( $_POST['password'] ),
 		'ErrorMessage' => '',
 	));
 	die;

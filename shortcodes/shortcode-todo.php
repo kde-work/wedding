@@ -128,6 +128,11 @@ function wb_todo_shortcode ($atts) {
 
 function wb_todo_content_template($items) {
 	ob_start();
+
+	if (current_user_can('administrator')) {
+	    echo "<a href='.?reset-todo'>Reset TODO data for admin</a>";
+    }
+
 	?>
     <table class="wb-todo">
         <thead>

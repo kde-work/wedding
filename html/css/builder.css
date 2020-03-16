@@ -13,26 +13,22 @@
     flex-wrap: wrap;
 }
 .wedb-tab__header {
-    margin: 0 4px;
+    margin: 1px 4px 6px !important;
     border: 2px solid #ececec;
-    border-bottom-color: transparent;
     padding: 3px 15px 2px;
     position: relative;
 }
 .wedb-tab__header--current {
-    background: #f7f7f7;
-    border-color: #e5e5e5;
-    border-bottom-color: transparent;
-    bottom: -1px;
-    color: #555;
+    border-color: #9f9f9f;
+    color: #222;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.11);
 }
-@media screen and (max-width: 1450px) {
-    .wedb-tab__header--current {
-        border-color: #9f9f9f;
-        border-bottom-color: transparent;
-        color: #222;
-    }
-}
+/*@media screen and (max-width: 1450px) {*/
+/*    .wedb-tab__header--current {*/
+/*        border-color: #9f9f9f;*/
+/*        color: #222;*/
+/*    }*/
+/*}*/
 .wedb-tab__header--empty::after {
     background: red;
     border-radius: 7px;

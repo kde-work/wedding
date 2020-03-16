@@ -45,6 +45,53 @@
         });
     });
 
+    // Change Password
+    $(function() {
+        $body.on('change', '#wb-site-password', function () {
+            var $this = $(this),
+                $par = $this.closest('.wb-site-password__form');
+
+            $par.addClass('wb-site-password__form--success');
+        });
+    });
+    $(function() {
+        $body.on('click', '.wb-site-password__save', wb_save_password);
+    });
+    function wb_save_password() {
+        if ($body.hasClass('in-process')) return;
+
+        $.ajax({
+            type: 'POST',
+            url: wedding_budget.url,
+            async: true,
+            dataType: 'json',
+            data: {
+                'password' : $('#wb-site-password').val(),
+                'action' : 'wp-save-password',
+            },
+            beforeSend: function (xhr, ajaxOptions, thrownError) {
+                $body.addClass('in-process');
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.answer !== void 0) {
+                    $('.wb-site-password__form').removeClass('wb-site-password__form--success');
+                }
+
+                if (data.ErrorMessage) {
+                    console.error(data.ErrorMessage);
+                }
+            },
+            complete: function (xhr, ajaxOptions, thrownError) {
+                $body.removeClass('in-process');
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('wp-save-password-@11: '+xhr.status);
+                console.log('wp-save-password-@12: '+thrownError);
+            }
+        });
+    }
+
     // Change Page name input
     $(function() {
         $body.on('change', '#wb-site-name__name', wb_check_name);

@@ -19,7 +19,7 @@ class WeddingPage {
 	 *
 	 * @var $template
 	 */
-	public static $template = [444858, 444891, 444930];// [444464, 444524, 444664];
+	public static $template = [444858, 444891, 444930]; // [444852, 444854, 444856]
 
 	/**
 	 * WordPress pages.
@@ -162,6 +162,17 @@ class WeddingPage {
 			'post_name' => $title,
 			'post_title' => $title,
 		) ) );
+		return true;
+	}
+
+	/**
+	 * Save Wedding page password.
+	 *
+	 * @param  string $password
+	 * @return bool
+	 */
+	public function save_password( $password ) {
+		update_user_meta( wp_get_current_user()->ID, 'wb_password', $password );
 		return true;
 	}
 
