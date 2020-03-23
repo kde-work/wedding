@@ -74,7 +74,12 @@ function get_user_id_by_current_url() {
 	global $wpdb;
 
 	$post_title = wp_parse_url( ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], PHP_URL_PATH );
-	$post_title = array_pop( explode( "/", trim( $post_title, "/" ) ) );
+	$post_title = trim( $post_title, "/" );
+//	$post_title = array_pop( explode( "/", trim( $post_title, "/" ) ) );
+	if ( strpos( $post_title, '/' ) !== false ) {
+		$post_title = explode( "/", $post_title );
+		$post_title = array_pop( $post_title );
+	}
 	return $wpdb->get_var( $wpdb->prepare(
 			"SELECT `post_author` FROM `$wpdb->posts`
 				 WHERE `post_name`='%s'

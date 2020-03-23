@@ -5,7 +5,8 @@ function wb_payment_shortcode( $atts, $content = null ) {
 			$atts = shortcode_atts( array(
 			    ), $atts
 			);
-			$check_role = WeddingPayment::check_role();
+			$wedding_payment = new WeddingPayment();
+			$check_role = $wedding_payment->check_role();
 
             // if don't have access
             if ( $check_role['is_expired'] ) {
@@ -16,7 +17,7 @@ function wb_payment_shortcode( $atts, $content = null ) {
                     <div class="wb-payment__title">Getting access to the tools</div>
                     <div class="wb-payment__body">
                         <?php
-                        if ( !WeddingPayment::has_trial() ) {
+                        if ( !$wedding_payment->has_trial() ) {
                             ?>
                             <div class="wb-payment__block wb-payment__block--trial">
                                 <div class="wb-payment__block-title">Trial</div>
@@ -59,8 +60,9 @@ add_shortcode( 'wb_payment', 'wb_payment_shortcode' );
 
 function wb_payment_paid_button( $title = 'Buy' ) {
 	wb_scripts__payment();
+	$wedding_payment = new WeddingPayment();
 	$html  = "<div class=\"wb-payment__button wp-buy wb-button-regular\">$title</div>";
-	$html .= WeddingPayment::create_bambora_online_checkout_payment_html();
+	$html .= $wedding_payment->create_bambora_online_checkout_payment_html();
 	return $html;
 }
 function wb_payment_trial_button( $title = 'Get trial' ) {

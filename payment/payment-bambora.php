@@ -21,12 +21,13 @@ class WeddingPaymentBambora {
 	 * Get the Bambora Api Key
 	 *
 	 * @param  string $amount
+	 * @param  string $type
 	 * @return array
 	 */
-	public function request( $amount ) {
-		$order_id = $this->get_order_id();
+	public function request( $amount, $type ) {
+		$order_id = $this->get_order_id( $type );
 
-		if ( $order_id === false )
+		if ( $order_id === false OR $amount === false )
 			return [];
 
 		$request = array(
@@ -111,10 +112,13 @@ class WeddingPaymentBambora {
 	/**
 	 * Get the Bambora Api Key
 	 *
+	 * @param  string $type
 	 * @return int | bool
 	 */
-	protected function get_order_id() {
+	protected function get_order_id( $type ) {
 		global $wpdb;
+
+		if (!wp_get_current_user()->ID) return false;
 
 		$time = time();
 		$user_id = wp_get_current_user()->ID;
@@ -123,10 +127,12 @@ class WeddingPaymentBambora {
 			"INSERT INTO `{$wpdb->prefix}wb_payment` SET 
                     `date_start` = '%d',
                     `user_id` = '%d',
+                    `type` = '%s',
                     `status` = 'new'
                 ",
 			$time,
-			$user_id
+			$user_id,
+			$type
 		) );
 
 		if ( $t ) {
@@ -159,7 +165,7 @@ class WeddingPaymentBambora {
 	protected function get_url( $type, $order_id ) {
 		$args = array( 'wb-payment' => $type, 'order_id' => $order_id);
 //		return add_query_arg( $args , 'https://example.org' );
-		return add_query_arg( $args , site_url( '/' ) /*'https://example.org'*/ );
+		return add_query_arg( $args , site_url( '/planlegger/innstillinger/' ) );
 	}
 
 	/**

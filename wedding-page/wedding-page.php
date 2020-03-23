@@ -19,7 +19,7 @@ class WeddingPage {
 	 *
 	 * @var $template
 	 */
-	public static $template = [444858, 444891, 444930]; // [444852, 444854, 444856]
+	public static $template = [444852, 444854, 444856];
 
 	/**
 	 * WordPress pages.
