@@ -348,6 +348,7 @@ class WeddingPayment {
 	public static function set_trial() {
 		if ( isset( $_GET['wb-p'] ) AND $_GET['wb-p'] == 'trial' ) {
 			$wedding_payment = new WeddingPayment();
+			ShoutOut::push_event( 6 );
 			$wedding_payment->set_role( 'trial' );
 		}
 	}

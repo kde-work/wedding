@@ -20,6 +20,8 @@ function wb_tableplan_save() {
 	);
 	update_user_meta($user_id, 'wb_tableplan', base64_encode(serialize($server_data)));
 
+	ShoutOut::push_event( 7 );
+
 	// Save Guests information
 	if (!empty($data['Guests'])) {
 		$server_guests = unserialize(base64_decode(get_user_meta($user_id, 'gl_save', 1)));
@@ -59,6 +61,7 @@ function wb_tableplan_delete() {
 	$server_data = unserialize(base64_decode(get_user_meta($user_id, 'wb_tableplan', 1)));
 //	print_r($server_data);
 
+	ShoutOut::push_event( 8 );
 
 	if (isset($server_data[$id])) {
 		unset($server_data[$id]);
@@ -91,6 +94,8 @@ function wb_tableplan_duplicate() {
 		$server_data[$new_id] = $server_data[$id];
 		update_user_meta($user_id, 'wb_tableplan', base64_encode(serialize($server_data)));
 	}
+
+	ShoutOut::push_event( 9 );
 
 	echo json_encode(array(
 		'ErrorMessage' => '',

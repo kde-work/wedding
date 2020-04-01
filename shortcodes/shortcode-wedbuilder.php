@@ -1,5 +1,5 @@
 <?php
-function wedbuilder_shortcode( $atts, $content = null) {
+function wedbuilder_shortcode( $atts, $content = null ) {
 	$atts = shortcode_atts( array(
 		'default_id' => 1,
 		'default' => '',

@@ -5,6 +5,7 @@ add_action('wp_ajax_wl_email', 'wl_email_callback');
 function wl_email_callback() {
 	if ($_POST['email'] AND wp_verify_nonce($_POST['wl_email'], 'wl_email_action')) {
 		$email = addslashes($_POST['email']);
+		ShoutOut::push_event( 18 );
 		wb_mail( $email ); // ./mail.php
 	}
 	die;
@@ -36,6 +37,7 @@ function wl_save_callback() {
 			$data[$id][$key] = addslashes($val);
 		}
 	}
+	ShoutOut::push_event( 19 );
 	update_user_meta($user_id, 'wl_save', base64_encode(serialize($data)));
 	die;
 }
