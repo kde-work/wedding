@@ -83,6 +83,21 @@ class ShoutOut {
 		if ( !$user_id ) $user_id = wp_get_current_user()->ID;
 		$event_id = intval( $event_id );
 
+		// Check banned forums ids
+		if ( self::check_forums_ids( $event_id, $data ) ) return false;
+
+		// Check wb_events.`is_available` = 1 and time limit
+		$is_available_and_time_limit = $wpdb->get_var( $wpdb->prepare(
+				"SELECT COUNT(*) FROM `{$wpdb->prefix}wb_events` as events
+					INNER JOIN `{$wpdb->prefix}wb_event_list` as event_list ON event_list.`event_id` = events.`id`
+					WHERE
+					events.`is_available` = 1 AND TIMESTAMPDIFF(SECOND, event_list.`date`, NOW()) > events.`limit_seconds`
+					AND event_list.`id` = (SELECT MAX(`id`) FROM `{$wpdb->prefix}wb_event_list` as event_list_2 WHERE event_list_2.`event_id` = '%d')
+					AND events.`id` = '%d' AND event_list.`user_id` = '%d'",
+			$event_id, $event_id, $user_id
+		));
+		if ( !$is_available_and_time_limit ) return false;
+
 		return $wpdb->query( $wpdb->prepare(
 			"INSERT INTO `{$wpdb->prefix}wb_event_list` SET
                 `event_id` = '%d',
@@ -93,6 +108,25 @@ class ShoutOut {
 			$user_id,
 			$data
 		) );
+	}
+
+	/**
+	 * Check banned forums ids.
+	 *
+	 * @param  int $event_id
+	 * @param  mixed $data
+	 * @return bool
+	 */
+	public static function check_forums_ids( $event_id, $data ) {
+		$event_id = intval( $event_id );
+		if ( !$data OR !in_array( $event_id, [20,21] ) ) return false;
+
+		$ids = explode( ",", get_option( 'wp_banned_forum_ids' ) );
+
+		for ( $i = 0; $i < count( $ids ); ++$i ) {
+			if ( trim( $ids[$i] ) == $data ) return true;
+		}
+		return false;
 	}
 
 	/**
@@ -170,8 +204,9 @@ class ShoutOut {
 		for ( $i = 0; $i < count( $data ); ++$i ) {
 			if ( !$data[$i]['nickname'] AND $data[$i]['user_id'] ) {
 				$data[$i]['nickname'] = self::get_nickname( $data[$i]['user_id'], true )['nickname'];
-				$data[$i]['nickname'] = "<a href='/members/{$data[$i]['nickname']}/profile'>{$data[$i]['nickname']}</a>";
+				// $data[$i]['nickname'] = "<a href='/members/{$data[$i]['nickname']}/profile'>{$data[$i]['nickname']}</a>";
 			}
+			
 			$data[$i]['event_text'] = str_replace( '%username%', $data[$i]['nickname'], $data[$i]['event_text'] );
 
 			if ( $data[$i]['data'] ) {

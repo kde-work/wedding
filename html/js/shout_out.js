@@ -8,7 +8,8 @@
     $(function () {
         var $par = $('.wed-shout-out'),
             $regular_lines = $('.wed-shout-out__item--regular', $par),
-            $commercial_line = $('.wed-shout-out__item--commercial-line', $par),
+            $commercial_lines = $('.wed-shout-out__item--commercial-line', $par),
+            $commercial_line = $commercial_lines.eq(getRandomInRange(0, $commercial_lines.length - 1)),
             line_probability = $commercial_line.data('probability') / 100;
 
         if (Math.random() <= line_probability) {

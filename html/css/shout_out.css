@@ -1,5 +1,7 @@
 .wed-shout-out {
     position: relative;
+	font-size: 18px;
+    line-height: 1.4;
 }
 .wed-shout-out__grad {
     background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
@@ -11,7 +13,19 @@
     left: 0;
     position: absolute;
     width: 100%;
+	display:none;
 }
 .wed-shout-out__item--hide {
     display: none;
 }
+
+.wed-shout-out__item.wed-shout-out__item--regular, .wed-shout-out__item.wed-shout-out__item--commercial-line {
+    height: 35px;
+}
+
+@media only screen and (max-width: 600px) {
+.wed-shout-out__item.wed-shout-out__item--regular, .wed-shout-out__item.wed-shout-out__item--commercial-line {
+    height: 60px;
+}
+}
+

@@ -14,7 +14,14 @@ function shout_out_shortcode( $atts, $content = null ) {
 		<div class="wed-shout-out__item wed-shout-out__item--regular"><?php echo $event['event_text']; ?></div>
 		<?php
 	}
-		echo "<div class='wed-shout-out__item--hide'><div class='wed-shout-out__item wed-shout-out__item--commercial-line' data-probability='" . get_option( 'wp_commercial_line_probability' ) . "'>" . stripslashes( get_option( 'wp_commercial_line_text' ) ) . "</div></div>";
+	$commercial_lines = get_option( 'wp_commercial_line_text' );
+    $i = 0;
+	foreach ( $commercial_lines as $commercial_line ) {
+        ++$i;
+        if ( $commercial_line ) {
+	        echo "<div class='wed-shout-out__item--$i wed-shout-out__item--ads wed-shout-out__item--hide'><div class='wed-shout-out__item wed-shout-out__item--commercial-line' data-probability='" . get_option( 'wp_commercial_line_probability' ) . "'>" . stripslashes( $commercial_line ) . "</div></div>";
+        }
+	}
 		echo "<div class='wed-shout-out__grad'></div>";
 	echo "</div>";
 	return ob_get_clean();
