@@ -25,8 +25,8 @@ class ShoutOut {
 	public function init() {
 		add_action( 'wp_login', array( $this, 'wp_login' ), 10, 2 );
 		add_action( 'user_register', array( $this, 'user_register' ), 100, 1 );
-		add_action( 'bbp_new_topic', array( $this, 'bbp_new_topic' ), 10, 1 );
-		add_action( 'bbp_new_reply', array( $this, 'bbp_new_reply' ), 10, 1 );
+		add_action( 'bbp_new_topic', array( $this, 'bbp_new_topic' ), 10, 2 );
+		add_action( 'bbp_new_reply', array( $this, 'bbp_new_reply' ), 10, 3 );
 	}
 
 	/**
@@ -52,8 +52,12 @@ class ShoutOut {
 	 * wp_login action.
 	 *
 	 * @param  int $topic_id
+	 * @param  int $forum_id
 	 */
-	public function bbp_new_topic( $topic_id ) {
+	public function bbp_new_topic( $topic_id, $forum_id ) {
+		// Check banned forums ids
+		if ( self::check_forums_ids( $forum_id ) ) return;
+
 		self::push_event( 20, wp_get_current_user()->ID, $topic_id );
 	}
 
@@ -61,8 +65,13 @@ class ShoutOut {
 	 * wp_login action.
 	 *
 	 * @param  int $reply_id
+	 * @param  int $topic_id
+	 * @param  int $forum_id
 	 */
-	public function bbp_new_reply( $reply_id ) {
+	public function bbp_new_reply( $reply_id, $topic_id, $forum_id ) {
+		// Check banned forums ids
+		if ( self::check_forums_ids( $forum_id ) ) return;
+
 		self::push_event( 21, wp_get_current_user()->ID, $reply_id );
 	}
 
@@ -83,18 +92,16 @@ class ShoutOut {
 		if ( !$user_id ) $user_id = wp_get_current_user()->ID;
 		$event_id = intval( $event_id );
 
-		// Check banned forums ids
-		if ( self::check_forums_ids( $event_id, $data ) ) return false;
-
 		// Check wb_events.`is_available` = 1 and time limit
 		$is_available_and_time_limit = $wpdb->get_var( $wpdb->prepare(
 				"SELECT COUNT(*) FROM `{$wpdb->prefix}wb_events` as events
-					INNER JOIN `{$wpdb->prefix}wb_event_list` as event_list ON event_list.`event_id` = events.`id`
-					WHERE
-					events.`is_available` = 1 AND TIMESTAMPDIFF(SECOND, event_list.`date`, NOW()) > events.`limit_seconds`
-					AND event_list.`id` = (SELECT MAX(`id`) FROM `{$wpdb->prefix}wb_event_list` as event_list_2 WHERE event_list_2.`event_id` = '%d')
-					AND events.`id` = '%d' AND event_list.`user_id` = '%d'",
-			$event_id, $event_id, $user_id
+					LEFT JOIN `{$wpdb->prefix}wb_event_list` as event_list ON event_list.`event_id` = events.`id`
+					WHERE events.`id` = '%1\$d' AND events.`is_available` = 1 AND
+					 ((SELECT COUNT(*) FROM `{$wpdb->prefix}wb_event_list` as event_list3 WHERE event_list3.`event_id` = '%1\$d' AND event_list3.`user_id` = '%2\$d') = 0 OR
+					 TIMESTAMPDIFF(SECOND, event_list.`date`, NOW()) > events.`limit_seconds`
+					 AND event_list.`id` = (SELECT MAX(`id`) FROM `{$wpdb->prefix}wb_event_list` as event_list_2 WHERE event_list_2.`event_id` = '%1\$d' AND event_list_2.`user_id` = '%2\$d')
+					 AND event_list.`user_id` = '%2\$d')",
+			$event_id, $user_id
 		));
 		if ( !$is_available_and_time_limit ) return false;
 
@@ -113,18 +120,17 @@ class ShoutOut {
 	/**
 	 * Check banned forums ids.
 	 *
-	 * @param  int $event_id
-	 * @param  mixed $data
+	 * @param  int $forum_id
 	 * @return bool
 	 */
-	public static function check_forums_ids( $event_id, $data ) {
-		$event_id = intval( $event_id );
-		if ( !$data OR !in_array( $event_id, [20,21] ) ) return false;
+	public static function check_forums_ids( $forum_id ) {
+		$forum_id = intval( $forum_id );
+//		if ( !$data OR !in_array( $event_id, [20,21] ) ) return false;
 
 		$ids = explode( ",", get_option( 'wp_banned_forum_ids' ) );
 
 		for ( $i = 0; $i < count( $ids ); ++$i ) {
-			if ( trim( $ids[$i] ) == $data ) return true;
+			if ( trim( $ids[$i] ) == $forum_id ) return true;
 		}
 		return false;
 	}
