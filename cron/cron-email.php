@@ -20,25 +20,27 @@ function wb_cron_handler(){
 		$items = unserialize(base64_decode(get_user_meta($bloguser->ID, 'wb_todo', 1)));
 		if (empty($items)) continue;
 		$is_changed = false;
+		$tasks = '';
 		for ($i = 0; $i < count($items); $i++) {
 			if (!$items[$i]['end_time_by_email']) {
 				$end_time        = $items[$i]['end_time'];
 				$comparing_dates = WeddingToDoClass::comparing_dates($end_time, time());
 				if ($comparing_dates < 0 AND $items[$i]['name'] AND !$items[$i]['done']) {
-					$headers = "Content-type: text/html; charset=UTF-8\r\n";
-					wp_mail(
-						$bloguser->user_email,
-//						'omigos99@yandex.ru',
-						bloginfo('name') . ' - Date of task over due!',
-						"Hi {$bloguser->user_login},<br><br>Task <b>{$items[$i]['name']}</b> has been expired!",
-						$headers
-					);
 					$items[$i]['end_time_by_email'] = 1;
+					$tasks .= "<br>Task <b>{$items[$i]['name']}</b> has been expired!";
 					$is_changed = 1;
 				}
 			}
 		}
 		if ($is_changed) {
+			$headers = "Content-type: text/html; charset=UTF-8\r\n";
+			wp_mail(
+				$bloguser->user_email,
+//						'omigos99@yandex.ru',
+				bloginfo('name') . ' - Date of task over due!',
+				"Hi {$bloguser->user_login},<br>{$tasks}<br><br><a href='". get_home_url() ."'>Our site</a>",
+				$headers
+			);
 			update_user_meta($bloguser->ID, 'wb_todo', base64_encode(serialize($items)));
 		}
 	}

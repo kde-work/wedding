@@ -157,11 +157,12 @@ function wb_todo_content_template($items) {
 			}
 			ob_start();
 			?>
-            <tr class="wb__tr wb-todo__tr
-                                          <?php echo WeddingToDoClass::get_group_classes ($item['ID'], 'wb-todo__tr-category', $cats); ?>
-                                          <?php echo WeddingToDoClass::get_assigned_classes ($item['assigned'], 'wb-todo__tr-assigned'); ?>
-                                          <?php echo ($item['done']) ? 'wb-todo__tr-done--1' : 'wb-todo__tr-done--0'; ?>
-                                " data-id="<?php echo $item['ID']; ?>" data-expire="<?php echo $expires; ?>">
+            <tr class="wb__tr wb__tr--item wb-todo__tr <?php
+                echo ($expires < 0) ? 'wb__tr--expire ' : '';
+                echo WeddingToDoClass::get_group_classes ($item['ID'], 'wb-todo__tr-category', $cats), ' ';
+                echo WeddingToDoClass::get_assigned_classes ($item['assigned'], 'wb-todo__tr-assigned'), ' ';
+                echo ($item['done']) ? 'wb-todo__tr-done--1' : 'wb-todo__tr-done--0';
+                ?>" data-id="<?php echo $item['ID']; ?>" data-expire="<?php echo $expires; ?>">
                 <td class="wb__td wb__td--done" data-id="<?php echo $item['ID']; ?>">
                     <div class="wb-todo-table__done-box">
                         <input type="checkbox" name="wb-todo-table__done" class="wb-todo-table__done" id="wb-todo-table__done--<?php echo $item['ID']; ?>" <?php echo ($item['done']) ? 'checked' : ''; ?> autocomplete="off" data-id="<?php echo $item['ID']; ?>">

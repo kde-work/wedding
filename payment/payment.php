@@ -247,9 +247,10 @@ class WeddingPayment {
 	 *
 	 * @param  string $role
 	 * @param  int $time
+	 * @param  string|int $amount
 	 * @return bool
 	 */
-	public function set_role( $role, $time = 0 ) {
+	public function set_role( $role, $time = 0, $amount = 0 ) {
 		global $wpdb;
 
 		if ( !$time ) $time = time();
@@ -296,7 +297,7 @@ class WeddingPayment {
                             `user_id` = '%d',
                             `membership_id` = '%d',
                             `code_id` = '0',
-                            `initial_payment` = '0',
+                            `initial_payment` = '%s',
                             `billing_amount` = '0',
                             `cycle_number` = '0',
                             `cycle_period` = '0',
@@ -310,6 +311,7 @@ class WeddingPayment {
                         ",
 				$this->user_info['user_id'],
 				$membership_id,
+				$amount,
 				$date,
 				date( 'Y-m-d H:i:s', $time + $additional_time + $this->levels[$level]['time'] ),
 				$date
@@ -382,7 +384,7 @@ class WeddingPayment {
 
 			            $wb_payment = $wpdb->get_row(
 				            $wpdb->prepare(
-					            "SELECT `type`, `user_id` FROM `{$wpdb->prefix}wb_payment`
+					            "SELECT `type`, `user_id`, `amount` FROM `{$wpdb->prefix}wb_payment`
                                  WHERE `id` = '%d'
                                 ",
 					            $_GET['order_id']
@@ -394,7 +396,7 @@ class WeddingPayment {
                         }
 
 			            $wedding_payment = new WeddingPayment( $wb_payment['user_id'] );
-			            $wedding_payment->set_role( $type );
+			            $wedding_payment->set_role( $type, 0, $wb_payment['amount'] / 100 );
                     }
                 }
 	            die;
