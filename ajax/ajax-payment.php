@@ -10,6 +10,15 @@ function wp_buy_callback() {
 //	$request = $response['request'];
 	$session = $response['session'];
 
+	switch ( $type ) {
+		case 'VIP':
+		case 'vip':
+			ShoutOut::push_event( 4 );
+			break;
+		case 'standard':
+			ShoutOut::push_event( 5 );
+			break;
+	}
 	$html = '';
 //	ob_start();
 //	print_r($data);
