@@ -5,7 +5,8 @@ function wb_payment_shortcode( $atts, $content = null ) {
 			$atts = shortcode_atts( array(
 			    ), $atts
 			);
-			$check_role = WeddingPayment::check_role();
+			$wedding_payment = new WeddingPayment();
+			$check_role = $wedding_payment->check_role();
 
             // if don't have access
             if ( $check_role['is_expired'] ) {
@@ -13,22 +14,22 @@ function wb_payment_shortcode( $atts, $content = null ) {
 	            ob_start();
 	            ?>
                 <div class="wb-payment">
-                    <div class="wb-payment__title">Getting access to the tools</div>
+                    <div class="wb-payment__title">Få tilgang til planleggingsverktøyene</div>
                     <div class="wb-payment__body">
                         <?php
-                        if ( !WeddingPayment::has_trial() ) {
+                        if ( !$wedding_payment->has_trial() ) {
                             ?>
                             <div class="wb-payment__block wb-payment__block--trial">
-                                <div class="wb-payment__block-title">Trial</div>
-                                <p class="wb-payment__text">Get the trial version for 14 days. Full access.</p>
+                                <div class="wb-payment__block-title">Prøveperiode</div>
+                                <p class="wb-payment__text">Test verktøyene i 14 dager. Full tilgang.</p>
 	                            <?php echo wb_payment_trial_button( 'Get trial' ); ?>
                             </div>
                             <?php
                         }
                         ?>
                         <div class="wb-payment__block wb-payment__block--buy">
-                            <div class="wb-payment__block-title">Buy</div>
-                            <p class="wb-payment__text">Full access for 2 ears.</p>
+                            <div class="wb-payment__block-title">Kjøp</div>
+                            <p class="wb-payment__text">Full tilgang i 12 måneder.</p>
                             <?php echo wb_payment_paid_button(); ?>
                         </div>
                     </div>
@@ -43,7 +44,7 @@ function wb_payment_shortcode( $atts, $content = null ) {
 			ob_start();
 			?>
 			<div class="wb-no-auth">
-				<div class="wb-no-auth__title">You need to login or register to access the tools.</div>
+				<div class="wb-no-auth__title">Du må logge inn eller registrere deg for å kunne bruke planleggingsverktøyene.</div>
 				<div class="wb-no-auth__body">
 					<div class="wb-no-auth__block kleo-show-login"><a title="Login" href="/wp-login.php" data-title="Login">Login</a></div>
 					<div class="wb-no-auth__block"><a title="Register" href="http://wedding.ld/registrer/" data-title="Register">Register</a></div>
@@ -59,8 +60,9 @@ add_shortcode( 'wb_payment', 'wb_payment_shortcode' );
 
 function wb_payment_paid_button( $title = 'Buy' ) {
 	wb_scripts__payment();
+	$wedding_payment = new WeddingPayment();
 	$html  = "<div class=\"wb-payment__button wp-buy wb-button-regular\">$title</div>";
-	$html .= WeddingPayment::create_bambora_online_checkout_payment_html();
+	$html .= $wedding_payment->create_bambora_online_checkout_payment_html();
 	return $html;
 }
 function wb_payment_trial_button( $title = 'Get trial' ) {

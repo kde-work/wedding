@@ -25,13 +25,11 @@ class Payment_Helper {
     /**
      * Create Bambora Online Checkout payment HTML
      *
-     * @param string $bambora_checkout_js_url
+     * @param string $checkout_token
      * @param int    $window_state
-     * @param string $bambora_checkout_url
-     * @param string $cancel_url
      * @return string
      */
-    public static function create_bambora_online_checkout_payment_html( $checkout_token, $window_state ) {
+    public static function create_bambora_online_checkout_payment_html( $checkout_token = '', $window_state = 1 ) {
         $html = '<section>';
         $html .= '<script src="https://static.bambora.com/checkout-sdk-web/latest/checkout-sdk-web.min.js"></script>';
         $html .= '<h3>' . __( 'Thank you for using Bambora Online Checkout.', 'bambora-online-checkout' ) . '</h3>';

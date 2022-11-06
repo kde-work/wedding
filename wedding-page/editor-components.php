@@ -75,10 +75,40 @@ class WEDB_Components {
 				echo $this->media_field( $content, '', true );
 			} elseif ( strtolower( $content['type'] ) == 'file upload' ) {
 				echo $this->file_field( $content, '' );
+			} elseif ( strtolower( $content['type'] ) == 'enabled' ) {
+				echo $this->enabled( $content );
 			} elseif ( strtolower( $content['type'] ) == 'ooto begin' ) {
                  echo '';
 			}
 		}
+		return ob_get_clean();
+	}
+
+	/**
+	 * Returned Enabled component.
+	 *
+	 * @param array $component
+	 * @return string
+	 */
+	public function enabled( $component ) {
+		$id = ++$this->html_id;
+		$clear_name = $this->name_filter( self::clear_name( $component['name'] ) );
+		$html_id = $this->html_id_filter( "{$clear_name}-{$id}" );
+		$this->register_field( $component, "#{$html_id}" );
+		ob_start();
+		?>
+		<div class="<?php echo "{$this->class__field} wedp-single-com__field--enabled" . self::required( $component ); ?>" data-type="enabled">
+			<label class="wedp-single-com__field-label inline"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
+            <div class="wedp-enabled">
+                <input id="<?php echo $html_id; ?>-on" class="wedp-toggle wedp-toggle-left" name="<?php echo $clear_name; ?>" value="enable" autocomplete="off" type="radio" <?php echo ( $component['value'] == 'enable' ) ? 'checked' : ''; ?>>
+<label for="<?php echo $html_id; ?>-on" class="wedp-btn">Aktiv</label>
+<input id="<?php echo $html_id; ?>-off" class="wedp-toggle wedp-toggle-right" name="<?php echo $clear_name; ?>" value="disable" type="radio" autocomplete="off" <?php echo ( $component['value'] == 'disable' ) ? 'checked' : ''; ?>>
+<label for="<?php echo $html_id; ?>-off" class="wedp-btn">Deaktiv</label>
+
+                <div class="wedp-enabled__bg"></div>
+            </div>
+		</div>
+		<?php
 		return ob_get_clean();
 	}
 
@@ -101,7 +131,7 @@ class WEDB_Components {
 		ob_start();
 		?>
 		<div class="<?php echo "{$this->class__field} wedp-single-com__field--textarea {$extra_class} " . self::required( $component ); ?>" data-type="textarea">
-			<label for="<?php echo $html_id; ?>" class="wedp-single-com__field-label inline"><?php echo $component['name']; ?><?php echo $this->help_text( $component ); ?></label>
+			<label for="<?php echo $html_id; ?>" class="wedp-single-com__field-label inline"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
             <textarea class="wedp-single-com__text-field w-input wedp__name" <?php echo $additional_tag; ?> name="<?php echo $clear_name; ?>" autocomplete="off" id="<?php echo $html_id; ?>"><?php echo $component['value']; ?></textarea>
 		</div>
 		<?php
@@ -122,7 +152,7 @@ class WEDB_Components {
 		ob_start();
 		?>
 		<div class="<?php echo "{$this->class__field} wedp-single-com__field--wysiwyg " . self::required( $component ); ?>" data-type="wysiwyg">
-			<label for="<?php echo $html_id; ?>" class="wedp-single-com__field-label inline"><?php echo $component['name']; ?><?php echo $this->help_text( $component ); ?></label>
+			<label for="<?php echo $html_id; ?>" class="wedp-single-com__field-label inline"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
             <?php
             wp_editor( $component['value'], $html_id , array(
 	            'wpautop'       => 1,
@@ -162,7 +192,7 @@ class WEDB_Components {
 		ob_start();
 		?>
 		<div class="<?php echo "{$this->class__field} {$extra_class} wedp-single-com__field--text " . self::required( $component ); ?>" data-type="text">
-			<label for="<?php echo $html_id; ?>" class="wedp-single-com__field-label inline"><?php echo $component['name']; ?><?php echo $this->help_text( $component ); ?></label>
+			<label for="<?php echo $html_id; ?>" class="wedp-single-com__field-label inline"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
 			<input class="wedp-single-com__text-field w-input <?php echo $extra_class_input; ?> wedp__name" <?php echo $additional_tag; ?> name="<?php echo $clear_name; ?>" autocomplete="off" id="<?php echo $html_id; ?>" value="<?php echo $component['value']; ?>" type="text">
 		</div>
 		<?php
@@ -191,7 +221,7 @@ class WEDB_Components {
 		ob_start();
 		?>
         <div class="<?php echo "{$this->class__field} {$extra_class} wedp-single-com__field--$type_class " . self::required( $component ); ?>" data-type="<?php echo $type; ?>">
-            <label class="wedp-single-com__field-label inline" for="<?php echo $html_id; ?>"><?php echo $component['name']; ?><?php echo $this->help_text( $component ); ?></label>
+            <label class="wedp-single-com__field-label inline" for="<?php echo $html_id; ?>"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
             <div class="wedp-single-com__upload-section">
                 <input type="text" class="wedp-single-com__file-upload w-input wedp__name" name="<?php echo $clear_name; ?>" id="<?php echo $html_id; ?>" autocomplete="off" data-mime="<?php echo $mime; ?>" placeholder="Insert URL or Upload File">
                 <div class="wedp__upload_file_button wpb-button">Upload File</div>
@@ -223,7 +253,7 @@ class WEDB_Components {
 		ob_start();
 		?>
         <div class="<?php echo "{$this->class__field} {$extra_class} wedp-single-com__field--$type_class " . self::required( $component ); ?>" data-type="<?php echo $type; ?>">
-            <label class="wedp-single-com__field-label inline" for="<?php echo $html_id; ?>"><?php echo $component['name']; ?><?php echo $this->help_text( $component ); ?></label>
+            <label class="wedp-single-com__field-label inline" for="<?php echo $html_id; ?>"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
             <div class="wedp-single-com__upload-box">
                 <?php echo $this->get_image( $component['value'] ); ?>
                 <div class="wedp-single-com__upload-buttons">
@@ -239,26 +269,31 @@ class WEDB_Components {
 	/**
 	 * Return html structure for user image.
 	 *
-	 * @param  int $id
+	 * @param  string|int $data
 	 * @return string
 	 */
-	public function get_image( $id ) {
+	public function get_image( $data ) {
         ob_start();
         $def_src = $this->path_img . '/media-upload--thumb.png';
-		if ( $id AND $id != 'default' ) {
-		    $image = wp_get_attachment_image_src( $id, 'large', true )[0];
-			?>
-            <div class="wedp-single-com__images" data-src="<?php echo $def_src; ?>"><div class="wedp-single-com__single-image wedp-single-com__single-image--<?php echo $id; ?>"><i class="wedp-single-com__delete-img" onclick="wedp_delete_img(this)"></i><div class="wedp-single-com__upload-image" data-id="<?php echo $id; ?>" onclick="wedp_thumbnail_contain(this)" data-img="<?php echo $image; ?>" style="background-image: url('<?php echo $image; ?>');"></div></div></div>
-			<?php
-		} else {
-		    ?>
-            <div class="wedp-single-com__images" data-src="<?php echo $def_src; ?>">
+        $ids = explode( ',', $data );
+        ?>
+        <div class="wedp-single-com__images" data-src="<?php echo $def_src; ?>">
+        <?php
+        foreach ( $ids as $id ) {
+            if ( $id AND $id != 'default' ) {
+                $image = wp_get_attachment_image_src( $id, 'large', true )[0];
+                ?>
+                <div class="wedp-single-com__single-image wedp-single-com__single-image--<?php echo $id; ?>"><i class="wedp-single-com__delete-img" onclick="wedp_delete_img(this)"></i><div class="wedp-single-com__upload-image" data-id="<?php echo $id; ?>" onclick="wedp_thumbnail_contain(this)" data-img="<?php echo $image; ?>" style="background-image: url('<?php echo $image; ?>');"></div></div>
+                <?php
+            } else {
+                ?>
                 <div class="wedp-single-com__single-image">
                     <div class="wedp-single-com__upload-image" style="background-image: url('<?php echo $def_src; ?>')"></div>
                 </div>
-            </div>
-		    <?php
-		}
+                <?php
+            }
+        }
+        echo "</div>";
         return ob_get_clean();
 	}
 
@@ -279,7 +314,7 @@ class WEDB_Components {
 		ob_start();
 		?>
 		<div class="<?php echo "{$this->class__field} {$extra_class} wedp-single-com__field--radio " . self::required( $component ); ?>" data-type="radio">
-			<label class="wedp-single-com__field-label inline"><?php echo $component['name']; ?><?php echo $this->help_text( $component ); ?></label>
+			<label class="wedp-single-com__field-label inline"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
 			<?php
 			foreach ( $component['options'] as $input_name => $item ) {
 				if ( !is_numeric ( $input_name ) ) {
@@ -326,7 +361,7 @@ class WEDB_Components {
 		ob_start();
 		?>
 		<div class="<?php echo "{$this->class__field} {$extra_class} wedp-single-com__field--$type_class " . self::required( $component ); ?>" data-type="<?php echo $type; ?>">
-			<label class="wedp-single-com__field-label inline" for="<?php echo $html_id; ?>"><?php echo $component['name']; ?><?php echo $this->help_text( $component ); ?></label>
+			<label class="wedp-single-com__field-label inline" for="<?php echo $html_id; ?>"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
             <select name="<?php echo $clear_name; ?>" id="<?php echo $html_id; ?>" class="wedp__name" <?php echo $additional; ?>>
 			<?php
 		    if ( !( isset( $component['options'] ) AND isset( $component['options']['required'] ) AND $component['options']['required'] === '0' ) AND !$multiple ) {
@@ -361,7 +396,7 @@ class WEDB_Components {
 		ob_start();
 		?>
 		<div class="<?php echo "{$this->class__field} {$extra_class} wedp-single-com__field--checkbox "; ?>" data-type="checkbox">
-			<label class="wedp-single-com__field-label inline"><?php echo $component['name']; ?><?php echo $this->help_text( $component ); ?></label>
+			<label class="wedp-single-com__field-label inline"><?php echo $component['label']; ?><?php echo $this->help_text( $component ); ?></label>
 			<?php
 			foreach ( $component['options'] as $input_name => $item ) {
 				if ( !is_numeric ( $input_name ) ) {
@@ -406,7 +441,7 @@ class WEDB_Components {
 	public function init_tabs() {
 		ob_start();
 		?>
-                <h3 class="wb-change-template__title">Your text and images</h3>
+                <h3 class="wb-change-template__title">Lag innhold på hjemmesiden</h3>
                 <div class="wedb-tab">
                     <div class="wedb-tab__headers">
 		<?php
@@ -448,7 +483,7 @@ class WEDB_Components {
         </div>
         <div class="wedp__message wedp__message--success">
             <div class="wedp__message-text">Saved!</div>
-            <a class="wb-site-name__page_link" href="http://wedding.ld/kate-and-dmitry/" target="_blank" title="" data-title="">
+            <a class="wb-site-name__page_link" href="<?php echo get_the_permalink( WeddingBudgetClass::get_option( 'wedding-page-id' ) ); ?>" target="_blank" title="" data-title="">
                 View Page <div class="wb-icon wb-icon--new-window"></div>
             </a>
         </div>
@@ -471,7 +506,7 @@ class WEDB_Components {
 		ob_start();
 		?>
         <div class="wb-web-editor__templates">
-            <h3 class="wb-change-template__title">Select your theme</h3>
+            <h3 class="wb-change-template__title">Velg et tema</h3>
             <?php echo wb_templates(); ?>
         </div>
 		<?php
@@ -522,27 +557,45 @@ class WEDB_Components {
 	}
 
 	/**
+	 * Site password.
+	 *
+	 * @return string
+	 */
+	public function password() {
+		ob_start();
+		?>
+        <div class="wb-site-password">
+            <h3 class="wb-change-template__title">Password protection of the page</h3>
+            <div class="wb-site-password__form">
+                <label for="wb-site-password" class="wb-site-password__site">You can set a password:</label>
+                <input type="text" id="wb-site-password" class="wb-site-password__input" autocomplete="off" placeholder="password" name="password" value="<?php echo WeddingBudgetClass::get_option( 'password' ); ?>">
+                <div class="wb-site-password__answer wb-site-password__answer--ok"><div class="wb-icon wb-icon--ok" title="Password has been saved"></div></div>
+                <div class="wb-site-password__save wpb-button" title="" data-title="">Lagre adressen</div>
+            </div>
+        </div>
+		<?php
+		return ob_get_clean();
+	}
+
+	/**
 	 * Site name.
 	 *
 	 * @return string
 	 */
 	public function site_name() {
-        $wedding_page = new WeddingPage();
-	    $page = $wedding_page->get_pages();
-	    $post = $page->posts[0];
 		ob_start();
 		?>
         <div class="wb-site-name">
-            <h3 class="wb-change-template__title">Your site name</h3>
+            <h3 class="wb-change-template__title">Velg hjemmesideadresse</h3>
             <div class="wb-site-name__form">
                 <label for="wb-site-name__name" class="wb-site-name__site">bryllupshjemmeside.no/</label>
-                <input type="text" id="wb-site-name__name" class="wb-site-name__input" autocomplete="off" placeholder="your-page" value="<?php echo WeddingPage::get_page_name(); ?>">
-                <div class="wb-site-name__answer wb-site-name__answer--ok"><div class="wb-icon wb-icon--ok"></div> <a class="wb-site-name__page_link" href="<?php echo get_the_permalink( $post->ID ); ?>" target="_blank">
+                <input type="text" id="wb-site-name__name" class="wb-site-name__input" autocomplete="off" placeholder="your-page" name="page-url" value="<?php echo WeddingPage::get_page_name(); ?>">
+                <div class="wb-site-name__answer wb-site-name__answer--ok"><div class="wb-icon wb-icon--ok" title="Page name is free"></div> <a class="wb-site-name__page_link" href="<?php echo get_the_permalink( WeddingBudgetClass::get_option( 'wedding-page-id' ) ); ?>" target="_blank">
                     View Page <div class="wb-icon wb-icon--new-window"></div>
                 </a></div>
-                <div class="wb-site-name__answer wb-site-name__answer--success">free</div>
-                <div class="wb-site-name__answer wb-site-name__answer--error">is busy</div>
-                <div class="wb-site-name__save wpb-button" title="" data-title="">Save page name</div>
+                <div class="wb-site-name__answer wb-site-name__answer--success">er ledig!</div>
+                <div class="wb-site-name__answer wb-site-name__answer--error">er opptatt</div>
+                <div class="wb-site-name__save wpb-button" title="" data-title="">Lagre adressen</div>
             </div>
         </div>
 		<?php

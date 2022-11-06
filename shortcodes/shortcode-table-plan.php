@@ -5,14 +5,14 @@ function wb_tableplan_shortcode ($atts) {
 		wb_scripts__tableplan();
 		$user_id = wp_get_current_user()->ID;
 		$params = shortcode_atts( array(
-			'without-table' => 'Guests without a place',
+			'without-table' => 'Gjester uten stol',
 		), $atts );
 		global $wb_file;
 		ob_start();
 		?>
 		<div class="tp">
 			<div class="wb__loading"></div>
-			<div class="gl__guest-titel">Table plan</div>
+			<div class="gl__guest-titel">Bordplan</div>
 
             <?php
 //            delete_user_meta($user_id, 'wb_tableplan');
@@ -23,12 +23,12 @@ function wb_tableplan_shortcode ($atts) {
                 ?>
                 <div class="tableplans">
                     <div class="tableplans__create">
-                        <a href="./?id" class="wb-button-regular">Create Table Plan</a>
+                        <a href="./?id" class="wb-button-regular">Opprett ny bordplan</a>
                     </div>
                     <?php
                     if (!empty($server_data)) :
                         ?>
-                        <h3 class="tableplans__title">Your Plans</h3>
+                        <h3 class="tableplans__title">Deres bordplaner</h3>
                         <table class="tableplans__lines">
 	                    <?php
 	                    foreach($server_data as $table_id => $data) {
@@ -53,8 +53,8 @@ function wb_tableplan_shortcode ($atts) {
                             <i class="fa fa-cogs tp-menu-icon tp-menu-icon--settings" aria-hidden="true" onclick="ShowSubMenu('m8');return false;" title="Settings"></i>
                         </div>
 
-                        <div id="tablesMenu" class="menu_button" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(255, 255, 255); /*background-color: rgb(111, 191, 255);*/ height: 36px; padding: 2px 10px;" onclick="ShowSubMenu('m0');"><div class="tp-icon tp-icon--table"></div> Add table »</div>
-                        <div id="objectsMenu" class="menu_button" style="top: 84px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(255, 255, 255); /*background-color: rgb(111, 191, 255);*/ height: 36px; padding: 2px 10px;" onclick="ShowSubMenu('m12');"><div class="tp-icon tp-icon--object"></div> Objects »</div>
+                        <div id="tablesMenu" class="menu_button" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(255, 255, 255); /*background-color: rgb(111, 191, 255);*/ height: 36px; padding: 2px 10px; font-size:16px;" onclick="ShowSubMenu('m0');"><div class="tp-icon tp-icon--table"></div> Legg til bord »</div>
+                        <div id="objectsMenu" class="menu_button" style="top: 84px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(255, 255, 255); /*background-color: rgb(111, 191, 255);*/ height: 36px; padding: 2px 10px; font-size:16px;" onclick="ShowSubMenu('m12');"><div class="tp-icon tp-icon--object"></div> Objekter »</div>
                         <!--                    <div id="guestsMenu" class="menu_button" style="top: 125px; /*background-color: rgb(111, 191, 255);*/ height: 36px; padding-top: 4px; background-position: initial initial; background-repeat: initial initial;" onclick="ShowSubMenu('m6');">&nbsp;<img class="guests_icon" src="--><?php //echo plugins_url('/html/img/planner/blank.png', $wb_file); ?><!--">Guests »</div>-->
 
                         <div class="tableplan__guests">
@@ -127,7 +127,7 @@ function wb_tableplan_shortcode ($atts) {
 
 
                         <div id="m0" class="menu_content" style="width: 230px; left: 180px; top: 42px; display: none;">
-                            <span class="menu_title">Options for tables</span><br>
+                            <span class="menu_title">Valg for bord</span><br>
                             <table style="margin-top: 10px" cellspacing="0" cellpadding="0" border="0">
                                 <tbody><tr>
                                     <td style="padding-left:8px;">
@@ -167,8 +167,8 @@ function wb_tableplan_shortcode ($atts) {
                                 </tr>
                                 </tbody></table>
                             <br>
-                            &nbsp;&nbsp;&nbsp;Seats: &nbsp;<input type="text" value="4" id="num_table_seats" style="width: 28px">&nbsp;&nbsp; <div id="add_table_name_block" style="display:inline;">Name: &nbsp;<input type="text" id="add_table_name" value="Table 1" style="width: 82px"></div><br>
-                            <input type="button" onclick="AddNewTable();" value="Add table" style="margin-top: 10px">
+                            &nbsp;&nbsp;&nbsp;Stoler: &nbsp;<input type="text" value="4" id="num_table_seats" style="width: 28px">&nbsp;&nbsp; <div id="add_table_name_block" style="display:inline;">Navn: &nbsp;<input type="text" id="add_table_name" value="Bord 1" style="width: 82px"></div><br>
+                            <input type="button" onclick="AddNewTable();" value="Legg til bord" style="margin-top: 10px">
                             <div style="position: absolute; top: 4px; right: 4px;">
                                 <a href="#" class="close_button" onclick="HideSubMenu('m0');return false;"></a>
                             </div>
@@ -177,7 +177,7 @@ function wb_tableplan_shortcode ($atts) {
 
 
                         <div id="m12" class="menu_content" style="width: 230px; left: 180px; top: 83px; display: none;">
-                            <span class="menu_title">The objects</span><br>
+                            <span class="menu_title">Objektene</span><br>
                             <table style="margin-top: 10px" cellspacing="0" cellpadding="0" border="0">
                                 <tbody><tr>
                                     <td style="padding-left:8px;">
@@ -187,9 +187,9 @@ function wb_tableplan_shortcode ($atts) {
                                         <input type="radio" id="otype1" name="object_type" value="1" style="vertical-align:middle;" onclick="AddObjectMenuSelect();return true;"><img class="table_icon" id="objecticon2" src="<?php echo plugins_url('/html/img/planner/DJ.png', $wb_file); ?>" onclick="AddObjectIconMenuClick('otype1');return true;"></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">Dance floor</td>
+                                    <td style="text-align:center">Dansegulv</td>
                                     <td>&nbsp;</td>
-                                    <td style="text-align:center">DJ console</td>
+                                    <td style="text-align:center">DJ Benk</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" height="5"></td>
@@ -202,9 +202,9 @@ function wb_tableplan_shortcode ($atts) {
                                         <input type="radio" id="otype3" name="object_type" value="3" style="vertical-align:middle;" onclick="AddObjectMenuSelect();return true;"><img class="table_icon" id="objecticon4" src="<?php echo plugins_url('/html/img/planner/bar.png', $wb_file); ?>" onclick="AddObjectIconMenuClick('otype3');return true;"></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">Column</td>
+                                    <td style="text-align:center">Stolpe</td>
                                     <td>&nbsp;</td>
-                                    <td style="text-align:center">Bar/Reception</td>
+                                    <td style="text-align:center">Bar / Snacks</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" height="5"></td>
@@ -217,9 +217,9 @@ function wb_tableplan_shortcode ($atts) {
                                         <input type="radio" id="otype5" name="object_type" value="5" style="vertical-align:middle;" onclick="AddObjectMenuSelect();return true;"><img class="table_icon" id="objecticon6" src="<?php echo plugins_url('/html/img/planner/cake_table.png', $wb_file); ?>" onclick="AddObjectIconMenuClick('otype5');return true;"></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">Table with gifts</td>
+                                    <td style="text-align:center">Gavebord</td>
                                     <td>&nbsp;</td>
-                                    <td style="text-align:center">Table with cake</td>
+                                    <td style="text-align:center">Kakebord</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" height="5"></td>
@@ -231,13 +231,13 @@ function wb_tableplan_shortcode ($atts) {
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align:center">The object</td>
+                                    <td style="text-align:center">Annet objekt</td>
                                     <td>&nbsp;</td>
                                     <td style="text-align:center">&nbsp;</td>
                                 </tr>
                                 </tbody></table>
                             <br>
-                            <div id="add_object_name_block" style="display:none;">&nbsp;&nbsp;&nbsp;Title: &nbsp;<input type="text" id="add_object_name" style="width: 127px"><br></div>
+                            <div id="add_object_name_block" style="display:none;">&nbsp;&nbsp;&nbsp;Tittel: &nbsp;<input type="text" id="add_object_name" style="width: 127px"><br></div>
                             <input type="button" onclick="AddNewObject();" value="Add" style="margin-top: 10px">
                             <div style="position: absolute; top: 4px; right: 4px;">
                                 <a href="#" class="close_button" onclick="HideSubMenu('m12');return false;"></a>
@@ -247,15 +247,15 @@ function wb_tableplan_shortcode ($atts) {
 
                         <div id="m6" class="box" style="display: none;">
                             <div class="menu_content_guest" style="width: 700px; height: 380px; top: 50%; left: 50%; margin: -200px 0 0 -350px; display:block; opacity: initial;">
-                                <a href="#" onclick="document.getElementById('uploadResult').value=''; document.getElementById('import_guest_dialog').style.display='block' ;return false;">Download guest list from file</a>
+                                <a href="#" onclick="document.getElementById('uploadResult').value=''; document.getElementById('import_guest_dialog').style.display='block' ;return false;">Last ned gjesteliste fra fil</a>
                                 <div style="width:690px;height:47px;padding:3px 5px 5px 5px;background-color:#6FBFFF;margin-top:5px;">
                                     <table id="guest_list" style="text-align:left; color:#ffffff;">
                                         <tbody>
                                         <tr>
-                                            <td style="width:300px">Guest name</td>
-                                            <td style="width:75px">Gender</td>
-                                            <td style="width:85px">Satus</td>
-                                            <td style="width:145px">Menu</td>
+                                            <td style="width:300px">Gjest navn</td>
+                                            <td style="width:75px">Kjønn</td>
+                                            <td style="width:85px">Status</td>
+                                            <td style="width:145px">Meny</td>
                                             <td style="width:75px">&nbsp;</td>
                                         </tr>
                                         <tr>
@@ -308,26 +308,26 @@ function wb_tableplan_shortcode ($atts) {
                                 <table style="position: absolute; left: 65%; top: 5%; bottom: 5%; width: 30%;">
                                     <tbody><tr>
                                         <td>
-                                            <h5>How to create a file</h5>
+                                            <h5>Hvordan opprette en fil</h5>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <br><strong>For a Word file:</strong><br>
+                                            <br><strong>Word fil:</strong><br>
                                             <ul>
-                                                <li>Each guest should be on a separate line.</li>
-                                                <li>Save as txt file (File -> Save As)</li>
+                                                <li>Hver gjest må være på separat linje.</li>
+                                                <li>Lagre som tekstfil (Fil -> Lagre Som) - Velg .txt</li>
                                             </ul>
                                             <br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <br><strong>For Excel file</strong><br>
+                                            <br><strong>For Excel fil</strong><br>
                                             <ul>
-                                                <li>The guest name must be in the first cell of the row</li>
-                                                <li>Make sure there is only one column in the file</li>
-                                                <li>Save as cvs file (File -> Save As)</li>
+                                                <li>Gjestens navn må være på første celle i raden</li>
+                                                <li>Pass på at det kun er en kolonne i filen</li>
+                                                <li>Lagre som CSV fil (Fil -> Lagre som)</li>
                                             </ul>
                                         </td>
                                     </tr>
@@ -341,11 +341,11 @@ function wb_tableplan_shortcode ($atts) {
                     </div>
 
                     <div id="tablePropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);" class="tp-context-menu">
-                        <div class="menu_title" style=""><strong>Table</strong></div><!--Стол-->
-                        <div id="tablePropAddSeat" class="table_menu_button" style="" onclick="TableMenuAddSeat(this.parentNode.TableID);">Add chair</div>
-                        <div id="tablePropRemoveSeat" class="table_menu_button" style="" onclick="TableMenuRemoveSeat(this.parentNode.TableID);">Remove chair</div>
-                        <div id="tablePropRemove" class="table_menu_button" style="" onclick="TableMenuDeleteTable(this.parentNode.TableID);">Remove</div>
-                        <div id="tablePropRename" class="table_menu_button" style="" onclick="TableMenuRenameTable(this.parentNode.TableID);">Rename</div>
+                        <div class="menu_title" style=""><strong>Bord</strong></div><!--Стол-->
+                        <div id="tablePropAddSeat" class="table_menu_button" style="" onclick="TableMenuAddSeat(this.parentNode.TableID);">Legg til stol</div>
+                        <div id="tablePropRemoveSeat" class="table_menu_button" style="" onclick="TableMenuRemoveSeat(this.parentNode.TableID);">Fjern stol</div>
+                        <div id="tablePropRemove" class="table_menu_button" style="" onclick="TableMenuDeleteTable(this.parentNode.TableID);">Fjern</div>
+                        <div id="tablePropRename" class="table_menu_button" style="" onclick="TableMenuRenameTable(this.parentNode.TableID);">Endre navn</div>
 
                         <div style="position: absolute; top: 4px; right: 4px;">
                             <a href="#" class="close_button" onclick="HideSubMenu('tablePropertiesMenu');return false;"></a>
@@ -353,9 +353,9 @@ function wb_tableplan_shortcode ($atts) {
                     </div>
 
                     <div id="objectPropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);" class="tp-context-menu">
-                        <div class="menu_title" style=""><strong>Object</strong></div>
-                        <div id="objectPropRename" class="table_menu_button" style="" onclick="ObjectMenuRename(this.parentNode.ObjectID);">Rename</div>
-                        <div id="objectPropRemove" class="table_menu_button" style="" onclick="ObjectMenuDelete(this.parentNode.ObjectID);">Remove</div>
+                        <div class="menu_title" style=""><strong>Objekt</strong></div>
+                        <div id="objectPropRename" class="table_menu_button" style="" onclick="ObjectMenuRename(this.parentNode.ObjectID);">Endre navn</div>
+                        <div id="objectPropRemove" class="table_menu_button" style="" onclick="ObjectMenuDelete(this.parentNode.ObjectID);">Fjern</div>
 
                         <div style="position: absolute; top: 4px; right: 4px;">
                             <a href="#" class="close_button" onclick="HideSubMenu('objectPropertiesMenu');return false;"></a>
@@ -365,16 +365,16 @@ function wb_tableplan_shortcode ($atts) {
                     <div id="m13" class="box" style="display: none;">
                         <div id="objectRenameMenu" class="menu_content_guest" style="width: 300px; top: 50%; left: 50%; margin: -60px 0 0 -150px; position: absolute;  z-index: 2000; display: block;">
                             <div style="margin-top:5px;">
-                                New name:<br><input id="object_edit_name" style="width:240px" type="text" onkeydown="if (event.keyCode == 13) { Rename_Object(); }"> <input onclick="Rename_Object()" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
+                                Nytt navn:<br><input id="object_edit_name" style="width:240px" type="text" onkeydown="if (event.keyCode == 13) { Rename_Object(); }"> <input onclick="Rename_Object()" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
                             </div>
                             <div style="position:absolute;top:2px;left:290px;"><a href="#" class="close_button" onclick="HideSubMenu('m13');return false;"></a></div>
                         </div>
                     </div>
 
                     <div id="seatPropertiesMenu" style="position: absolute;  z-index: 2000; display: none; border: 1px solid rgb(215, 227, 234); background-color: rgb(215, 227, 234);" class="tp-context-menu">
-                        <div class="menu_title"><strong>Table seat</strong></div>
+                        <div class="menu_title"><strong>Stol</strong></div>
 
-                        <div id="seatGuestUnseat" class="table_menu_button" onclick="UnseatGuestFromTable(this.parentNode.GuestID);">Empty the chair</div>
+                        <div id="seatGuestUnseat" class="table_menu_button" onclick="UnseatGuestFromTable(this.parentNode.GuestID);">Tøm stolen</div>
 <!--                        <div id="seatGuestDelet" class="table_menu_button" onclick="DeleteGuestFromTable(this.parentNode.GuestID);">Remove guest</div>-->
                         <div style="position: absolute; top: 4px; right: 4px; cursor:pointer;">
                             <a href="#" class="close_button" onclick="HideSubMenu('seatPropertiesMenu');return false;"></a>
@@ -384,15 +384,15 @@ function wb_tableplan_shortcode ($atts) {
                     <div id="m7" class="box" style="display: none;">
                         <div id="tableRenameMenu" class="menu_content_guest" style="width: 300px; top: 50%; left: 50%; margin: -60px 0 0 -150px; position: absolute;  z-index: 2000; display: block;">
                             <div style="margin-top:5px;">
-                                New table name:<br><input id="edit_name" style="width:240px" type="text" onkeydown="if (event.keyCode == 13) { Rename_Table(); }"> <input onclick="Rename_Table()" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
+                                Nytt bordnavn:<br><input id="edit_name" style="width:240px" type="text" onkeydown="if (event.keyCode == 13) { Rename_Table(); }"> <input onclick="Rename_Table()" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
                             </div>
                             <div style="position:absolute;top:2px;left:290px;"><a href="#" class="close_button" onclick="HideSubMenu('m7');return false;"></a></div>
                         </div>
                     </div>
 
                     <div id="m8" class="menu_content" style="width: 217px; left: 183px; top: 20px; /*position: fixed;*/ display: none;">
-                        <span class="menu_title">Settings</span><br><br>
-                        <input id="show_gridlines" onclick="ShowGridClick();" checked="checked" type="checkbox"> Show grid
+                        <span class="menu_title">Innstillinger</span><br><br>
+                        <input id="show_gridlines" onclick="ShowGridClick();" checked="checked" type="checkbox"> Vis rutenett
                         <?php /*
                         <br><br>
                         <span class="menu_title">Menu options</span><br><br>
@@ -422,23 +422,23 @@ function wb_tableplan_shortcode ($atts) {
                         <span class="menu_title">Statistics</span><br>
                         <table style="border-spacing:10px;">
                             <tbody><tr>
-                                <td>Number of tables:</td>
+                                <td>Antall bord:</td>
                                 <td><span id="statTables"></span></td>
                             </tr>
                             <tr>
-                                <td>Number of chairs:</td>
+                                <td>Antall stoler:</td>
                                 <td><span id="statSeats"></span></td>
                             </tr>
                             <tr>
-                                <td>Number of guests:</td>
+                                <td>Antall gjester:</td>
                                 <td><span id="statGuests"></span></td>
                             </tr>
                             <tr>
-                                <td>Guests without a seat:</td>
+                                <td>Gjester uten stol:</td>
                                 <td><span id="statUnseatGuests"></span></td>
                             </tr>
                             <tr>
-                                <td>Free chairs:</td>
+                                <td>Ledige stoler:</td>
                                 <td><span id="statFreeSeats"></span></td>
                             </tr>
                             </tbody></table>
@@ -450,27 +450,27 @@ function wb_tableplan_shortcode ($atts) {
                     <div id="m10" class="box planSaveMenu-box" style="">
                         <div id="planSaveMenu" class="menu_content_guest" style="">
                             <div style="margin-top:5px;">
-                                Plan Name:<br><input id="edit_plan_name" style="width:240px" type="text"> <input onclick="if ($('#edit_plan_name')[0].value.length > 0) {tablePlan.Name = $('#edit_plan_name')[0].value; TryToSavePlan();}" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
+                                Bordplan Navn:<br><input id="edit_plan_name" style="width:240px" type="text"> <input onclick="if ($('#edit_plan_name')[0].value.length > 0) {tablePlan.Name = $('#edit_plan_name')[0].value; TryToSavePlan();}" value="OK" style="width:43px; margin-top:-10px;margin-left:2px" type="button">
                             </div>
                             <div style="position:absolute;top:2px;left:290px;"><a href="#" class="close_button" onclick="HideSubMenu('m10');return false;"></a></div>
                         </div>
                     </div>
 
                     <div id="m11" class="menu_content" style="width: 270px; left: 183px; top: 110px; /*position: fixed;*/ display: none;">
-                        <span class="menu_title">Create PDF for printing</span>
+                        <span class="menu_title">Lag PDF for utskrift</span>
                         <table style="border-spacing:10px;">
                             <tbody><tr>
-                                <td>Type of:</td>
+                                <td>Type av:</td>
                                 <td>
                                     <select id="printType" style="width:160px" onchange="PrintTypeChanged(); return true;">
-                                        <option value="8" selected="selected">Seating plan</option>
-                                        <option value="16">Guest list</option>
+                                        <option value="8" selected="selected">Bordplan</option>
+                                        <option value="16">Gjesteliste</option>
 
                                     </select>
                                 </td>
                             </tr>
                             <tr id="printSize">
-                                <td>Размер:</td>
+                                <td>Størrelse:</td>
                                 <td>
                                     <select id="printSize" style="width:160px">
                                         <option value="0" selected="selected">A4</option>
@@ -481,24 +481,24 @@ function wb_tableplan_shortcode ($atts) {
                                 </td>
                             </tr>
                             <tr id="printTitle">
-                                <td>Заголовок:</td>
+                                <td>Header:</td>
                                 <td><input id="inputPrintTitle" type="text" style="width:150px;"></td>
                             </tr>
                             <tr id="printTables">
                                 <td style="text-align:right;"><input id="inputPrintTables" type="checkbox" checked="checked"></td>
-                                <td>Contours of tables</td>
+                                <td>Kontur av bord</td>
                             </tr>
                             <tr id="printSeats">
                                 <td style="text-align:right;"><input id="inputPrintSeats" type="checkbox" checked="checked"></td>
-                                <td>Contours of chairs</td>
+                                <td>Kontur av stoler</td>
                             </tr>
                             <tr id="printColor">
                                 <td style="text-align:right;"><input id="inputPrintColor" type="checkbox"></td>
-                                <td>Color print</td>
+                                <td>Fargeprint</td>
                             </tr>
                             <tr id="printMenu" style="display:none;">
                                 <td style="text-align:right;"><input id="inputPrintMenu" type="checkbox"></td>
-                                <td>Menu option</td>
+                                <td>Menyvalg</td>
                             </tr>
 
                             </tbody></table>
@@ -529,9 +529,9 @@ function wb_tableplan_table_line($name, $id){
     ?>
     <tr class="tableplan-line tableplan-line--<?php echo $id; ?>">
         <td class="tableplan-line__title"><a href="./?id=<?php echo $id; ?>"><div class="tp-icon tp-icon--table"></div> <?php echo $name; ?></a></td>
-        <td class="tableplan-line__edit"><a href="./?id=<?php echo $id; ?>">Edit</a></td>
+        <td class="tableplan-line__edit"><a href="./?id=<?php echo $id; ?>">Endre</a></td>
 <!--        <td class="tableplan-line__duplicate"><div class="tableplan-line__duplicate-plan" data-id="--><?php //echo $id; ?><!--">Duplicate</div></td>-->
-        <td class="tableplan-line__remove"><div class="tableplan-line__remove-plan" data-id="<?php echo $id; ?>">Delete</div></td>
+        <td class="tableplan-line__remove"><div class="tableplan-line__remove-plan" data-id="<?php echo $id; ?>">Slett</div></td>
     </tr>
     <?php
 	return ob_get_clean();
@@ -550,7 +550,7 @@ function wb_tableplan_script($data, $id){
 	        <?php echo (isset($data['Width']) AND $data['Width']) ? "SetPlanWidth({$data['Width']});\n" : ''; ?>
 	        <?php echo (isset($data['Height']) AND $data['Height']) ? "SetPlanHeight({$data['Height']});\n" : ''; ?>
 
-            tablePlan = new TablePlan(modelPlanID, <?php echo (isset($data['Name']) AND $data['Name']) ? "'{$data['Name']}'" : '"New Plan"'; ?>);//Новый План
+            tablePlan = new TablePlan(modelPlanID, <?php echo (isset($data['Name']) AND $data['Name']) ? "'{$data['Name']}'" : '"Bordplan 1"'; ?>);//Новый План
 
             // init editor
 

@@ -29,13 +29,22 @@
             dataType: 'json',
             data: ajaxData,
             beforeSend: function (xhr, ajaxOptions, thrownError) {
-                $body.addClass('in-process');
+                $body.addClass('in-process').addClass('in-process-save');
             },
             success: function (data) {
                 console.log(data);
                 window.onbeforeunload = {};
                 if (data.answer !== void 0 && data.answer) {
+                    var $wb_webp__items = $('.wb-webp__items'),
+                        $form__success = $('.wb-site-name__form--success'),
+                        $page_link = $('.wb-site-name__page_link');
+
+                    $wb_webp__items.addClass('wb-webp__items--page-exist');
                     $par.addClass('wb-webp--saved');
+                    $page_link.attr('href', data.url);
+                    $form__success.removeClass('wb-site-name__form--success');
+                    $('.wb-site-password__form').removeClass('wb-site-password__form--success');
+
                     // if (data.value !== void 0) {
                     // }
                 }
@@ -45,7 +54,7 @@
                 }
             },
             complete: function (xhr, ajaxOptions, thrownError) {
-                $body.removeClass('in-process');
+                $body.removeClass('in-process').removeClass('in-process-save');
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log('wpb-save-@11: '+xhr.status);
@@ -186,12 +195,15 @@
 
                 wedp_get_img(attachment.id, $wedp_single_com__images);
                 ids += attachment.id + ',';
+                console.log(attachment.id, ids);
 
                 $wedp_single_com__images.append('<div class="wedp-single-com__single-image wedp-single-com__single-image--'+attachment.id+'"><i class="wedp-single-com__delete-img" onclick="wedp_delete_img(this)"></i><div class="wedp-single-com__upload-image" data-id="'+attachment.id+'" onclick="wedp_thumbnail_contain(this)"></div></div>');
             });
 
+            // console.log(77, ids);
+            wp.media.model.settings.post.id = ids.slice(0, -1);
             $wedp_single_com__media_upload.val(ids.slice(0, -1));
-            console.log(wp.media.model.settings.post.id);
+            // console.log(wp.media.model.settings.post.id);
 
             wp.media.model.settings.post.id = wp_media_post_id;
         });
@@ -208,7 +220,7 @@
             ids = $wedp_single_com__media_upload.val(),
             $wedp_single_com__images = $('.wedp-single-com__images', $wedp_single_com__field);
 
-        ids = ids.replace(image_id, '').replace(/\,{2,}/g, ',').replace(/[&#44;]{2,}/g, '&#44;').replace(/^&#44;|&#44;$/g, '').replace(/^,|,$/g, '');
+        ids = ids.replace(image_id, '').replace(/\,{2,}/g, ',').replace(/^,|,$/g, '');
         $wedp_single_com__media_upload.val(ids);
 
         $img_container.remove();
